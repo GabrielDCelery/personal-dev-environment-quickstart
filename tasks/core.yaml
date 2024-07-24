@@ -1,0 +1,14 @@
+- name: Install core packages
+  ansible.builtin.apt:
+    name: ["curl", "tree"]
+    state: present
+
+- name: Install git
+  ansible.builtin.apt:
+    name: git
+    state: present
+
+- name: Install vim
+  ansible.builtin.apt:
+    name: vim
+    state: present

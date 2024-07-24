@@ -1,0 +1,21 @@
+- name: Install zsh
+  ansible.builtin.apt:
+    name: zsh
+    state: present
+
+- name: Ensure the user uses the zsh shell
+  user:
+    name: "{{ user }}"
+    shell: /usr/bin/zsh
+    state: present
+
+- name: Install oh my zsh if not present
+  ansible.builtin.shell: |
+    [ -d  ~/.oh-my-zsh ] || yes 'Y' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  become_user: "{{ user }}"
+
+- name: Source zsh
+  shell: source ~/.zshrc
+  args:
+    executable: /usr/bin/zsh
+  become_user: "{{ user }}"

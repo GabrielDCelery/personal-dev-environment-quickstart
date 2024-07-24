@@ -1,0 +1,58 @@
+- hosts: localhost
+  become: true
+  pre_tasks:
+    - name: Update all Debian/Ubuntu packages to their latest version
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+        name: "*"
+        state: present
+      tags:
+        - nodejs
+        - starship
+        - zsh
+
+  tasks:
+    - name: Include vars of vars.yaml
+      ansible.builtin.include_vars:
+        file: ./vars.yaml
+      tags:
+        - nodejs
+        - starship
+        - zsh
+
+    - name: Run core tasks
+      ansible.builtin.include_tasks:
+        file: ./tasks/core.yaml
+        apply:
+          tags:
+            - core
+      tags:
+        - core
+
+    - name: Run zsh tasks
+      ansible.builtin.include_tasks:
+        file: ./tasks/zsh.yaml
+        apply:
+          tags:
+            - zsh
+      tags:
+        - zsh
+
+    - name: Run nodejs tasks
+      ansible.builtin.include_tasks:
+        file: ./tasks/nodejs.yaml
+        apply:
+          tags:
+            - nodejs
+      tags:
+        - nodejs
+
+    - name: Run starship tasks
+      ansible.builtin.include_tasks:
+        file: ./tasks/starship.yaml
+        apply:
+          tags:
+            - starship
+      tags:
+        - starship

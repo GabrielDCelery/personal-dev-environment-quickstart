@@ -1,0 +1,15 @@
+- name: Install nodejs and npm
+  ansible.builtin.apt:
+    name: ["nodejs", "npm"]
+    state: present
+
+- name: Install "n" node.js package globally
+  community.general.npm:
+    name: n
+    global: true
+
+- name: Install nodejs 20
+  ansible.builtin.shell: n 20
+
+- name: Install nodejs 22
+  ansible.builtin.shell: n 22
