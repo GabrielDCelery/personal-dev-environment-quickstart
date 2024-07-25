@@ -1,0 +1,26 @@
+- name: Install stow
+  ansible.builtin.apt:
+    name: stow
+    state: present
+
+- name: Ensure .config directory exists
+  file:
+    path: ~/.config
+    state: directory
+  become_user: "{{ user }}"
+
+- name: Ensure dotfiles directory exists
+  file:
+    path: ~/.dotfiles
+    state: directory
+  become_user: "{{ user }}"
+
+- name: Copy contents of dotfiles to ~/.dotfiles
+  ansible.builtin.copy:
+    src: ~/.init-work-environment/dotfiles/
+    dest: ~/.dotfiles/
+  become_user: "{{ user }}"
+
+- name: Stow ~/.dotfiles
+  ansible.builtin.shell: stow --dir=$HOME/.dotfiles .
+  become_user: "{{ user }}"

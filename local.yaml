@@ -8,8 +8,12 @@
         name: "*"
         state: present
       tags:
+        - core
+        - fonts
+        - neovim
         - nodejs
         - starship
+        - stow
         - zsh
 
   tasks:
@@ -17,8 +21,12 @@
       ansible.builtin.include_vars:
         file: ./vars.yaml
       tags:
+        - core
+        - fonts
+        - neovim
         - nodejs
         - starship
+        - stow
         - zsh
 
     - name: Run core tasks
@@ -48,6 +56,15 @@
       tags:
         - nodejs
 
+    - name: Run fonts tasks
+      ansible.builtin.include_tasks:
+        file: ./tasks/fonts.yaml
+        apply:
+          tags:
+            - fonts
+      tags:
+        - fonts
+
     - name: Run starship tasks
       ansible.builtin.include_tasks:
         file: ./tasks/starship.yaml
@@ -56,3 +73,21 @@
             - starship
       tags:
         - starship
+
+    - name: Run stow tasks
+      ansible.builtin.include_tasks:
+        file: ./tasks/stow.yaml
+        apply:
+          tags:
+            - stow
+      tags:
+        - stow
+
+    - name: Run neovim tasks
+      ansible.builtin.include_tasks:
+        file: ./tasks/neovim.yaml
+        apply:
+          tags:
+            - neovim
+      tags:
+        - neovim

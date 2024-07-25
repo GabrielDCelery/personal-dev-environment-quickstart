@@ -7,13 +7,13 @@ To be able to quickly set up a working development environment on a new machine.
 1. Build the docker container containing the setup scripts
 
 ```sh
-docker build . -t gaze/dev:latest
+docker build --build-arg MY_USER_ID=$(id -u) --build-arg MY_GROUP_ID=$(id -g) -t gaze/dev:latest .
 ```
 
 2. Run the docker container
 
 ```sh
-docker run -t -v ./:/home/gzeller/.init-work-environment --name gaze_dev gaze/dev:latest
+docker run -t -v ./:/home/gaze/.init-work-environment --name gaze_dev gaze/dev:latest
 ```
 
 3. Enter the docker container for development

@@ -1,6 +1,26 @@
-- name: Install core packages
+- name: Install man
   ansible.builtin.apt:
-    name: ["curl", "tree"]
+    name: man
+    state: present
+
+- name: Install curl
+  ansible.builtin.apt:
+    name: curl
+    state: present
+
+- name: Install wget
+  ansible.builtin.apt:
+    name: wget
+    state: present
+
+- name: Install tree
+  ansible.builtin.apt:
+    name: tree
+    state: present
+
+- name: Install unzip
+  ansible.builtin.apt:
+    name: unzip
     state: present
 
 - name: Install git
@@ -11,4 +31,9 @@
 - name: Install vim
   ansible.builtin.apt:
     name: vim
+    state: present
+
+- name: Install tmux
+  ansible.builtin.apt:
+    name: tmux
     state: present

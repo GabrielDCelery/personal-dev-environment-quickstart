@@ -3,6 +3,8 @@ FROM ubuntu:22.04
 RUN apt update && \
     apt upgrade -y;
 
+RUN yes | unminimize;
+
 RUN apt install python3 python3-pip -y && \
     pip3 install --upgrade pip;
 
@@ -11,10 +13,10 @@ RUN pip3 install ansible && \
 
 RUN apt install sudo -y;
 
-ARG MY_USER_NAME=gzeller
-ARG MY_USER_ID=1000
-ARG MY_GROUP_NAME=gzeller
-ARG MY_GROUP_ID=1000
+ARG MY_USER_NAME=gaze
+ARG MY_USER_ID=1001
+ARG MY_GROUP_NAME=gaze
+ARG MY_GROUP_ID=1001
 
 RUN groupadd --gid ${MY_GROUP_ID} ${MY_GROUP_NAME}
 RUN useradd -m ${MY_USER_NAME} -u ${MY_USER_ID} -g ${MY_GROUP_ID}

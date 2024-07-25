@@ -1,0 +1,14 @@
+- name: Ensure fonts directory exits
+  file:
+    path: $HOME/.local/share/fonts
+    state: directory
+  become_user: "{{ user }}"
+
+- name: Install JetBrains fonts
+  ansible.builtin.shell: |
+    wget -P $HOME/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip && \
+    cd $HOME/.local/share/fonts && \
+    unzip -f JetBrainsMono.zip && \
+    rm JetBrainsMono.zip && \
+    fc-cache -fv
+  become_user: "{{ user }}"
