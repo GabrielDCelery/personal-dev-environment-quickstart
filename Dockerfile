@@ -18,7 +18,7 @@ ARG MY_USER_ID=1001
 ARG MY_GROUP_NAME=gaze
 ARG MY_GROUP_ID=1001
 
-RUN groupadd --gid ${MY_GROUP_ID} ${MY_GROUP_NAME}
+RUN getent group ${MY_GROUP_ID} || groupadd --gid ${MY_GROUP_ID} ${MY_GROUP_NAME}
 RUN useradd -m ${MY_USER_NAME} -u ${MY_USER_ID} -g ${MY_GROUP_ID}
 
 RUN echo "${MY_USER_NAME} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/${MY_USER_NAME}
