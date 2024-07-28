@@ -1,4 +1,18 @@
-- name: Install neovim
+- name: Add neovim repository
+  ansible.builtin.shell: add-apt-repository ppa:neovim-ppa/unstable -y
+
+- name: Update apt cache
   ansible.builtin.apt:
-    name: neovim
+    update_cache: true
+    cache_valid_time: 3600
+    name: "*"
     state: present
+
+- name: Install dependencies
+  ansible.builtin.apt:
+    name: [ "make", "gcc", "ripgrep", "unzip", "git", "xclip" ]
+    state: present
+
+- name: Install neovim
+  ansible.builtin.shell: apt install neovim -y
+  become: true

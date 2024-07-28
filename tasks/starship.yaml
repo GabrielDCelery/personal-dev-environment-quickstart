@@ -13,27 +13,15 @@
   when: starship_install_script.changed
   become_user: "{{ user }}"
 
-- name: Check if zshrc has the starship configuration
-  lineinfile:
-    state: absent
-    path: ~/.zshrc
-    regexp: eval "$(starship init zsh)"
-  check_mode: true
-  changed_when: false # This just makes things look prettier in the logs
-  register: check
-  become_user: "{{ user }}"
-
-- name: Add starship to zshrc if does not exist
+- name: Add starship init script to zshrc if not present
   lineinfile:
     state: present
-    path: ~/.zshrc
+    path: $HOME/.zshrc
     line: eval "$(starship init zsh)"
-  when: check.found == 0
   become_user: "{{ user }}"
 
 - name: Source zsh
-  shell: source ~/.zshrc
+  shell: source $HOME/.zshrc
   args:
     executable: /usr/bin/zsh
-  when: check.found == 0
   become_user: "{{ user }}"

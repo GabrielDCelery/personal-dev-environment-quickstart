@@ -10,6 +10,7 @@
       tags:
         - core
         - fonts
+        - git
         - neovim
         - nodejs
         - starship
@@ -23,6 +24,7 @@
       tags:
         - core
         - fonts
+        - git
         - neovim
         - nodejs
         - starship
@@ -38,6 +40,15 @@
       tags:
         - core
 
+    - name: Run git tasks
+      ansible.builtin.include_tasks:
+        file: ./tasks/git.yaml
+        apply:
+          tags:
+            - git
+      tags:
+        - git
+
     - name: Run zsh tasks
       ansible.builtin.include_tasks:
         file: ./tasks/zsh.yaml
@@ -47,32 +58,14 @@
       tags:
         - zsh
 
-    - name: Run nodejs tasks
-      ansible.builtin.include_tasks:
-        file: ./tasks/nodejs.yaml
-        apply:
-          tags:
-            - nodejs
-      tags:
-        - nodejs
-
-    - name: Run fonts tasks
-      ansible.builtin.include_tasks:
-        file: ./tasks/fonts.yaml
-        apply:
-          tags:
-            - fonts
-      tags:
-        - fonts
-
-    - name: Run starship tasks
-      ansible.builtin.include_tasks:
-        file: ./tasks/starship.yaml
-        apply:
-          tags:
-            - starship
-      tags:
-        - starship
+    # - name: Run fonts tasks
+    #   ansible.builtin.include_tasks:
+    #     file: ./tasks/fonts.yaml
+    #     apply:
+    #       tags:
+    #         - fonts
+    #   tags:
+    #     - fonts
 
     - name: Run stow tasks
       ansible.builtin.include_tasks:
@@ -83,6 +76,15 @@
       tags:
         - stow
 
+    - name: Run starship tasks
+      ansible.builtin.include_tasks:
+        file: ./tasks/starship.yaml
+        apply:
+          tags:
+            - starship
+      tags:
+        - starship
+
     - name: Run neovim tasks
       ansible.builtin.include_tasks:
         file: ./tasks/neovim.yaml
@@ -91,3 +93,12 @@
             - neovim
       tags:
         - neovim
+
+    # - name: Run nodejs tasks
+    #   ansible.builtin.include_tasks:
+    #     file: ./tasks/nodejs.yaml
+    #     apply:
+    #       tags:
+    #         - nodejs
+    #   tags:
+    #     - nodejs

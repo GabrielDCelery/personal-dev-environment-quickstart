@@ -3,24 +3,23 @@
     name: stow
     state: present
 
-- name: Ensure .config directory exists
+- name: Create .config directory if does not exist
   file:
     path: ~/.config
     state: directory
   become_user: "{{ user }}"
 
-- name: Ensure dotfiles directory exists
-  file:
-    path: ~/.dotfiles
-    state: directory
-  become_user: "{{ user }}"
-
-- name: Copy contents of dotfiles to ~/.dotfiles
-  ansible.builtin.copy:
-    src: ~/.init-work-environment/dotfiles/
-    dest: ~/.dotfiles/
+- name: Clone personal dotfiles from public GitHub repository
+  ansible.builtin.git:
+    repo: git@github.com:GabrielDCelery/personal-dotfiles.git
+    dest: $HOME/.dotfiles
+    version: main
+    update: yes
+    clone: yes
   become_user: "{{ user }}"
 
 - name: Stow ~/.dotfiles
   ansible.builtin.shell: stow --dir=$HOME/.dotfiles .
   become_user: "{{ user }}"
+
+  

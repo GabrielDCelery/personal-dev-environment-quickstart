@@ -23,11 +23,6 @@
     name: unzip
     state: present
 
-- name: Install git
-  ansible.builtin.apt:
-    name: git
-    state: present
-
 - name: Install vim
   ansible.builtin.apt:
     name: vim
@@ -36,4 +31,16 @@
 - name: Install tmux
   ansible.builtin.apt:
     name: tmux
+    state: present
+
+- name: Install software properties common
+  ansible.builtin.apt:
+    name: software-properties-common
+    state: present
+
+- name: Update all Debian/Ubuntu packages to their latest version
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+    name: "*"
     state: present
