@@ -1,21 +1,21 @@
 - hosts: localhost
-  become: true
-  pre_tasks:
-    - name: Update all Debian/Ubuntu packages to their latest version
-      ansible.builtin.apt:
-        update_cache: true
-        cache_valid_time: 3600
-        name: "*"
-        state: present
-      tags:
-        - core
-        - fonts
-        - git
-        - neovim
-        - nodejs
-        - starship
-        - stow
-        - zsh
+  # pre_tasks:
+  #   - name: Update all Debian/Ubuntu packages to their latest version
+  #     ansible.builtin.apt:
+  #       update_cache: true
+  #       cache_valid_time: 3600
+  #       name: "*"
+  #       state: present
+  #     tags:
+  #       - core
+  #       - fonts
+  #       - git
+  #       - neovim
+  #       - nodejs
+  #       - starship
+  #       - stow
+  #       - zsh
+  #     become: true
 
   tasks:
     - name: Include vars of vars.yaml
@@ -58,14 +58,14 @@
       tags:
         - zsh
 
-    # - name: Run fonts tasks
-    #   ansible.builtin.include_tasks:
-    #     file: ./tasks/fonts.yaml
-    #     apply:
-    #       tags:
-    #         - fonts
-    #   tags:
-    #     - fonts
+    #   - name: Run fonts tasks
+    #     ansible.builtin.include_tasks:
+    #       file: ./tasks/fonts.yaml
+    #       apply:
+    #         tags:
+    #           - fonts
+    #     tags:
+    #       - fonts
 
     - name: Run stow tasks
       ansible.builtin.include_tasks:
@@ -94,11 +94,11 @@
       tags:
         - neovim
 
-    # - name: Run nodejs tasks
-    #   ansible.builtin.include_tasks:
-    #     file: ./tasks/nodejs.yaml
-    #     apply:
-    #       tags:
-    #         - nodejs
-    #   tags:
-    #     - nodejs
+  # - name: Run nodejs tasks
+  #   ansible.builtin.include_tasks:
+  #     file: ./tasks/nodejs.yaml
+  #     apply:
+  #       tags:
+  #         - nodejs
+  #   tags:
+  #     - nodejs

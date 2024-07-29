@@ -1,17 +1,22 @@
-- name: Download starship install script
-  ansible.builtin.get_url:
-    url: https://starship.rs/install.sh
-    dest: /tmp/starship_install.sh
-    mode: '0755'
-  register: starship_install_script
-  become_user: "{{ user }}"
+# - name: Download starship install script
+#   ansible.builtin.get_url:
+#     url: https://starship.rs/install.sh
+#     dest: /tmp/starship_install.sh
+#     mode: '0755'
+#   register: starship_install_script
+#   become_user: "{{ user }}"
+
+# - name: Install starship
+#   ansible.builtin.shell:
+#     cmd: /tmp/starship_install.sh --yes
+#     executable: /bin/sh
+#   when: starship_install_script.changed
+#   become_user: "{{ user }}"
 
 - name: Install starship
-  ansible.builtin.shell:
-    cmd: /tmp/starship_install.sh --yes
-    executable: /bin/sh
-  when: starship_install_script.changed
-  become_user: "{{ user }}"
+  community.general.homebrew:
+    name: starship
+    state: present
 
 - name: Add starship init script to zshrc if not present
   lineinfile:

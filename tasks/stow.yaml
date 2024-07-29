@@ -1,11 +1,11 @@
 - name: Install stow
-  ansible.builtin.apt:
+  community.general.homebrew:
     name: stow
     state: present
 
 - name: Create .config directory if does not exist
   file:
-    path: ~/.config
+    path: $HOME/.config
     state: directory
   become_user: "{{ user }}"
 
@@ -18,7 +18,7 @@
     clone: yes
   become_user: "{{ user }}"
 
-- name: Stow ~/.dotfiles
+- name: Stow $HOME/.dotfiles
   ansible.builtin.shell: stow --dir=$HOME/.dotfiles .
   become_user: "{{ user }}"
 

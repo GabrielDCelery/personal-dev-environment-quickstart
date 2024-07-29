@@ -1,3 +1,8 @@
+- name: Install fontconfig
+  ansible.builtin.apt:
+    name: fontconfig
+    state: present
+
 - name: Ensure fonts directory exits
   file:
     path: $HOME/.local/share/fonts
@@ -8,7 +13,7 @@
   ansible.builtin.shell: |
     wget -P $HOME/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip && \
     cd $HOME/.local/share/fonts && \
-    unzip -f JetBrainsMono.zip && \
+    unzip JetBrainsMono.zip && \
     rm JetBrainsMono.zip && \
     fc-cache -fv
   become_user: "{{ user }}"

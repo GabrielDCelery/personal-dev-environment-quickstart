@@ -14,6 +14,14 @@
     [ -d  ~/.oh-my-zsh ] || yes 'Y' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   become_user: "{{ user }}"
 
+- name: Make sure homebrew path is added to zshrc
+  lineinfile:
+    state: present
+    path: $HOME/.zshrc
+    line: eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  become_user: "{{ user }}"
+
+
 - name: Source zsh
   shell: source ~/.zshrc
   args:
