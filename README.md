@@ -22,4 +22,8 @@ github_email: your GitHub email
 github_name: your GitHub name
 ```
 
+5. Run ansible to deploy the development environment
 
+```sh
+ansible-playbook local.yaml
+```
