@@ -23,6 +23,7 @@
         file: ./vars.yaml
       tags:
         - core
+        - devtools
         - fonts
         - git
         - neovim
@@ -94,6 +95,14 @@
       tags:
         - neovim
 
+    - name: Run dev tools tasks
+      ansible.builtin.include_tasks:
+        file: ./tasks/devtools.yaml
+        apply:
+          tags:
+            - devtools
+      tags:
+        - devtools
   # - name: Run nodejs tasks
   #   ansible.builtin.include_tasks:
   #     file: ./tasks/nodejs.yaml

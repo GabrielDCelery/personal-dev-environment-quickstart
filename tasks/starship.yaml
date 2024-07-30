@@ -23,10 +23,10 @@
     state: present
     path: $HOME/.zshrc
     line: eval "$(starship init zsh)"
-  become_user: "{{ user }}"
+  become_user: '{{ user }}'
 
 - name: Source zsh
   shell: source $HOME/.zshrc
   args:
-    executable: /usr/bin/zsh
-  become_user: "{{ user }}"
+    executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
+  become_user: '{{ user }}'
