@@ -18,6 +18,10 @@
     clone: yes
   become_user: "{{ user }}"
 
+#- name: Install tmux plugins (TODO - this is a hack because for some reason the tmux plugins don't get installed)
+#  ansible.builtin.shell: $HOME/.dotfiles/.tmux/plugins/tpm/scripts/install_plugins.sh
+#  become_user: "{{ user }}"
+
 - name: Stow $HOME/.dotfiles
   ansible.builtin.shell: stow --dir=$HOME/.dotfiles .
   become_user: "{{ user }}"
