@@ -16,6 +16,17 @@
 # - name: Install neovim
 #   ansible.builtin.shell: brew install neovim -y
 
+- name: Move last version of state, share and cache files to backup
+  ansible.builtin.shell: |
+    if [ -d $HOME/.local/share/nvim.bak ]; then rm -Rf  $HOME/.local/share/nvim.bak; else echo "No need to delete"; fi
+    if [ -d $HOME/.local/share/nvim ]; then mv $HOME/.local/share/nvim $HOME/.local/share/nvim.bak; else echo "No need to copy"; fi
+
+    if [ -d $HOME/.local/state/nvim.bak ]; then rm -Rf  $HOME/.local/state/nvim.bak; else echo "No need to delete"; fi
+    if [ -d $HOME/.local/state/nvim ]; then mv $HOME/.local/state/nvim $HOME/.local/state/nvim.bak; else echo "No need to copy"; fi
+
+    if [ -d $HOME/.cache/nvim.bak ]; then rm -Rf  $HOME/.cache/nvim.bak; else echo "No need to delete"; fi
+    if [ -d $HOME/.cache/nvim ]; then mv $HOME/.cache/nvim $HOME/.cache/nvim.bak; else echo "No need to copy"; fi
+
 - name: Install neovim dependencies
   community.general.homebrew:
     name:  [ "gcc", "ripgrep", "unzip", "git", "xclip", "llvm" ]
