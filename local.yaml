@@ -30,6 +30,7 @@
         - nodejs
         - starship
         - stow
+        - termshark
         - zsh
 
     - name: Run core tasks
@@ -111,3 +112,11 @@
   #         - nodejs
   #   tags:
   #     - nodejs
+    - name: Run termshark tasks
+      ansible.builtin.include_tasks:
+        file: ./tasks/termshark.yaml
+        apply:
+          tags:
+            - termshark
+      tags:
+        - termshark
