@@ -26,3 +26,14 @@
   community.general.homebrew:
     name: atac
     state: present
+
+- name: Install fzf
+  community.general.homebrew:
+    name: fzf
+    state: present
+
+- name: Source fzf
+  lineinfile:
+    state: present
+    path: $HOME/.zshrc
+    line: source <(fzf --zsh)
