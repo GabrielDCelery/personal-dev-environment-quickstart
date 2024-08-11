@@ -19,7 +19,7 @@ Follow the instructions on the Homebrew website to install it -> [Homebrew websi
 
 ### WezTerm
 
-Chose WezTerm as the terminal emulator because it works on Linux, Windows (WSL) and mac, comes with NerdFont and Catppuccin themes by default.
+I chose WezTerm as the terminal emulator [WezTerm website](https://wezfurlong.org/wezterm/index.html) because it works on Linux, Windows (WSL) and mac, comes with NerdFont and Catppuccin themes by default.
 
 ##### Installaton on Windows/WSL
 
