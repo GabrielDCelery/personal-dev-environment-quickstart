@@ -1,4 +1,0 @@
-- name: Install age
-  community.general.homebrew:
-    name: age
-    state: present
