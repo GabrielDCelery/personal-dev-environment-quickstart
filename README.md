@@ -4,9 +4,9 @@ To be able to quickly set up a working development environment on a new machine.
 
 ## Pre-requisites
 
-##### ZSH
+##### Zsh
 
-This dev environment is built around `zsh` but since that is the default shell on `mac` decided to remove it from the setup scripts to prevent accidental messup of the terminal. On linux distributions where for example `bash` is the default shell it is pretty much a two liner to make zsh the default shell.
+This dev environment is built around `zsh` but since that is the default shell on `mac` decided to remove it from the setup scripts to prevent accidental messup of the terminal. On linux distributions, where for example `bash` is the default shell it is pretty much just a two liner to make zsh the default shell.
 
 ```sh
 sudo apt install zsh
