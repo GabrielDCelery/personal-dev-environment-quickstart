@@ -1,32 +1,36 @@
-# - name: Download starship install script
-#   ansible.builtin.get_url:
-#     url: https://starship.rs/install.sh
-#     dest: /tmp/starship_install.sh
-#     mode: '0755'
-#   register: starship_install_script
-#   become_user: "{{ user }}"
+- name: Run starship tasks
+  tags:
+    - starship
+  block:
+  # - name: Download starship install script
+  #   ansible.builtin.get_url:
+  #     url: https://starship.rs/install.sh
+  #     dest: /tmp/starship_install.sh
+  #     mode: '0755'
+  #   register: starship_install_script
+  #   become_user: "{{ user }}"
 
-# - name: Install starship
-#   ansible.builtin.shell:
-#     cmd: /tmp/starship_install.sh --yes
-#     executable: /bin/sh
-#   when: starship_install_script.changed
-#   become_user: "{{ user }}"
+  # - name: Install starship
+  #   ansible.builtin.shell:
+  #     cmd: /tmp/starship_install.sh --yes
+  #     executable: /bin/sh
+  #   when: starship_install_script.changed
+  #   become_user: "{{ user }}"
 
-- name: Install starship
-  community.general.homebrew:
-    name: starship
-    state: present
+  - name: Install starship
+    community.general.homebrew:
+      name: starship
+      state: present
 
-- name: Add starship init script to zshrc if not present
-  lineinfile:
-    state: present
-    path: $HOME/.zshrc
-    line: eval "$(starship init zsh)"
-  become_user: '{{ user }}'
+  - name: Add starship init script to zshrc if not present
+    lineinfile:
+      state: present
+      path: $HOME/.zshrc
+      line: eval "$(starship init zsh)"
+    become_user: '{{ user }}'
 
-- name: Source zsh
-  shell: source $HOME/.zshrc
-  args:
-    executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
-  become_user: '{{ user }}'
+  - name: Source zsh
+    shell: source $HOME/.zshrc
+    args:
+      executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
+    become_user: '{{ user }}'

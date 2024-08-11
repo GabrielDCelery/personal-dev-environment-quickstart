@@ -1,31 +1,35 @@
-# TODO - default shell on mach is zsh
-# - name: Install zsh
-#   community.general.homebrew:
-#     name: zsh
-#     state: present
+- name: Run zsh tasks
+  tags:
+    - zsh
+  block:
+  # TODO - default shell on mach is zsh
+  # - name: Install zsh
+  #   community.general.homebrew:
+  #     name: zsh
+  #     state: present
 
-# TODO - enrich this with when for ubuntu specific environments
-# - name: Ensure the user uses the zsh shell
-#   user:
-#     name: '{{ user }}'
-#     shell: /usr/bin/zsh
-#     state: present
+  # TODO - enrich this with when for ubuntu specific environments
+  # - name: Ensure the user uses the zsh shell
+  #   user:
+  #     name: '{{ user }}'
+  #     shell: /usr/bin/zsh
+  #     state: present
 
-- name: Install oh my zsh if not present
-  ansible.builtin.shell: |
-    [ -d  $HOME//.oh-my-zsh ] || yes 'Y' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  become_user: '{{ user }}'
+  - name: Install oh my zsh if not present
+    ansible.builtin.shell: |
+      [ -d  $HOME//.oh-my-zsh ] || yes 'Y' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    become_user: '{{ user }}'
 
-# TODO - this is only needed on ubuntu like the above
-# - name: Make sure homebrew path is added to zshrc
-#   lineinfile:
-#     state: present
-#     path: $HOME/.zshrc
-#     line: eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-#   become_user: '{{ user }}'
+  # TODO - this is only needed on ubuntu like the above
+  # - name: Make sure homebrew path is added to zshrc
+  #   lineinfile:
+  #     state: present
+  #     path: $HOME/.zshrc
+  #     line: eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  #   become_user: '{{ user }}'
 
-- name: Source zsh
-  shell: source $HOME/.zshrc
-  args:
-    executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
-  become_user: '{{ user }}'
+  - name: Source zsh
+    shell: source $HOME/.zshrc
+    args:
+      executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
+    become_user: '{{ user }}'

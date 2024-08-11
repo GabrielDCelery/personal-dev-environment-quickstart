@@ -1,18 +1,22 @@
-- name: Install git
-  community.general.homebrew:
-    name: git
-    state: present
+- name: Run git tasks
+  tags:
+    - git
+  block:
+  - name: Install git
+    community.general.homebrew:
+      name: git
+      state: present
 
-- name: Setup Git email
-  git_config:
-    name: user.email
-    scope: global
-    value: "{{ github_email }}"
-  become_user: "{{ user }}"
+  - name: Setup Git email
+    git_config:
+      name: user.email
+      scope: global
+      value: "{{ github_email }}"
+    become_user: "{{ user }}"
 
-- name: Setup Git name
-  git_config:
-    name: user.name
-    scope: global
-    value: "{{ github_name }}"
-  become_user: "{{ user }}"
+  - name: Setup Git name
+    git_config:
+      name: user.name
+      scope: global
+      value: "{{ github_name }}"
+    become_user: "{{ user }}"

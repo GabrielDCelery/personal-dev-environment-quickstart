@@ -1,39 +1,43 @@
-- name: Install lazygit
-  community.general.homebrew:
-    name: lazygit
-    state: present
+- name: Run devtools tasks
+  tags:
+    - devtools
+  block:
+  - name: Install lazygit
+    community.general.homebrew:
+      name: lazygit
+      state: present
 
-- name: Install age
-  community.general.homebrew:
-    name: age
-    state: present
+  - name: Install age
+    community.general.homebrew:
+      name: age
+      state: present
 
-- name: Install tldr
-  community.general.homebrew:
-    name: tldr
-    state: present
+  - name: Install tldr
+    community.general.homebrew:
+      name: tldr
+      state: present
 
-- name: Install sshs
-  community.general.homebrew:
-    name: sshs
-    state: present
+  - name: Install sshs
+    community.general.homebrew:
+      name: sshs
+      state: present
 
-- name: Add julien-cpsn/atac to Homebrew
-  community.general.homebrew_tap:
-    name: julien-cpsn/atac
+  - name: Add julien-cpsn/atac to Homebrew
+    community.general.homebrew_tap:
+      name: julien-cpsn/atac
 
-- name: Install atac
-  community.general.homebrew:
-    name: atac
-    state: present
+  - name: Install atac
+    community.general.homebrew:
+      name: atac
+      state: present
 
-- name: Install fzf
-  community.general.homebrew:
-    name: fzf
-    state: present
+  - name: Install fzf
+    community.general.homebrew:
+      name: fzf
+      state: present
 
-- name: Source fzf
-  lineinfile:
-    state: present
-    path: $HOME/.zshrc
-    line: source <(fzf --zsh)
+  - name: Source fzf
+    lineinfile:
+      state: present
+      path: $HOME/.zshrc
+      line: source <(fzf --zsh)

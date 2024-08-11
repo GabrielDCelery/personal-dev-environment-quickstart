@@ -14,16 +14,28 @@
         - stow
         - termshark
         - zsh
-    
-    - name: Run included tasks
-      ansible.builtin.include_tasks: "{{ item }}"
-      loop:
-        - ./tasks/core.yaml
-        - ./tasks/git.yaml
-        - ./tasks/zsh.yaml
-        - ./tasks/stow.yaml
-        - ./tasks/starship.yaml
-        - ./tasks/neovim.yaml
-        - ./tasks/devtools.yaml
-        - ./tasks/termshark.yaml
+
+    - name: Import core tasks
+      ansible.builtin.import_tasks: ./tasks/core.yaml
+
+    - name: Import git tasks
+      ansible.builtin.import_tasks: ./tasks/git.yaml
+
+    - name: Import zsh tasks
+      ansible.builtin.import_tasks: ./tasks/zsh.yaml
+
+    - name: Import stow tasks
+      ansible.builtin.import_tasks: ./tasks/stow.yaml
+
+    - name: Import starship tasks
+      ansible.builtin.import_tasks: ./tasks/starship.yaml
+
+    - name: Import neovim tasks
+      ansible.builtin.import_tasks: ./tasks/neovim.yaml
+
+    - name: Import devtools tasks
+      ansible.builtin.import_tasks: ./tasks/devtools.yaml
+
+    - name: Import termshark tasks
+      ansible.builtin.import_tasks: ./tasks/termshark.yaml
 

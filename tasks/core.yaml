@@ -1,44 +1,43 @@
-# - name: Install man
-#   community.general.homebrew:
-#     name: man
-#     state: present
+- name: Run core tasks
+  tags:
+    - core
+  block:
+  - name: Install curl
+    community.general.homebrew:
+      name: curl
+      state: present
 
-- name: Install curl
-  community.general.homebrew:
-    name: curl
-    state: present
+  - name: Install wget
+    community.general.homebrew:
+      name: wget
+      state: present
 
-- name: Install wget
-  community.general.homebrew:
-    name: wget
-    state: present
+  - name: Install tree
+    community.general.homebrew:
+      name: tree
+      state: present
 
-- name: Install tree
-  community.general.homebrew:
-    name: tree
-    state: present
+  - name: Install unzip
+    community.general.homebrew:
+      name: unzip
+      state: present
 
-- name: Install unzip
-  community.general.homebrew:
-    name: unzip
-    state: present
+  - name: Install vim
+    community.general.homebrew:
+      name: vim
+      state: present
 
-- name: Install vim
-  community.general.homebrew:
-    name: vim
-    state: present
+  - name: Install tmux
+    community.general.homebrew:
+      name: tmux
+      state: present
 
-- name: Install tmux
-  community.general.homebrew:
-    name: tmux
-    state: present
+  # - name: Install software properties common
+  #   community.general.homebrew:
+  #     name: software-properties-common
+  #     state: present
 
-# - name: Install software properties common
-#   community.general.homebrew:
-#     name: software-properties-common
-#     state: present
-
-# - name: Update all homebrew packages
-#   community.general.homebrew:
-#     name: "*"
-#     state: present
+  # - name: Update all homebrew packages
+  #   community.general.homebrew:
+  #     name: "*"
+  #     state: present
