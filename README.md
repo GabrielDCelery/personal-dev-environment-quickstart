@@ -2,9 +2,9 @@
 
 To be able to quickly set up a working development environment on a new machine.
 
-## Pre-requisites
+# Pre-requisites
 
-##### Zsh
+### Zsh
 
 This dev environment is built around `zsh` but since that is the default shell on `mac` decided to remove it from the setup scripts to prevent accidental messup of the terminal. On linux distributions, where for example `bash` is the default shell it is pretty much just a two liner to make zsh the default shell.
 
@@ -13,11 +13,39 @@ sudo apt install zsh
 chsh -s $(which zsh)
 ```
 
-##### Homebrew
+### Homebrew
 
 Follow the instructions on the Homebrew website to install it -> [Homebrew website](https://brew.sh/)
 
-## How to run it?
+### WezTerm
+
+Chose WezTerm as the terminal emulator because it works on Linux, Windows (WSL) and mac, comes with NerdFont and Catppuccin themes by default.
+
+##### Installaton on Windows/WSL
+
+1. Install WezTerm
+2. Configure WezTerm
+
+Chek the WSL version in the Windows terminal or Powershell.
+
+```sh
+wsl -l -v
+```
+
+In the `wezterm_configs` folder find and rename the `.wezterm.lua.skel.wsl` file to `.wezterm.lua`. Move the file to your home directory at `/homw/${username}/.wezterm.lua` (we are pretty much mirroring a Linux setup), then open the config and change the following section to use the appropriate WSL version.
+
+```sh
+config.default_domain = "WSL:Ubuntu"
+```
+
+Go to the `Edit system environment variables` section on your `Windows settings` and add the below variable so WezTerm knows where to look for the configuration file when you open it.
+
+```
+VARIABLE_NAME=WEZTERM_CONFIG_FILE
+VARIABLE_VALUE=\\wsl.localhost\Ubuntu\home\${user}\.wezterm.lua
+```
+
+# How to run it?
 
 1. Install git using homwbrew
 
