@@ -32,12 +32,8 @@
       name: tmux
       state: present
 
-  # - name: Install software properties common
-  #   community.general.homebrew:
-  #     name: software-properties-common
-  #     state: present
+  - name: Install ack
+    community.general.homebrew:
+      name: ack
+      state: present
 
-  # - name: Update all homebrew packages
-  #   community.general.homebrew:
-  #     name: "*"
-  #     state: present
