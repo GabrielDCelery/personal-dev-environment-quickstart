@@ -4,18 +4,7 @@
       ansible.builtin.include_vars:
         file: ./vars.yaml
       tags:
-        - core
-        - devtools
-        - fonts
-        - git
-        - go
-        - neovim
-        - nodejs
-        - rust
-        - starship
-        - stow
-        - termshark
-        - oh-my-zsh
+        - always
 
     - name: Import core tasks
       ansible.builtin.import_tasks: ./tasks/core.yaml
