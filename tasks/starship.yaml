@@ -13,8 +13,8 @@
       path: $HOME/.zshrc
       block: |
         eval "$(starship init zsh)"
-      marker_begin: "STARSHIP CONFIG"
-      marker_end: "STARSHIP CONFIG"
+      marker_begin: "START STARSHIP CONFIG"
+      marker_end: "END STARSHIP CONFIG"
 
   - name: Source zsh
     shell: source $HOME/.zshrc

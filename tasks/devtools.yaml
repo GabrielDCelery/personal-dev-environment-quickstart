@@ -42,8 +42,8 @@
       path: $HOME/.zshrc
       block: |
         source <(fzf --zsh)
-      marker_begin: "FZF CONFIG"
-      marker_end: "FZF CONFIG"
+      marker_begin: "START FZF CONFIG"
+      marker_end: "END FZF CONFIG"
 
   - name: Source zsh
     shell: source $HOME/.zshrc
