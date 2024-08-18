@@ -8,6 +8,7 @@
         - devtools
         - fonts
         - git
+        - go
         - neovim
         - nodejs
         - starship
@@ -38,3 +39,6 @@
 
     - name: Import termshark tasks
       ansible.builtin.import_tasks: ./tasks/termshark.yaml
+
+    - name: Import go tasks
+      ansible.builtin.import_tasks: ./tasks/go.yaml

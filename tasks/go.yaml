@@ -1,0 +1,8 @@
+- name: Run go tasks
+  tags:
+    - go
+  block:
+  - name: Install go
+    community.general.homebrew:
+      name: go
+      state: present
