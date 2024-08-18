@@ -1,6 +1,7 @@
 - name: Run core tasks
   tags:
     - core
+  become_user: '{{ user }}'
   block:
   - name: Install curl
     community.general.homebrew:

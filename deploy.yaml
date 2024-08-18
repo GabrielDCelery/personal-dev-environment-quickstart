@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: all
   tasks:
     - name: Include vars of vars.yaml
       ansible.builtin.include_vars:
