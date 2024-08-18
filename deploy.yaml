@@ -35,3 +35,9 @@
 
     - name: Import rust tasks
       ansible.builtin.import_tasks: ./tasks/rust.yaml
+
+    - name: Import nodejs tasks
+      ansible.builtin.import_tasks: ./tasks/nodejs.yaml
+
+    #     - name: Import harlequin tasks
+    #       ansible.builtin.import_tasks: ./tasks/harlequin.yaml
