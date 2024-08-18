@@ -11,6 +11,7 @@
         - go
         - neovim
         - nodejs
+        - rust
         - starship
         - stow
         - termshark
@@ -42,3 +43,6 @@
 
     - name: Import go tasks
       ansible.builtin.import_tasks: ./tasks/go.yaml
+
+    - name: Import rust tasks
+      ansible.builtin.import_tasks: ./tasks/rust.yaml
