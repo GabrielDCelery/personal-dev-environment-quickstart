@@ -13,7 +13,7 @@
         - starship
         - stow
         - termshark
-        - zsh
+        - oh-my-zsh
 
     - name: Import core tasks
       ansible.builtin.import_tasks: ./tasks/core.yaml
@@ -21,8 +21,8 @@
     - name: Import git tasks
       ansible.builtin.import_tasks: ./tasks/git.yaml
 
-    - name: Import zsh tasks
-      ansible.builtin.import_tasks: ./tasks/zsh.yaml
+    - name: Import oh-my-zsh tasks
+      ansible.builtin.import_tasks: ./tasks/oh-my-zsh.yaml
 
     - name: Import stow tasks
       ansible.builtin.import_tasks: ./tasks/stow.yaml
@@ -38,4 +38,3 @@
 
     - name: Import termshark tasks
       ansible.builtin.import_tasks: ./tasks/termshark.yaml
-

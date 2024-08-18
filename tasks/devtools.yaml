@@ -36,8 +36,16 @@
       name: fzf
       state: present
 
-  - name: Source fzf
-    lineinfile:
+  - name: Add necessary config of fzf to zsh
+    ansible.builtin.blockinfile:
       state: present
       path: $HOME/.zshrc
-      line: source <(fzf --zsh)
+      block: |
+        source <(fzf --zsh)
+      marker_begin: "FZF CONFIG"
+      marker_end: "FZF CONFIG"
+
+  - name: Source zsh
+    shell: source $HOME/.zshrc
+    args:
+      executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
