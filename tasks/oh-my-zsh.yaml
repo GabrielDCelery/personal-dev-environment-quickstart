@@ -6,7 +6,6 @@
   - name: Install oh my zsh if not present
     ansible.builtin.shell: |
       [ -d  $HOME//.oh-my-zsh ] || yes 'Y' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    become_user: '{{ user }}'
 
   - name: Source zsh
     shell: source $HOME/.zshrc

@@ -7,7 +7,6 @@
   file:
     path: $HOME/.local/share/fonts
     state: directory
-  become_user: "{{ user }}"
 
 - name: Install JetBrains fonts
   ansible.builtin.shell: |
@@ -16,4 +15,3 @@
     unzip JetBrainsMono.zip && \
     rm JetBrainsMono.zip && \
     fc-cache -fv
-  become_user: "{{ user }}"
