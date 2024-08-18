@@ -72,5 +72,5 @@ github_name: your GitHub name
 5. Run ansible to deploy the development environment
 
 ```sh
-ansible-playbook local.yaml
+ansible-playbook deploy.yaml
 ```
