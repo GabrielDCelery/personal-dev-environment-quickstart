@@ -18,3 +18,8 @@
       name: user.name
       scope: global
       value: "{{ github_name }}"
+
+  - name: Install git-delta
+    community.general.homebrew:
+      name: git-delta
+      state: present
