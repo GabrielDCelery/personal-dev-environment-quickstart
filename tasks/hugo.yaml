@@ -1,0 +1,8 @@
+- name: Run hugo tasks
+  tags:
+    - hugo
+  block:
+  - name: Install hugo
+    community.general.homebrew:
+      name: hugo
+      state: present

@@ -41,5 +41,8 @@
 
     - name: Import circleci tasks
       ansible.builtin.import_tasks: ./tasks/circleci.yaml
+
+    - name: Import hugo tasks
+      ansible.builtin.import_tasks: ./tasks/hugo.yaml
     #     - name: Import harlequin tasks
     #       ansible.builtin.import_tasks: ./tasks/harlequin.yaml
