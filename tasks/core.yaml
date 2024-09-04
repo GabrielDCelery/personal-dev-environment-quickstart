@@ -32,6 +32,11 @@
       name: tmux
       state: present
 
+  - name: Install tmuxinator
+    community.general.homebrew:
+      name: tmuxinator
+      state: present
+
   - name: Install ack
     community.general.homebrew:
       name: ack
