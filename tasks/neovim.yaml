@@ -23,13 +23,14 @@
       name:  neovim
       state: present
 
-  - name: Make neovim the default viewer for manpages
+  - name: Make neovim the default editor and manpage viewer
     ansible.builtin.blockinfile:
       state: present
       path: $HOME/.zshrc
       block: |
         export MANPAGER='nvim +Man!'
         export MANWIDTH=999
+        export EDITOR='nvim'
       marker_begin: "START NVIM CONFIG"
       marker_end: "END NVIM CONFIG"
 
@@ -37,3 +38,4 @@
     shell: source $HOME/.zshrc
     args:
       executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
+
