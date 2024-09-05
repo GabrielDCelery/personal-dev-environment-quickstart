@@ -1,0 +1,14 @@
+
+- name: Run python tasks
+  tags:
+    - python
+  block:
+  - name: Install python
+    community.general.homebrew:
+      name: python
+      state: present
+
+  - name: Install pipx
+    community.general.homebrew:
+      name: pipx
+      state: present

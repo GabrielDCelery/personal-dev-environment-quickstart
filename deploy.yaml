@@ -33,6 +33,9 @@
     - name: Import go tasks
       ansible.builtin.import_tasks: ./tasks/go.yaml
 
+    - name: Import python tasks
+      ansible.builtin.import_tasks: ./tasks/python.yaml
+
     - name: Import rust tasks
       ansible.builtin.import_tasks: ./tasks/rust.yaml
 
