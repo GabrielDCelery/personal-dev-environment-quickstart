@@ -1,0 +1,14 @@
+
+- name: Run aws tasks
+  tags:
+    - aws
+  block:
+  - name: Install aws cli
+    community.general.homebrew:
+      name: awscli
+      state: present
+
+  - name: Install aws vault
+    community.general.homebrew_cask:
+      name: aws-vault
+      state: present
