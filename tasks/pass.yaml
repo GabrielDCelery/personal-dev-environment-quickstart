@@ -6,3 +6,8 @@
     community.general.homebrew:
       name: pass
       state: present
+
+  - name: Install pass keyring
+    community.general.homebrew:
+      name: keyring
+      state: present
