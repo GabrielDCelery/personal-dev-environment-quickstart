@@ -1,0 +1,8 @@
+- name: Run pass tasks
+  tags:
+    - pass
+  block:
+  - name: Install pass cli
+    community.general.homebrew:
+      name: pass
+      state: present
