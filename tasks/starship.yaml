@@ -13,6 +13,7 @@
       path: $HOME/.zshrc
       block: |
         eval "$(starship init zsh)"
+        export STARSHIP_RELOAD=true
       marker_begin: "START STARSHIP CONFIG"
       marker_end: "END STARSHIP CONFIG"
 
