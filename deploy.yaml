@@ -54,7 +54,5 @@
     - name: Import aws tasks
       ansible.builtin.import_tasks: ./tasks/aws.yaml
 
-    - name: Import pass tasks
-      ansible.builtin.import_tasks: ./tasks/pass.yaml
     #     - name: Import harlequin tasks
     #       ansible.builtin.import_tasks: ./tasks/harlequin.yaml

@@ -3,6 +3,16 @@
   tags:
     - aws
   block:
+  - name: Install gpg
+    community.general.homebrew:
+      name: gnupg
+      state: present
+
+  - name: Install pass
+    community.general.homebrew:
+      name: pass
+      state: present
+
   - name: Install aws cli
     community.general.homebrew:
       name: awscli
@@ -12,3 +22,18 @@
     community.general.homebrew:
       name: aws-vault
       state: present
+
+  - name: Configure aws vault to use pass as backend
+    ansible.builtin.blockinfile:
+      state: present
+      path: $HOME/.zshrc
+      block: |
+        export AWS_VAULT_BACKEND=pass
+        export AWS_VAULT_PASS_PASSWORD_STORE_DIR=~/.password-store/aws-vault
+      marker_begin: "START AWS-VAULT CONFIG" 
+      marker_end: "END AWS-VAULT CONFIG"
+
+  - name: Source zsh
+    shell: source $HOME/.zshrc
+    args:
+      executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
