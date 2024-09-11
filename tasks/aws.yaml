@@ -8,6 +8,21 @@
       name: gnupg
       state: present
 
+  - name: Configure gpg
+    ansible.builtin.blockinfile:
+      state: present
+      path: $HOME/.zshrc
+      block: |
+        # allow the gpg agent to interact with the terminal
+        export GPG_TTY=$(tty)
+      marker_begin: "START GPG CONFIG" 
+      marker_end: "END GPG CONFIG"
+
+  - name: Source zsh
+    shell: source $HOME/.zshrc
+    args:
+      executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
+
   - name: Install pass
     community.general.homebrew:
       name: pass
