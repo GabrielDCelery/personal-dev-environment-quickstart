@@ -31,6 +31,7 @@
         export MANPAGER='nvim +Man!'
         export MANWIDTH=999
         export EDITOR='nvim'
+        alias nvimc='cd $HOME/.config/nvim && nvim'
       marker_begin: "START NVIM CONFIG"
       marker_end: "END NVIM CONFIG"
 
