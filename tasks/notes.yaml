@@ -18,6 +18,7 @@
       block: |
         export PERSONAL_NOTES_INBOX_DIR=$HOME/notes/inbox
         export PERSONAL_NOTES_TEMPLATE=$HOME/notes/templates/default.md
+        export PERSONAL_NOTES_DEFAULT_AUTHOR={{ personal_notes_author }}
       marker_begin: "START PERSONAL NOTES CONFIG"
       marker_end: "END PERSONAL NOTES CONFIG"
 
