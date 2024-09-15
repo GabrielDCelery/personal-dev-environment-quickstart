@@ -57,5 +57,8 @@
     - name: Import glow tasks
       ansible.builtin.import_tasks: ./tasks/glow.yaml
 
+    - name: Import notes tasks
+      ansible.builtin.import_tasks: ./tasks/notes.yaml
+
     #     - name: Import harlequin tasks
     #       ansible.builtin.import_tasks: ./tasks/harlequin.yaml
