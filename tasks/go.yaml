@@ -6,3 +6,19 @@
     community.general.homebrew:
       name: go
       state: present
+
+  - name: Configure go
+    ansible.builtin.blockinfile:
+      state: present
+      path: $HOME/.zshrc
+      block: |
+        export GOPATH=$(go env GOPATH)
+        export GOBIN=$GOPATH/bin
+        export PATH=$PATH:$GOBIN
+      marker_begin: "START GO CONFIG"
+      marker_end: "END GO CONFIG"
+
+  - name: Source zsh
+    shell: source $HOME/.zshrc
+    args:
+      executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
