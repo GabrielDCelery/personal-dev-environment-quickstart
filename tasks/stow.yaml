@@ -26,6 +26,11 @@
   - name: Install tmux plugins
     ansible.builtin.shell: $HOME/.dotfiles/.tmux/plugins/tpm/bin/install_plugins
 
+  - name: Make sure $HOME/.local/bin exists
+    file:
+      path: $HOME/.local/bin
+      state: directory
+
   - name: Make sure ~/.dotfiles/.local/bin is part of $PATH
     ansible.builtin.blockinfile:
       state: present
