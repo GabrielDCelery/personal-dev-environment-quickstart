@@ -42,3 +42,7 @@
       name: ack
       state: present
 
+  - name: Install make
+    community.general.homebrew:
+      name: make
+      state: present
