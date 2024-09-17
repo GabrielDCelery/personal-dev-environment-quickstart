@@ -11,11 +11,43 @@
       update: yes
       clone: yes
 
+  - name: Create temp directory for building personal note cli binary
+    ansible.builtin.tempfile:
+      state: directory
+    register: temp_pnotes_dir
+
+  - name: Show temp directory where personal notes cli repo will be cloned
+    ansible.builtin.debug:
+      var: temp_pnotes_dir.path
+
+  - name: Clone personal notes cli from public GitHub repository to temp directory
+    ansible.builtin.git:
+      repo: git@github.com:GabrielDCelery/personal-notes-cli.git
+      dest: "{{ temp_pnotes_dir.path }}"
+      version: main
+      update: yes
+      clone: yes
+
+  - name: Build pnotes binary
+    ansible.builtin.shell: |
+      cd {{ temp_pnotes_dir.path }}
+      make build
+
+  - name: Make sure $HOME/.local/bin exists
+    file:
+      path: $HOME/.local/bin
+      state: directory
+
+  - name: Copy pnotes binary to $HOME/.local/bin
+    ansible.builtin.shell: |
+      cp {{ temp_pnotes_dir.path }}/bin/pnotes $HOME/.local/bin/pnotes
+
   - name: Configure personal notes
     ansible.builtin.blockinfile:
       state: present
       path: $HOME/.zshrc
       block: |
+        export PATH=$HOME/.local/bin
         export PERSONAL_NOTES_INBOX_DIR=$HOME/notes/inbox
         export PERSONAL_NOTES_TEMPLATE=$HOME/notes/templates/default.md
         export PERSONAL_NOTES_DEFAULT_AUTHOR={{ personal_notes_author }}
