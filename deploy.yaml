@@ -60,5 +60,7 @@
     - name: Import notes tasks
       ansible.builtin.import_tasks: ./tasks/notes.yaml
 
+    - name: Import dagger tasks
+      ansible.builtin.import_tasks: ./tasks/dagger.yaml
     #     - name: Import harlequin tasks
     #       ansible.builtin.import_tasks: ./tasks/harlequin.yaml
