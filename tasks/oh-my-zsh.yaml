@@ -12,11 +12,18 @@
       name: zsh-autosuggestions
       state: present
 
+  - name: Install zsh syntax higlighting
+    community.general.homebrew:
+      name: zsh-syntax-highlighting
+      state: present
+
   - name: Add zsh configuration to .zshrc
     ansible.builtin.blockinfile:
       state: present
       path: $HOME/.zshrc
       block: |
+        ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/highlighters
+        source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
         source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
         bindkey '^I' autosuggest-accept
       marker_begin: "START ZSH CONFIG"
