@@ -18,6 +18,7 @@
       path: $HOME/.zshrc
       block: |
         source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+        bindkey '^I' autosuggest-accept
       marker_begin: "START ZSH CONFIG"
       marker_end: "END ZSH CONFIG"
 
