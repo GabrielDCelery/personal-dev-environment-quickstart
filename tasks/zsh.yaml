@@ -30,10 +30,10 @@
         ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/highlighters
         source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
         source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-        bindkey '^I'      autosuggest-accept
-        ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(buffer-empty bracketed-paste accept-line push-line-or-edit)
-        ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-        ZSH_AUTOSUGGEST_USE_ASYNC=true
+        bindkey '^[[Z'      autosuggest-accept
+        # ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(buffer-empty bracketed-paste accept-line push-line-or-edit)
+        # ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+        # ZSH_AUTOSUGGEST_USE_ASYNC=true
         eval $(thefuck --alias) 
       marker_begin: "START ZSH CONFIG"
       marker_end: "END ZSH CONFIG"
