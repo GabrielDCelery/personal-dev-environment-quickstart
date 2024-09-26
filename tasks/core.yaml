@@ -46,3 +46,8 @@
     community.general.homebrew:
       name: make
       state: present
+
+  - name: Install nmap
+    community.general.homebrew:
+      name: nmap
+      state: present

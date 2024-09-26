@@ -1,6 +1,6 @@
-- name: Run oh-my-zsh tasks
+- name: Run zsh
   tags:
-    - oh-my-zsh
+    - zsh
   block:
 
   - name: Install oh my zsh if not present

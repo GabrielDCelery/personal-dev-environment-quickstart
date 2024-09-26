@@ -12,8 +12,8 @@
     - name: Import git tasks
       ansible.builtin.import_tasks: ./tasks/git.yaml
 
-    - name: Import oh-my-zsh tasks
-      ansible.builtin.import_tasks: ./tasks/oh-my-zsh.yaml
+    - name: Import zsh
+      ansible.builtin.import_tasks: ./tasks/zsh.yaml
 
     - name: Import stow tasks
       ansible.builtin.import_tasks: ./tasks/stow.yaml
