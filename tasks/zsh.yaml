@@ -17,11 +17,6 @@
       name: zsh-syntax-highlighting
       state: present
 
-  - name: Install thefuck
-    community.general.homebrew:
-      name: thefuck
-      state: present
-
   - name: Add zsh configuration to .zshrc
     ansible.builtin.blockinfile:
       state: present
@@ -34,7 +29,6 @@
         # ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(buffer-empty bracketed-paste accept-line push-line-or-edit)
         # ZSH_AUTOSUGGEST_STRATEGY=(history completion)
         # ZSH_AUTOSUGGEST_USE_ASYNC=true
-        eval $(thefuck --alias) 
       marker_begin: "START ZSH CONFIG"
       marker_end: "END ZSH CONFIG"
 
