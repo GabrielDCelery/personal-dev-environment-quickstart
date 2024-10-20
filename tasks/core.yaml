@@ -51,3 +51,8 @@
     community.general.homebrew:
       name: nmap
       state: present
+
+  - name: Install sqlite
+    community.general.homebrew:
+      name: sqlite
+      state: present
