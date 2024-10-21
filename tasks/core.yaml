@@ -56,3 +56,8 @@
     community.general.homebrew:
       name: sqlite
       state: present
+
+  - name: Install zip
+    community.general.homebrew:
+      name: zip
+      state: present
