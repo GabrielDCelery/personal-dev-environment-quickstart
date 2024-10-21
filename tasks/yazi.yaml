@@ -1,0 +1,8 @@
+- name: Run yazi tasks
+  tags:
+    - yazi
+  block:
+  - name: Install yazi
+    community.general.homebrew:
+      name: yazi
+      state: present

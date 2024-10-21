@@ -65,5 +65,8 @@
 
     - name: Import docker tasks
       ansible.builtin.import_tasks: ./tasks/docker.yaml
+
+    - name: Import yazi tasks
+      ansible.builtin.import_tasks: ./tasks/yazi.yaml
     #     - name: Import harlequin tasks
     #       ansible.builtin.import_tasks: ./tasks/harlequin.yaml
