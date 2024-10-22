@@ -1,0 +1,13 @@
+- name: Run devops tasks
+  tags:
+    - devops
+  block:
+  - name: Install yazi
+    community.general.homebrew:
+      name: yazi
+      state: present
+
+  - name: Install btop
+    community.general.homebrew:
+      name: btop
+      state: present
