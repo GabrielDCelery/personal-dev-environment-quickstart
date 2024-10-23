@@ -16,3 +16,8 @@
     community.general.homebrew:
       name: ffmpeg
       state: present
+
+  - name: Install hashicorp terraform
+    ansible.builtin.shell: |
+      brew tap hashicorp/tap
+      brew install hashicorp/tap/terraform
