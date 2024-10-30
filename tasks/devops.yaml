@@ -21,3 +21,8 @@
     ansible.builtin.shell: |
       brew tap hashicorp/tap
       brew install hashicorp/tap/terraform
+
+  - name: Install snyk
+    community.general.homebrew:
+      name: snyk-cli
+      state: present
