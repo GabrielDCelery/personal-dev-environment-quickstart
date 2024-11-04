@@ -31,3 +31,8 @@
     community.general.homebrew:
       name: syft
       state: present
+
+  - name: Install grype
+    community.general.homebrew:
+      name: grype
+      state: present
