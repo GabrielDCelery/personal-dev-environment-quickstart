@@ -26,3 +26,8 @@
     community.general.homebrew:
       name: snyk-cli
       state: present
+
+  - name: Install syft
+    community.general.homebrew:
+      name: syft
+      state: present
