@@ -36,3 +36,8 @@
     community.general.homebrew:
       name: grype
       state: present
+
+  - name: Install grc
+    community.general.homebrew:
+      name: grc
+      state: present
