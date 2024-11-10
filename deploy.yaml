@@ -68,5 +68,8 @@
 
     - name: Import devops tasks
       ansible.builtin.import_tasks: ./tasks/devops.yaml
+
+    - name: Import aliases tasks
+      ansible.builtin.import_tasks: ./tasks/aliases.yaml
     #     - name: Import harlequin tasks
     #       ansible.builtin.import_tasks: ./tasks/harlequin.yaml
