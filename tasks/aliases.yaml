@@ -8,6 +8,7 @@
       path: $HOME/.zshrc
       block: |
         alias ps='grc ps'
+        alias ls='grc ls'
       marker_begin: "START PS ALIAS" 
       marker_end: "END PS ALIAS"
 
