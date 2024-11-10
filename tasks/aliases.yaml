@@ -10,11 +10,6 @@
         alias ps='grc ps'
         alias ls='grc ls'
 
-        alias gs='git status'
-        alias ga='git add'
-        alias gall='git add .'
-        alias gp='git push'
-        alias gP='git pull'
       marker_begin: "START ALIASES" 
       marker_end: "END ALIASES"
 
