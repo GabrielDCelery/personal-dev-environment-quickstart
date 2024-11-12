@@ -41,3 +41,8 @@
     community.general.homebrew:
       name: grc
       state: present
+
+  - name: Install lnav
+    community.general.homebrew:
+      name: lnav
+      state: present
