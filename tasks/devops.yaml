@@ -46,3 +46,13 @@
     community.general.homebrew:
       name: lnav
       state: present
+
+  # - name: Install duckdb
+  #   community.general.homebrew:
+  #     name: duckdb
+  #     state: present
+
+  - name: Install buku
+    community.general.pipx:
+      name: buku
+      state: present
