@@ -17,3 +17,18 @@
     community.general.homebrew:
       name: pipenv
       state: present
+
+  - name: Alias python to python3 and pip to pip3
+    ansible.builtin.blockinfile:
+      state: present
+      path: $HOME/.zshrc
+      block: |
+        alias python='"$(which python3)"'
+        alias pip='"$(which pip3)"'
+      marker_begin: "START PYTHON CONFIG"
+      marker_end: "END PYTHON CONFIG"
+
+  - name: Source zsh
+    shell: source $HOME/.zshrc
+    args:
+      executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu

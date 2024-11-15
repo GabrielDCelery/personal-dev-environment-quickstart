@@ -53,6 +53,6 @@
   #     state: present
 
   - name: Install buku
-    community.general.pipx:
+    community.general.homebrew:
       name: buku
       state: present
