@@ -18,6 +18,11 @@
       name: pipenv
       state: present
 
+  - name: Install poetry
+    community.general.homebrew:
+      name: poetry
+      state: present
+
   - name: Alias python to python3 and pip to pip3
     ansible.builtin.blockinfile:
       state: present
