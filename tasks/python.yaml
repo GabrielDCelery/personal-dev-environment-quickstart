@@ -3,9 +3,19 @@
   tags:
     - python
   block:
-  - name: Install python
+  - name: Install python 3.11
     community.general.homebrew:
-      name: python
+      name: python@3.11
+      state: present
+
+  - name: Install python 3.12
+    community.general.homebrew:
+      name: python@3.12
+      state: present
+
+  - name: Install python 3.13
+    community.general.homebrew:
+      name: python@3.13
       state: present
 
   - name: Install pipx
