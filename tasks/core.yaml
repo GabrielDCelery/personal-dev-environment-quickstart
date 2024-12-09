@@ -61,3 +61,8 @@
     community.general.homebrew:
       name: zip
       state: present
+
+  - name: Install unixodbc
+    community.general.homebrew:
+      name: unixodbc 
+      state: present
