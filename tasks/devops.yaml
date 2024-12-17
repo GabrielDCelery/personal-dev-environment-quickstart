@@ -113,3 +113,8 @@
     shell: source $HOME/.zshrc
     args:
       executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
+
+  - name: Install direnv
+    community.general.homebrew:
+      name: direnv
+      state: present
