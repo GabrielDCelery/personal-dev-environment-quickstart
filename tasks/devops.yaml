@@ -56,3 +56,24 @@
     community.general.homebrew:
       name: buku
       state: present
+
+  - name: Install zoxide
+    community.general.homebrew:
+      name: zoxide
+      state: present
+
+  - name: Configure zoxide 
+    ansible.builtin.blockinfile:
+      state: present
+      path: $HOME/.zshrc
+      block: |
+        eval "$(zoxide init zsh)"
+      marker_begin: "START ZOXIDE CONFIG"
+      marker_end: "END ZOXIDE CONFIG"
+
+  - name: Source zsh
+    shell: source $HOME/.zshrc
+    args:
+      executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
+
+
