@@ -118,3 +118,17 @@
     community.general.homebrew:
       name: direnv
       state: present
+
+  - name: Configure direnv 
+    ansible.builtin.blockinfile:
+      state: present
+      path: $HOME/.zshrc
+      block: |
+        eval "$(direnv hook zsh)"
+      marker_begin: "START DIRENV CONFIG"
+      marker_end: "END DIRENV CONFIG"
+
+  - name: Source zsh
+    shell: source $HOME/.zshrc
+    args:
+      executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
