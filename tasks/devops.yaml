@@ -76,4 +76,40 @@
     args:
       executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
 
+  - name: Install eza
+    community.general.homebrew:
+      name: eza
+      state: present
 
+  - name: Configure eza 
+    ansible.builtin.blockinfile:
+      state: present
+      path: $HOME/.zshrc
+      block: |
+        alias e='eza'
+      marker_begin: "START EZA CONFIG"
+      marker_end: "END EZA CONFIG"
+
+  - name: Source zsh
+    shell: source $HOME/.zshrc
+    args:
+      executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
+
+  - name: Install bat
+    community.general.homebrew:
+      name: bat
+      state: present
+
+  - name: Configure bat 
+    ansible.builtin.blockinfile:
+      state: present
+      path: $HOME/.zshrc
+      block: |
+        BAT_THEME=CatppuccinMocha
+      marker_begin: "START BAT CONFIG"
+      marker_end: "END BAT CONFIG"
+
+  - name: Source zsh
+    shell: source $HOME/.zshrc
+    args:
+      executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
