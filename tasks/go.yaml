@@ -5,7 +5,8 @@
   - name: Install go
     community.general.homebrew:
       name: go
-      state: present
+      state: latest
+      update_homebrew: true
 
   - name: Configure go
     ansible.builtin.blockinfile:
