@@ -2,9 +2,15 @@
   tags:
     - go
   block:
-  - name: Install go
+  - name: Install go 1.23
     community.general.homebrew:
-      name: go
+      name: go@1.23
+      state: latest
+      update_homebrew: true
+
+  - name: Install go 1.22
+    community.general.homebrew:
+      name: go@1.22
       state: latest
       update_homebrew: true
 
