@@ -17,6 +17,14 @@ chsh -s $(which zsh)
 
 Follow the instructions on the Homebrew website to install it -> [Homebrew website](https://brew.sh/)
 
+Also do not fortget to add the following in your `.zshrc` file:
+
+```sh
+eval "$(brew shellenv)"
+autoload -Uz compinit # If autocompletion is not working read this: https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+compinit
+```
+
 ### WezTerm
 
 I chose WezTerm as the terminal emulator ([WezTerm website](https://wezfurlong.org/wezterm/index.html)) because it works on Linux, Windows (WSL) and mac, comes with NerdFont and Catppuccin themes by default.
