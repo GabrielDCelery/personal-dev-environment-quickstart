@@ -49,3 +49,8 @@
     shell: source $HOME/.zshrc
     args:
       executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
+
+  - name: Install glow
+    community.general.homebrew:
+      name: glow
+      state: latest

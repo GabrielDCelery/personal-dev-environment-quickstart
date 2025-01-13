@@ -53,9 +53,6 @@
 
     - name: Import aws tasks
       ansible.builtin.import_tasks: ./tasks/aws.yaml
-      
-    - name: Import glow tasks
-      ansible.builtin.import_tasks: ./tasks/glow.yaml
 
     - name: Import notes tasks
       ansible.builtin.import_tasks: ./tasks/notes.yaml

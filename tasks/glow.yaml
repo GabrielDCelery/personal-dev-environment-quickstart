@@ -1,9 +1,0 @@
-
-- name: Run glow tasks
-  tags:
-    - glow
-  block:
-  - name: Install glow
-    community.general.homebrew:
-      name: glow
-      state: present
