@@ -10,12 +10,12 @@
   - name: Install zsh autosuggestions
     community.general.homebrew:
       name: zsh-autosuggestions
-      state: present
+      state: latest
 
   - name: Install zsh syntax higlighting
     community.general.homebrew:
       name: zsh-syntax-highlighting
-      state: present
+      state: latest
 
   - name: Add zsh configuration to .zshrc
     ansible.builtin.blockinfile:
