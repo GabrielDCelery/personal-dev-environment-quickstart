@@ -5,4 +5,4 @@
   - name: Install dagger
     community.general.homebrew:
       name: dagger
-      state: present
+      state: latest
