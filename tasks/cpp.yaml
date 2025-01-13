@@ -4,15 +4,15 @@
   block:
   - name: Install gcc
     community.general.homebrew:
-      name: gcc@14
-      state: present
+      name: gcc
+      state: latest
 
   - name: Install cmake
     community.general.homebrew:
       name: cmake
-      state: present
+      state: latest
 
   - name: Install ninja-make
     community.general.homebrew:
       name: ninja
-      state: present
+      state: latest
