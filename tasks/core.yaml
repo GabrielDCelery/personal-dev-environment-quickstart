@@ -5,64 +5,64 @@
   - name: Install curl
     community.general.homebrew:
       name: curl
-      state: present
+      state: latest
 
   - name: Install wget
     community.general.homebrew:
       name: wget
-      state: present
+      state: latest
 
   - name: Install tree
     community.general.homebrew:
       name: tree
-      state: present
+      state: latest
 
   - name: Install unzip
     community.general.homebrew:
       name: unzip
-      state: present
+      state: latest
 
   - name: Install vim
     community.general.homebrew:
       name: vim
-      state: present
+      state: latest
 
   - name: Install tmux
     community.general.homebrew:
       name: tmux
-      state: present
+      state: latest
 
   - name: Install tmuxinator
     community.general.homebrew:
       name: tmuxinator
-      state: present
+      state: latest
 
   - name: Install ack
     community.general.homebrew:
       name: ack
-      state: present
+      state: latest
 
   - name: Install make
     community.general.homebrew:
       name: make
-      state: present
+      state: latest
 
   - name: Install nmap
     community.general.homebrew:
       name: nmap
-      state: present
+      state: latest
 
   - name: Install sqlite
     community.general.homebrew:
       name: sqlite
-      state: present
+      state: latest
 
   - name: Install zip
     community.general.homebrew:
       name: zip
-      state: present
+      state: latest
 
   - name: Install unixodbc
     community.general.homebrew:
       name: unixodbc 
-      state: present
+      state: latest
