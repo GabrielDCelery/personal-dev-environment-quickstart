@@ -5,22 +5,22 @@
   - name: Install lazygit
     community.general.homebrew:
       name: lazygit
-      state: present
+      state: latest
 
   - name: Install age
     community.general.homebrew:
       name: age
-      state: present
+      state: latest
 
   - name: Install tldr
     community.general.homebrew:
       name: tldr
-      state: present
+      state: latest
 
   - name: Install sshs
     community.general.homebrew:
       name: sshs
-      state: present
+      state: latest
 
   - name: Add julien-cpsn/atac to Homebrew
     community.general.homebrew_tap:
@@ -29,12 +29,12 @@
   - name: Install atac
     community.general.homebrew:
       name: atac
-      state: present
+      state: latest
 
   - name: Install fzf
     community.general.homebrew:
       name: fzf
-      state: present
+      state: latest
 
   - name: Add necessary config of fzf to zsh
     ansible.builtin.blockinfile:
