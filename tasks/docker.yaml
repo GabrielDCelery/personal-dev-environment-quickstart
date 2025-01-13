@@ -5,5 +5,5 @@
   - name: Install lazydocker
     community.general.homebrew:
       name: lazydocker
-      state: present
+      state: latest
 
