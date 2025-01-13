@@ -5,7 +5,7 @@
   - name: Install stow
     community.general.homebrew:
       name: stow
-      state: present
+      state: latest
 
   - name: Create .config directory if does not exist
     file:
