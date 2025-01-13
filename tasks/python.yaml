@@ -6,32 +6,32 @@
   - name: Install python 3.11
     community.general.homebrew:
       name: python@3.11
-      state: present
+      state: latest
 
   - name: Install python 3.12
     community.general.homebrew:
       name: python@3.12
-      state: present
+      state: latest
 
   - name: Install python 3.13
     community.general.homebrew:
       name: python@3.13
-      state: present
+      state: latest
 
   - name: Install pipx
     community.general.homebrew:
       name: pipx
-      state: present
+      state: latest
 
   - name: Install pipenv
     community.general.homebrew:
       name: pipenv
-      state: present
+      state: latest
 
   - name: Install poetry
     community.general.homebrew:
       name: poetry
-      state: present
+      state: latest
 
   - name: Alias python to python3 and pip to pip3
     ansible.builtin.blockinfile:
