@@ -5,17 +5,17 @@
   - name: Install yazi
     community.general.homebrew:
       name: yazi
-      state: present
+      state: latest
 
   - name: Install btop
     community.general.homebrew:
       name: btop
-      state: present
+      state: latest 
 
   - name: Install ffmpeg
     community.general.homebrew:
       name: ffmpeg
-      state: present
+      state: latest 
 
   - name: Install hashicorp terraform
     ansible.builtin.shell: |
@@ -25,27 +25,27 @@
   - name: Install snyk
     community.general.homebrew:
       name: snyk-cli
-      state: present
+      state: latest 
 
   - name: Install syft
     community.general.homebrew:
       name: syft
-      state: present
+      state: latest 
 
   - name: Install grype
     community.general.homebrew:
       name: grype
-      state: present
+      state: latest 
 
   - name: Install grc
     community.general.homebrew:
       name: grc
-      state: present
+      state: latest 
 
   - name: Install lnav
     community.general.homebrew:
       name: lnav
-      state: present
+      state: latest 
 
   # - name: Install duckdb
   #   community.general.homebrew:
@@ -55,12 +55,12 @@
   - name: Install buku
     community.general.homebrew:
       name: buku
-      state: present
+      state: latest 
 
   - name: Install zoxide
     community.general.homebrew:
       name: zoxide
-      state: present
+      state: latest 
 
   - name: Configure zoxide 
     ansible.builtin.blockinfile:
@@ -79,7 +79,7 @@
   - name: Install eza
     community.general.homebrew:
       name: eza
-      state: present
+      state: latest 
 
   - name: Configure eza 
     ansible.builtin.blockinfile:
@@ -98,7 +98,7 @@
   - name: Install bat
     community.general.homebrew:
       name: bat
-      state: present
+      state: latest 
 
   - name: Configure bat 
     ansible.builtin.blockinfile:
@@ -117,7 +117,7 @@
   - name: Install direnv
     community.general.homebrew:
       name: direnv
-      state: present
+      state: latest 
 
   - name: Configure direnv 
     ansible.builtin.blockinfile:
