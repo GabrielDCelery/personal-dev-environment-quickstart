@@ -5,4 +5,4 @@
   - name: Install hugo
     community.general.homebrew:
       name: hugo
-      state: present
+      state: latest
