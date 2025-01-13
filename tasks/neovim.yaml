@@ -16,12 +16,12 @@
   - name: Install neovim dependencies
     community.general.homebrew:
       name:  [ "gcc", "ripgrep", "unzip", "git", "xclip", "llvm" ]
-      state: present
+      state: latest
 
   - name: Install neovim
     community.general.homebrew:
       name:  neovim
-      state: present
+      state: latest
 
   - name: Make neovim the default editor and manpage viewer
     ansible.builtin.blockinfile:
