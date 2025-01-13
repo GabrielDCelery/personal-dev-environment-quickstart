@@ -31,7 +31,7 @@
   - name: Install aws cli
     community.general.homebrew:
       name: awscli
-      state: present
+      state: latest
 
   - name: Install aws vault
     community.general.homebrew:
