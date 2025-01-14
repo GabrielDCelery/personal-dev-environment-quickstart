@@ -54,3 +54,8 @@
     community.general.homebrew:
       name: glow
       state: latest
+
+  - name: Install protobuf
+    community.general.homebrew:
+      name: protobuf
+      state: latest
