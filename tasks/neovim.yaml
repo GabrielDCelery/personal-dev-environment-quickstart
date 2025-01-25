@@ -35,6 +35,11 @@
       marker_begin: "START NVIM CONFIG"
       marker_end: "END NVIM CONFIG"
 
+  - name: Install prettierd
+    community.general.homebrew:
+      name: prettierd 
+      state: latest
+
   - name: Source zsh
     shell: source $HOME/.zshrc
     args:
