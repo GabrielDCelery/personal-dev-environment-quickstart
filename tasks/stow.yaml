@@ -14,7 +14,7 @@
 
   - name: Clone personal dotfiles from public GitHub repository
     ansible.builtin.git:
-      repo: git@github.com:GabrielDCelery/personal-dotfiles.git
+      repo: https://github.com/GabrielDCelery/personal-dotfiles.git
       dest: $HOME/.dotfiles
       version: main
       update: yes

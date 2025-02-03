@@ -5,7 +5,7 @@
   block:
   - name: Clone personal notes from public GitHub repository
     ansible.builtin.git:
-      repo: git@github.com:GabrielDCelery/personal-notes.git
+      repo: https://github.com/GabrielDCelery/personal-notes.git
       dest: $HOME/notes
       version: master
       update: yes
@@ -22,7 +22,7 @@
 
   - name: Clone personal notes cli from public GitHub repository to temp directory
     ansible.builtin.git:
-      repo: git@github.com:GabrielDCelery/personal-notes-cli.git
+      repo: https://github.com/GabrielDCelery/personal-notes-cli.git
       dest: "{{ temp_pnotes_dir.path }}"
       version: main
       update: yes
