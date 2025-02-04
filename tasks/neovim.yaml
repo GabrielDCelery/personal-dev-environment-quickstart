@@ -21,7 +21,7 @@
   - name: Install neovim
     community.general.homebrew:
       name:  neovim
-      state: present
+      state: latest
 
   - name: Make neovim the default editor and manpage viewer
     ansible.builtin.blockinfile:
