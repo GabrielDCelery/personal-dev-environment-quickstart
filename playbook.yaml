@@ -1,6 +1,5 @@
 - hosts: localhost
-  connection: local
-  gather_facts: no
+  gather_facts: false
   tasks:
     - name: Include vars of vars.yaml
       ansible.builtin.include_vars:
