@@ -1,47 +1,47 @@
+---
 - name: Run neovim tasks
   tags:
     - neovim
   block:
-  - name: Move last version of state, share and cache files to backup
-    ansible.builtin.shell: |
-      if [ -d $HOME/.local/share/nvim.bak ]; then rm -Rf  $HOME/.local/share/nvim.bak; else echo "No need to delete"; fi
-      if [ -d $HOME/.local/share/nvim ]; then mv $HOME/.local/share/nvim $HOME/.local/share/nvim.bak; else echo "No need to copy"; fi
+    - name: Move last version of state, share and cache files to backup
+      ansible.builtin.shell: |
+        if [ -d $HOME/.local/share/nvim.bak ]; then rm -Rf  $HOME/.local/share/nvim.bak; else echo "No need to delete"; fi
+        if [ -d $HOME/.local/share/nvim ]; then mv $HOME/.local/share/nvim $HOME/.local/share/nvim.bak; else echo "No need to copy"; fi
 
-      if [ -d $HOME/.local/state/nvim.bak ]; then rm -Rf  $HOME/.local/state/nvim.bak; else echo "No need to delete"; fi
-      if [ -d $HOME/.local/state/nvim ]; then mv $HOME/.local/state/nvim $HOME/.local/state/nvim.bak; else echo "No need to copy"; fi
+        if [ -d $HOME/.local/state/nvim.bak ]; then rm -Rf  $HOME/.local/state/nvim.bak; else echo "No need to delete"; fi
+        if [ -d $HOME/.local/state/nvim ]; then mv $HOME/.local/state/nvim $HOME/.local/state/nvim.bak; else echo "No need to copy"; fi
 
-      if [ -d $HOME/.cache/nvim.bak ]; then rm -Rf  $HOME/.cache/nvim.bak; else echo "No need to delete"; fi
-      if [ -d $HOME/.cache/nvim ]; then mv $HOME/.cache/nvim $HOME/.cache/nvim.bak; else echo "No need to copy"; fi
+        if [ -d $HOME/.cache/nvim.bak ]; then rm -Rf  $HOME/.cache/nvim.bak; else echo "No need to delete"; fi
+        if [ -d $HOME/.cache/nvim ]; then mv $HOME/.cache/nvim $HOME/.cache/nvim.bak; else echo "No need to copy"; fi
 
-  - name: Install neovim dependencies
-    community.general.homebrew:
-      name:  [ "gcc", "ripgrep", "unzip", "git", "xclip", "llvm" ]
-      state: latest
+    - name: Install neovim dependencies
+      community.general.homebrew:
+        name: ["gcc", "ripgrep", "unzip", "git", "xclip", "llvm"]
+        state: latest
 
-  - name: Install neovim
-    community.general.homebrew:
-      name:  neovim
-      state: latest
+    - name: Install neovim
+      community.general.homebrew:
+        name: neovim
+        state: latest
 
-  - name: Make neovim the default editor and manpage viewer
-    ansible.builtin.blockinfile:
-      state: present
-      path: $HOME/.zshrc
-      block: |
-        export MANPAGER='nvim +Man!'
-        export MANWIDTH=999
-        export EDITOR='nvim'
-        alias nvimc='cd $HOME/.config/nvim && nvim'
-      marker_begin: "START NVIM CONFIG"
-      marker_end: "END NVIM CONFIG"
+    - name: Make neovim the default editor and manpage viewer
+      ansible.builtin.blockinfile:
+        state: present
+        path: $HOME/.zshrc
+        block: |
+          export MANPAGER='nvim +Man!'
+          export MANWIDTH=999
+          export EDITOR='nvim'
+          alias nvimc='cd $HOME/.config/nvim && nvim'
+        marker_begin: "START NVIM CONFIG"
+        marker_end: "END NVIM CONFIG"
 
-  - name: Install prettierd
-    community.general.homebrew:
-      name: prettierd 
-      state: latest
+    - name: Install prettierd
+      community.general.homebrew:
+        name: prettierd
+        state: latest
 
-  - name: Source zsh
-    shell: source $HOME/.zshrc
-    args:
-      executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
-
+    - name: Source zsh
+      shell: source $HOME/.zshrc
+      args:
+        executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu

@@ -1,3 +1,4 @@
+---
 - hosts: localhost
   gather_facts: false
   tasks:
@@ -69,5 +70,6 @@
 
     - name: Import aliases tasks
       ansible.builtin.import_tasks: ./tasks/aliases.yaml
-    #     - name: Import harlequin tasks
-    #       ansible.builtin.import_tasks: ./tasks/harlequin.yaml
+
+    # - name: Import harlequin tasks
+    #   ansible.builtin.import_tasks: ./tasks/harlequin.yaml

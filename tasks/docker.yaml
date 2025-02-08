@@ -1,9 +1,9 @@
+---
 - name: Run docker tasks
   tags:
     - docker
   block:
-  - name: Install lazydocker
-    community.general.homebrew:
-      name: lazydocker
-      state: latest
-
+    - name: Install lazydocker
+      community.general.homebrew:
+        name: lazydocker
+        state: latest

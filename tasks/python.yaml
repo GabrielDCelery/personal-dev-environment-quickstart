@@ -1,49 +1,49 @@
-
+---
 - name: Run python tasks
   tags:
     - python
   block:
-  - name: Install python 3.11
-    community.general.homebrew:
-      name: python@3.11
-      state: latest
+    - name: Install python 3.11
+      community.general.homebrew:
+        name: python@3.11
+        state: latest
 
-  - name: Install python 3.12
-    community.general.homebrew:
-      name: python@3.12
-      state: latest
+    - name: Install python 3.12
+      community.general.homebrew:
+        name: python@3.12
+        state: latest
 
-  - name: Install python 3.13
-    community.general.homebrew:
-      name: python@3.13
-      state: latest
+    - name: Install python 3.13
+      community.general.homebrew:
+        name: python@3.13
+        state: latest
 
-  - name: Install pipx
-    community.general.homebrew:
-      name: pipx
-      state: latest
+    - name: Install pipx
+      community.general.homebrew:
+        name: pipx
+        state: latest
 
-  - name: Install pipenv
-    community.general.homebrew:
-      name: pipenv
-      state: latest
+    - name: Install pipenv
+      community.general.homebrew:
+        name: pipenv
+        state: latest
 
-  - name: Install poetry
-    community.general.homebrew:
-      name: poetry
-      state: latest
+    - name: Install poetry
+      community.general.homebrew:
+        name: poetry
+        state: latest
 
-  - name: Alias python to python3 and pip to pip3
-    ansible.builtin.blockinfile:
-      state: present
-      path: $HOME/.zshrc
-      block: |
-        alias python='"$(which python3)"'
-        alias pip='"$(which pip3)"'
-      marker_begin: "START PYTHON CONFIG"
-      marker_end: "END PYTHON CONFIG"
+    - name: Alias python to python3 and pip to pip3
+      ansible.builtin.blockinfile:
+        state: present
+        path: $HOME/.zshrc
+        block: |
+          alias python='"$(which python3)"'
+          alias pip='"$(which pip3)"'
+        marker_begin: "START PYTHON CONFIG"
+        marker_end: "END PYTHON CONFIG"
 
-  - name: Source zsh
-    shell: source $HOME/.zshrc
-    args:
-      executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
+    - name: Source zsh
+      shell: source $HOME/.zshrc
+      args:
+        executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu

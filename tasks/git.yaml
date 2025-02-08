@@ -1,25 +1,26 @@
+---
 - name: Run git tasks
   tags:
     - git
   block:
-  - name: Install git
-    community.general.homebrew:
-      name: git
-      state: latest
+    - name: Install git
+      community.general.homebrew:
+        name: git
+        state: latest
 
-  - name: Setup Git email
-    git_config:
-      name: user.email
-      scope: global
-      value: "{{ github_email }}"
+    - name: Setup Git email
+      git_config:
+        name: user.email
+        scope: global
+        value: "{{ github_email }}"
 
-  - name: Setup Git name
-    git_config:
-      name: user.name
-      scope: global
-      value: "{{ github_name }}"
+    - name: Setup Git name
+      git_config:
+        name: user.name
+        scope: global
+        value: "{{ github_name }}"
 
-  - name: Install git-delta
-    community.general.homebrew:
-      name: git-delta
-      state: latest
+    - name: Install git-delta
+      community.general.homebrew:
+        name: git-delta
+        state: latest

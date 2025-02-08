@@ -1,21 +1,21 @@
+---
 - name: Set up aliases
-  tags: 
+  tags:
     - aliases
   block:
-  - name: Set up aliases
-    ansible.builtin.blockinfile:
-      state: present
-      path: $HOME/.zshrc
-      block: |
-        alias ps='grc ps'
-        alias ls='grc ls'
-        alias go='grc go'
+    - name: Set up aliases
+      ansible.builtin.blockinfile:
+        state: present
+        path: $HOME/.zshrc
+        block: |
+          alias ps='grc ps'
+          alias ls='grc ls'
+          alias go='grc go'
 
-      marker_begin: "START ALIASES" 
-      marker_end: "END ALIASES"
+        marker_begin: "START ALIASES"
+        marker_end: "END ALIASES"
 
-  - name: Source zsh
-    shell: source $HOME/.zshrc
-    args:
-      executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
-
+    - name: Source zsh
+      shell: source $HOME/.zshrc
+      args:
+        executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu

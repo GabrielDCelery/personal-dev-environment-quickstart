@@ -1,23 +1,24 @@
+---
 - name: Run starship tasks
   tags:
     - starship
   block:
-  - name: Install starship
-    community.general.homebrew:
-      name: starship
-      state: latest
+    - name: Install starship
+      community.general.homebrew:
+        name: starship
+        state: latest
 
-  - name: Add starship init script to zshrc if not present
-    ansible.builtin.blockinfile:
-      state: present
-      path: $HOME/.zshrc
-      block: |
-        eval "$(starship init zsh)"
-        export STARSHIP_RELOAD=true
-      marker_begin: "START STARSHIP CONFIG"
-      marker_end: "END STARSHIP CONFIG"
+    - name: Add starship init script to zshrc if not present
+      ansible.builtin.blockinfile:
+        state: present
+        path: $HOME/.zshrc
+        block: |
+          eval "$(starship init zsh)"
+          export STARSHIP_RELOAD=true
+        marker_begin: "START STARSHIP CONFIG"
+        marker_end: "END STARSHIP CONFIG"
 
-  - name: Source zsh
-    shell: source $HOME/.zshrc
-    args:
-      executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
+    - name: Source zsh
+      shell: source $HOME/.zshrc
+      args:
+        executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu

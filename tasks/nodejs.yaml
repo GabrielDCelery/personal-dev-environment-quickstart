@@ -1,141 +1,143 @@
+---
 - name: Run nodejs tasks
   tags:
     - nodejs
   block:
-  - name: Install n
-    community.general.homebrew:
-      name: n
-      state: present
+    - name: Install n
+      community.general.homebrew:
+        name: n
+        state: present
 
-  - name: Move the latest version of .e to backup
-    ansible.builtin.shell: |
-      if [ -d $HOME/.e.bak ]; then rm -Rf  $HOME/.e.bak; else echo "No need to delete .e"; fi
-      if [ -d $HOME/.e ]; then mv $HOME/.e $HOME/.e.bak; else echo "No need to copy .e"; fi
+    - name: Move the latest version of .e to backup
+      ansible.builtin.shell: |
+        if [ -d $HOME/.e.bak ]; then rm -Rf  $HOME/.e.bak; else echo "No need to delete .e"; fi
+        if [ -d $HOME/.e ]; then mv $HOME/.e $HOME/.e.bak; else echo "No need to copy .e"; fi
 
-  - name: Make sure .n folder is present
-    ansible.builtin.file:
-      path: $HOME/.n
-      state: directory
+    - name: Make sure .n folder is present
+      ansible.builtin.file:
+        path: $HOME/.n
+        state: directory
 
-  - name: Install Node.js 10
-    ansible.builtin.shell: |
-      export N_PREFIX="$HOME/.n"
-      export PATH="$N_PREFIX/bin:$PATH"
-      n install 10
-
-  - name: Install Node.js 12
-    ansible.builtin.shell: |
-      export N_PREFIX="$HOME/.n"
-      export PATH="$N_PREFIX/bin:$PATH"
-      n install 12
-
-  - name: Install Node.js 14
-    ansible.builtin.shell: |
-      export N_PREFIX="$HOME/.n"
-      export PATH="$N_PREFIX/bin:$PATH"
-      n install 14
-
-  - name: Install Node.js 16
-    ansible.builtin.shell: |
-      export N_PREFIX="$HOME/.n"
-      export PATH="$N_PREFIX/bin:$PATH"
-      n install 16
-
-  - name: Install Node.js 18
-    ansible.builtin.shell: |
-      export N_PREFIX="$HOME/.n"
-      export PATH="$N_PREFIX/bin:$PATH"
-      n install 18
-
-  - name: Install Node.js 20
-    ansible.builtin.shell: |
-      export N_PREFIX="$HOME/.n"
-      export PATH="$N_PREFIX/bin:$PATH"
-      n install 20
-
-  - name: Install Node.js 22
-    ansible.builtin.shell: |
-      export N_PREFIX="$HOME/.n"
-      export PATH="$N_PREFIX/bin:$PATH"
-      n install 22
-
-  - name: Set default Node.js version to 22
-    ansible.builtin.shell: |
-      export N_PREFIX="$HOME/.n"
-      export PATH="$N_PREFIX/bin:$PATH"
-      n 22
-
-  - name: Add mandatory config to $HOME/.zshrc
-    ansible.builtin.blockinfile:
-      state: present
-      path: $HOME/.zshrc
-      block: |
+    - name: Install Node.js 10
+      ansible.builtin.shell: |
         export N_PREFIX="$HOME/.n"
         export PATH="$N_PREFIX/bin:$PATH"
-      marker_begin: "START N CONFIG"
-      marker_end: "END N CONFIG"
+        n install 10
 
-  - name: Source zsh
-    shell: source $HOME/.zshrc
-    args:
-      executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
+    - name: Install Node.js 12
+      ansible.builtin.shell: |
+        export N_PREFIX="$HOME/.n"
+        export PATH="$N_PREFIX/bin:$PATH"
+        n install 12
 
-    #   - name: Install Node.js 10
-    #     ansible.builtin.shell: |
-    #       n install 10
-    #       n install 12
-    #       n install 14
-    #       n install 16
-    #       n install 18
-    #       n install 20
-    #       n install 22
-    #       n 22
-    # 
-    #   - name: Install Node.js 22
-    #     ansible.builtin.shell: |
-    #       nvm install 22
-    #   - name: Move latest version of nvm to backup
-    #     ansible.builtin.shell: |
-    #       if [ -d $HOME/.nvm.bak ]; then rm -Rf  $HOME/.nvm.bak; else echo "No need to delete .nvm"; fi
-    #       if [ -d $HOME/.nvm ]; then mv $HOME/.nvm $HOME/.nvm.bak; else echo "No need to copy .nvm"; fi
-    #       if [ -d $HOME/.npm.bak ]; then rm -Rf  $HOME/.npm.bak; else echo "No need to delete .npm"; fi
-    #       if [ -d $HOME/.npm ]; then mv $HOME/.npm $HOME/.npm.bak; else echo "No need to copy .npm"; fi
-    #   - name: Ensire $HOME/.nvm folder exists
-    #     ansible.builtin.file:
-    #       path: $HOME/.nvm
-    #       state: directory
-    # 
-    #   - name: Install nvm
-    #     community.general.homebrew:
-    #       name: nvm
-    #       state: present
-    # 
-    #   - name: Add fix to solve critical nvm files only having write and read permission (no clue yet why)
-    #     ansible.builtin.blockinfile:
-    #       state: present
-    #       path: $HOME/.zshrc
-    #       block: |
-    #         [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && chmod +x $HOMEBREW_PREFIX/opt/nvm/nvm.sh
-    #         [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && chmod +x $HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm
-    #       marker_begin: "START NVM FIX"
-    #       marker_end: "END NVM FIX"
-    # 
-    #   - name: Add mandatory config to $HOME/.zshrc
-    #     ansible.builtin.blockinfile:
-    #       state: present
-    #       path: $HOME/.zshrc
-    #       block: |
-    #         export NVM_DIR="$HOME/.nvm"
-    #         [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
-    #         [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
-    #       marker_begin: "START NVM CONFIG"
-    #       marker_end: "END NVM CONFIG"
-    # 
-    #   - name: Source zsh
-    #     shell: source $HOME/.zshrc
-    #     args:
-    #       executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
-    # 
-    #   - name: Install Node.js 22
-    #     ansible.builtin.shell: |
-    #       nvm install 22
+    - name: Install Node.js 14
+      ansible.builtin.shell: |
+        export N_PREFIX="$HOME/.n"
+        export PATH="$N_PREFIX/bin:$PATH"
+        n install 14
+
+    - name: Install Node.js 16
+      ansible.builtin.shell: |
+        export N_PREFIX="$HOME/.n"
+        export PATH="$N_PREFIX/bin:$PATH"
+        n install 16
+
+    - name: Install Node.js 18
+      ansible.builtin.shell: |
+        export N_PREFIX="$HOME/.n"
+        export PATH="$N_PREFIX/bin:$PATH"
+        n install 18
+
+    - name: Install Node.js 20
+      ansible.builtin.shell: |
+        export N_PREFIX="$HOME/.n"
+        export PATH="$N_PREFIX/bin:$PATH"
+        n install 20
+
+    - name: Install Node.js 22
+      ansible.builtin.shell: |
+        export N_PREFIX="$HOME/.n"
+        export PATH="$N_PREFIX/bin:$PATH"
+        n install 22
+
+    - name: Set default Node.js version to 22
+      ansible.builtin.shell: |
+        export N_PREFIX="$HOME/.n"
+        export PATH="$N_PREFIX/bin:$PATH"
+        n 22
+
+    - name: Add mandatory config to $HOME/.zshrc
+      ansible.builtin.blockinfile:
+        state: present
+        path: $HOME/.zshrc
+        block: |
+          export N_PREFIX="$HOME/.n"
+          export PATH="$N_PREFIX/bin:$PATH"
+        marker_begin: "START N CONFIG"
+        marker_end: "END N CONFIG"
+
+    - name: Source zsh
+      shell: source $HOME/.zshrc
+      args:
+        executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
+
+
+      #   - name: Install Node.js 10
+      #     ansible.builtin.shell: |
+      #       n install 10
+      #       n install 12
+      #       n install 14
+      #       n install 16
+      #       n install 18
+      #       n install 20
+      #       n install 22
+      #       n 22
+      #
+      #   - name: Install Node.js 22
+      #     ansible.builtin.shell: |
+      #       nvm install 22
+      #   - name: Move latest version of nvm to backup
+      #     ansible.builtin.shell: |
+      #       if [ -d $HOME/.nvm.bak ]; then rm -Rf  $HOME/.nvm.bak; else echo "No need to delete .nvm"; fi
+      #       if [ -d $HOME/.nvm ]; then mv $HOME/.nvm $HOME/.nvm.bak; else echo "No need to copy .nvm"; fi
+      #       if [ -d $HOME/.npm.bak ]; then rm -Rf  $HOME/.npm.bak; else echo "No need to delete .npm"; fi
+      #       if [ -d $HOME/.npm ]; then mv $HOME/.npm $HOME/.npm.bak; else echo "No need to copy .npm"; fi
+      #   - name: Ensire $HOME/.nvm folder exists
+      #     ansible.builtin.file:
+      #       path: $HOME/.nvm
+      #       state: directory
+      #
+      #   - name: Install nvm
+      #     community.general.homebrew:
+      #       name: nvm
+      #       state: present
+      #
+      #   - name: Add fix to solve critical nvm files only having write and read permission (no clue yet why)
+      #     ansible.builtin.blockinfile:
+      #       state: present
+      #       path: $HOME/.zshrc
+      #       block: |
+      #         [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && chmod +x $HOMEBREW_PREFIX/opt/nvm/nvm.sh
+      #         [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && chmod +x $HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm
+      #       marker_begin: "START NVM FIX"
+      #       marker_end: "END NVM FIX"
+      #
+      #   - name: Add mandatory config to $HOME/.zshrc
+      #     ansible.builtin.blockinfile:
+      #       state: present
+      #       path: $HOME/.zshrc
+      #       block: |
+      #         export NVM_DIR="$HOME/.nvm"
+      #         [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
+      #         [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+      #       marker_begin: "START NVM CONFIG"
+      #       marker_end: "END NVM CONFIG"
+      #
+      #   - name: Source zsh
+      #     shell: source $HOME/.zshrc
+      #     args:
+      #       executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
+      #
+      #   - name: Install Node.js 22
+      #     ansible.builtin.shell: |
+      #       nvm install 22

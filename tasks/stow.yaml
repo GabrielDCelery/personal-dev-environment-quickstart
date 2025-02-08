@@ -1,32 +1,33 @@
+---
 - name: Run stow tasks
   tags:
     - stow
   block:
-  - name: Install stow
-    community.general.homebrew:
-      name: stow
-      state: latest
+    - name: Install stow
+      community.general.homebrew:
+        name: stow
+        state: latest
 
-  - name: Create .config directory if does not exist
-    file:
-      path: $HOME/.config
-      state: directory
+    - name: Create .config directory if does not exist
+      file:
+        path: $HOME/.config
+        state: directory
 
-  - name: Clone personal dotfiles from public GitHub repository
-    ansible.builtin.git:
-      repo: git@github.com:GabrielDCelery/personal-dotfiles.git
-      dest: $HOME/.dotfiles
-      version: main
-      update: yes
-      clone: yes
+    - name: Clone personal dotfiles from public GitHub repository
+      ansible.builtin.git:
+        repo: git@github.com:GabrielDCelery/personal-dotfiles.git
+        dest: $HOME/.dotfiles
+        version: main
+        update: yes
+        clone: yes
 
-  - name: Stow $HOME/.dotfiles
-    ansible.builtin.shell: stow --dir=$HOME/.dotfiles .
+    - name: Stow $HOME/.dotfiles
+      ansible.builtin.shell: stow --dir=$HOME/.dotfiles .
 
-  - name: Install tmux plugins
-    ansible.builtin.shell: $HOME/.dotfiles/.tmux/plugins/tpm/bin/install_plugins
+    - name: Install tmux plugins
+      ansible.builtin.shell: $HOME/.dotfiles/.tmux/plugins/tpm/bin/install_plugins
 
-  - name: Source zsh
-    shell: source $HOME/.zshrc
-    args:
-      executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
+    - name: Source zsh
+      shell: source $HOME/.zshrc
+      args:
+        executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
