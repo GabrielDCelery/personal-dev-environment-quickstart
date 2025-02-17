@@ -10,7 +10,8 @@
         block: |
           alias ps='grc ps'
           alias ls='grc ls'
-          alias go='grc go'
+          alias k='grc kubectl'
+          alias netstat='grc netstat'
 
         marker_begin: "START ALIASES"
         marker_end: "END ALIASES"

@@ -1,0 +1,14 @@
+---
+- name: Run kubernetes tasks
+  tags:
+    - kubernetes
+  block:
+    - name: Install kubectl
+      community.general.homebrew:
+        name: kubectl
+        state: latest
+
+    - name: Install minikube
+      community.general.homebrew:
+        name: minikube
+        state: latest

@@ -68,6 +68,9 @@
     - name: Import devops tasks
       ansible.builtin.import_tasks: ./tasks/devops.yaml
 
+    - name: Import kubernetes tasks
+      ansible.builtin.import_tasks: ./tasks/kubernetes.yaml
+
     - name: Import aliases tasks
       ansible.builtin.import_tasks: ./tasks/aliases.yaml
 

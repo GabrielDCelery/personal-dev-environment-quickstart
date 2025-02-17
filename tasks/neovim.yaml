@@ -16,7 +16,8 @@
 
     - name: Install neovim dependencies
       community.general.homebrew:
-        name: ["gcc", "ripgrep", "unzip", "git", "xclip", "llvm"]
+        name:
+          ["gcc", "ripgrep", "unzip", "git", "xclip", "llvm", "viu", "chafa"]
         state: latest
 
     - name: Install neovim
