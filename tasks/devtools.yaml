@@ -60,3 +60,8 @@
       community.general.homebrew:
         name: protobuf
         state: latest
+
+    - name: Install task
+      community.general.homebrew:
+        name: go-task
+        state: latest
