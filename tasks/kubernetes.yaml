@@ -12,3 +12,8 @@
       community.general.homebrew:
         name: minikube
         state: latest
+
+    - name: Install helm
+      community.general.homebrew:
+        name: helm
+        state: latest
