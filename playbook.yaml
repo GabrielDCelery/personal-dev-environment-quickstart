@@ -14,9 +14,6 @@
     - name: Import git tasks
       ansible.builtin.import_tasks: ./tasks/git.yaml
 
-    - name: Import zsh
-      ansible.builtin.import_tasks: ./tasks/zsh.yaml
-
     - name: Import stow tasks
       ansible.builtin.import_tasks: ./tasks/stow.yaml
 
@@ -65,14 +62,14 @@
     - name: Import docker tasks
       ansible.builtin.import_tasks: ./tasks/docker.yaml
 
-    - name: Import devops tasks
-      ansible.builtin.import_tasks: ./tasks/devops.yaml
-
     - name: Import kubernetes tasks
       ansible.builtin.import_tasks: ./tasks/kubernetes.yaml
 
     - name: Import aliases tasks
       ansible.builtin.import_tasks: ./tasks/aliases.yaml
+
+    - name: Import zsh
+      ansible.builtin.import_tasks: ./tasks/zsh.yaml
 
     # - name: Import harlequin tasks
     #   ansible.builtin.import_tasks: ./tasks/harlequin.yaml

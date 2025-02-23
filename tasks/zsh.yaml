@@ -32,6 +32,16 @@
         marker_begin: "START ZSH CONFIG"
         marker_end: "END ZSH CONFIG"
 
+    - name: Source .zshrc.custom file
+      ansible.builtin.blockinfile:
+        state: present
+        path: $HOME/.zshrc
+        block: |
+          # Source custom zshrc configuration
+          source ~/.zshrc.custom
+        marker_begin: "START CUSTOM ZSH CONFIG"
+        marker_end: "END CUSTOM ZSH CONFIG"
+
     - name: Source zsh
       shell: source $HOME/.zshrc
       args:

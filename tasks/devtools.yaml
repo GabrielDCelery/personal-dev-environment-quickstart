@@ -3,70 +3,34 @@
   tags:
     - devtools
   block:
-    - name: Install lazygit
+    - name: Install useful tools
       community.general.homebrew:
-        name: lazygit
+        name:
+          - age
+          - bat
+          - btop
+          - buku
+          - direnv
+          - eza
+          - fd
+          - fzf
+          - ffmpeg
+          - glow
+          - grc
+          - grype
+          - go-task
+          - lazygit
+          - lnav
+          - protobuf
+          - sshs
+          - snyk-cli
+          - syft
+          - tldr
+          - yazi
+          - zoxide
         state: latest
 
-    - name: Install age
-      community.general.homebrew:
-        name: age
-        state: latest
-
-    - name: Install tldr
-      community.general.homebrew:
-        name: tldr
-        state: latest
-
-    - name: Install sshs
-      community.general.homebrew:
-        name: sshs
-        state: latest
-
-    - name: Add julien-cpsn/atac to Homebrew
-      community.general.homebrew_tap:
-        name: julien-cpsn/atac
-
-    - name: Install atac
-      community.general.homebrew:
-        name: atac
-        state: latest
-
-    - name: Install fzf
-      community.general.homebrew:
-        name: fzf
-        state: latest
-
-    - name: Add necessary config of fzf to zsh
-      ansible.builtin.blockinfile:
-        state: present
-        path: $HOME/.zshrc
-        block: |
-          source <(fzf --zsh)
-        marker_begin: "START FZF CONFIG"
-        marker_end: "END FZF CONFIG"
-
-    - name: Source zsh
-      shell: source $HOME/.zshrc
-      args:
-        executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
-
-    - name: Install glow
-      community.general.homebrew:
-        name: glow
-        state: latest
-
-    - name: Install protobuf
-      community.general.homebrew:
-        name: protobuf
-        state: latest
-
-    - name: Install task
-      community.general.homebrew:
-        name: go-task
-        state: latest
-
-    - name: Install fd
-      community.general.homebrew:
-        name: fd
-        state: latest
+    - name: Install hashicorp terraform
+      ansible.builtin.shell: |
+        brew tap hashicorp/tap
+        brew install hashicorp/tap/terraform
