@@ -65,3 +65,8 @@
       community.general.homebrew:
         name: go-task
         state: latest
+
+    - name: Install fd
+      community.general.homebrew:
+        name: fd
+        state: latest
