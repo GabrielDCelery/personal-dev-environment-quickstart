@@ -17,59 +17,20 @@
     - name: Import stow tasks
       ansible.builtin.import_tasks: ./tasks/stow.yaml
 
-    - name: Import starship tasks
-      ansible.builtin.import_tasks: ./tasks/starship.yaml
-
     - name: Import neovim tasks
       ansible.builtin.import_tasks: ./tasks/neovim.yaml
 
     - name: Import devtools tasks
       ansible.builtin.import_tasks: ./tasks/devtools.yaml
 
-    - name: Import termshark tasks
-      ansible.builtin.import_tasks: ./tasks/termshark.yaml
-
-    - name: Import go tasks
-      ansible.builtin.import_tasks: ./tasks/go.yaml
-
-    - name: Import cpp tasks
-      ansible.builtin.import_tasks: ./tasks/cpp.yaml
-
-    - name: Import python tasks
-      ansible.builtin.import_tasks: ./tasks/python.yaml
-
-    - name: Import rust tasks
-      ansible.builtin.import_tasks: ./tasks/rust.yaml
-
     - name: Import nodejs tasks
       ansible.builtin.import_tasks: ./tasks/nodejs.yaml
-
-    - name: Import circleci tasks
-      ansible.builtin.import_tasks: ./tasks/circleci.yaml
-
-    - name: Import hugo tasks
-      ansible.builtin.import_tasks: ./tasks/hugo.yaml
-
-    - name: Import aws tasks
-      ansible.builtin.import_tasks: ./tasks/aws.yaml
 
     - name: Import notes tasks
       ansible.builtin.import_tasks: ./tasks/notes.yaml
 
-    - name: Import dagger tasks
-      ansible.builtin.import_tasks: ./tasks/dagger.yaml
+    - name: Import programminglanguages tasks
+      ansible.builtin.import_tasks: ./tasks/programminglanguages.yaml
 
-    - name: Import docker tasks
-      ansible.builtin.import_tasks: ./tasks/docker.yaml
-
-    - name: Import kubernetes tasks
-      ansible.builtin.import_tasks: ./tasks/kubernetes.yaml
-
-    - name: Import aliases tasks
-      ansible.builtin.import_tasks: ./tasks/aliases.yaml
-
-    - name: Import zsh
+    - name: Import zsh tasks
       ansible.builtin.import_tasks: ./tasks/zsh.yaml
-
-    # - name: Import harlequin tasks
-    #   ansible.builtin.import_tasks: ./tasks/harlequin.yaml

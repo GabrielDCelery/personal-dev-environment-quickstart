@@ -1,9 +1,0 @@
----
-- name: Run termshark tasks
-  tags:
-    - termshark
-  block:
-    - name: Install termshark
-      community.general.homebrew:
-        name: termshark
-        state: latest

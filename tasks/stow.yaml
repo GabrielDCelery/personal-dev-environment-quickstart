@@ -9,7 +9,7 @@
         state: latest
 
     - name: Create .config directory if does not exist
-      file:
+      ansible.builtin.file:
         path: $HOME/.config
         state: directory
 
@@ -26,8 +26,3 @@
 
     - name: Install tmux plugins
       ansible.builtin.shell: $HOME/.dotfiles/.tmux/plugins/tpm/bin/install_plugins
-
-    - name: Source zsh
-      shell: source $HOME/.zshrc
-      args:
-        executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu

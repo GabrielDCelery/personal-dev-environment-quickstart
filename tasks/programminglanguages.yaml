@@ -1,0 +1,35 @@
+---
+- name: Run programming languages task
+  tags:
+    - programminglanguages
+  block:
+    - name: Install python
+      community.general.homebrew:
+        name:
+          - python@3.11
+          - python@3.12
+          - python@3.13
+          - pipx
+          - pipenv
+          - poetry
+        state: latest
+
+    - name: Install rust
+      community.general.homebrew:
+        name:
+          - rust
+        state: latest
+
+    - name: Install go
+      community.general.homebrew:
+        name:
+          - go
+        state: latest
+
+    - name: Install c++
+      community.general.homebrew:
+        name:
+          - gcc
+          - cmake
+          - ninja
+        state: latest

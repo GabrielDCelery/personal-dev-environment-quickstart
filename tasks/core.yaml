@@ -5,65 +5,18 @@
   block:
     - name: Install curl
       community.general.homebrew:
-        name: curl
-        state: latest
-
-    - name: Install wget
-      community.general.homebrew:
-        name: wget
-        state: latest
-
-    - name: Install tree
-      community.general.homebrew:
-        name: tree
-        state: latest
-
-    - name: Install unzip
-      community.general.homebrew:
-        name: unzip
-        state: latest
-
-    - name: Install vim
-      community.general.homebrew:
-        name: vim
-        state: latest
-
-    - name: Install tmux
-      community.general.homebrew:
-        name: tmux
-        state: latest
-
-    - name: Install tmuxinator
-      community.general.homebrew:
-        name: tmuxinator
-        state: latest
-
-    - name: Install ack
-      community.general.homebrew:
-        name: ack
-        state: latest
-
-    - name: Install make
-      community.general.homebrew:
-        name: make
-        state: latest
-
-    - name: Install nmap
-      community.general.homebrew:
-        name: nmap
-        state: latest
-
-    - name: Install sqlite
-      community.general.homebrew:
-        name: sqlite
-        state: latest
-
-    - name: Install zip
-      community.general.homebrew:
-        name: zip
-        state: latest
-
-    - name: Install unixodbc
-      community.general.homebrew:
-        name: unixodbc
+        name:
+          - ack
+          - curl
+          - make
+          - nmap
+          - sqlite
+          - wget
+          - unzip
+          - tree
+          - vim
+          - tmux
+          - tmuxinator
+          - zip
+          - unixodbc
         state: latest

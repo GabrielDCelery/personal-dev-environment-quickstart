@@ -1,9 +1,0 @@
----
-- name: Run dagger tasks
-  tags:
-    - dagger
-  block:
-    - name: Install dagger
-      community.general.homebrew:
-        name: dagger
-        state: latest

@@ -1,9 +1,0 @@
----
-- name: Run circleci tasks
-  tags:
-    - circleci
-  block:
-    - name: Install circleci
-      community.general.homebrew:
-        name: circleci
-        state: latest

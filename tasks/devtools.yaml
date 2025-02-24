@@ -7,27 +7,48 @@
       community.general.homebrew:
         name:
           - age
+          - awscli
+          - aws-vault
           - bat
           - btop
           - buku
+          - circleci
+          - dagger
           - direnv
           - eza
           - fd
           - fzf
           - ffmpeg
           - glow
+          - gnupg
           - grc
           - grype
           - go-task
-          - lazygit
+          - hugo
           - lnav
+          - pass
           - protobuf
           - sshs
           - snyk-cli
           - syft
+          - starship
           - tldr
           - yazi
           - zoxide
+        state: latest
+
+    - name: Install tools for kubernetes
+      community.general.homebrew:
+        name:
+          - kubectl
+          - minikube
+          - helm
+        state: latest
+
+    - name: Install tools for docker
+      community.general.homebrew:
+        name:
+          - lazydocker
         state: latest
 
     - name: Install hashicorp terraform
