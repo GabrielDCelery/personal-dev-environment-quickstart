@@ -23,9 +23,6 @@
     - name: Import devtools tasks
       ansible.builtin.import_tasks: ./tasks/devtools.yaml
 
-    - name: Import nodejs tasks
-      ansible.builtin.import_tasks: ./tasks/nodejs.yaml
-
     - name: Import notes tasks
       ansible.builtin.import_tasks: ./tasks/notes.yaml
 
