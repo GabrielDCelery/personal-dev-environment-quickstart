@@ -41,22 +41,3 @@
     - name: Copy pnotes binary to $HOME/.local/bin
       ansible.builtin.shell: |
         cp {{ temp_pnotes_dir.path }}/bin/pnotes $HOME/.local/bin/pnotes
-
-    - name: Configure personal notes
-      ansible.builtin.blockinfile:
-        state: present
-        path: $HOME/.zshrc
-        block: |
-          export PATH="$PATH:$HOME/.local/bin"
-          export PERSONAL_NOTES_DIR=$HOME/notes
-          export PERSONAL_NOTES_INBOX_DIR=$HOME/notes/inbox
-          export PERSONAL_NOTES_TEMPLATE=$HOME/notes/templates/default.md
-          export PERSONAL_NOTES_DEFAULT_AUTHOR={{ personal_notes_author }}
-        marker_begin: "START PERSONAL NOTES CONFIG"
-        marker_end: "END PERSONAL NOTES CONFIG"
-
-    - name: Source zsh
-      shell: source $HOME/.zshrc
-      args:
-        executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
-

@@ -7,30 +7,12 @@
       ansible.builtin.shell: |
         [ -d  $HOME//.oh-my-zsh ] || yes 'Y' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-    - name: Install zsh autosuggestions
+    - name: Install zsh related tools
       community.general.homebrew:
-        name: zsh-autosuggestions
+        name:
+          - zsh-autosuggestions
+          - zsh-syntax-highlighting
         state: latest
-
-    - name: Install zsh syntax higlighting
-      community.general.homebrew:
-        name: zsh-syntax-highlighting
-        state: latest
-
-    - name: Add zsh configuration to .zshrc
-      ansible.builtin.blockinfile:
-        state: present
-        path: $HOME/.zshrc
-        block: |
-          ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/highlighters
-          source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-          source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-          bindkey '^[[Z'      autosuggest-accept
-          # ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(buffer-empty bracketed-paste accept-line push-line-or-edit)
-          # ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-          # ZSH_AUTOSUGGEST_USE_ASYNC=true
-        marker_begin: "START ZSH CONFIG"
-        marker_end: "END ZSH CONFIG"
 
     - name: Source .zshrc.custom file
       ansible.builtin.blockinfile:
@@ -41,8 +23,3 @@
           source ~/.zshrc.custom
         marker_begin: "START CUSTOM ZSH CONFIG"
         marker_end: "END CUSTOM ZSH CONFIG"
-
-    - name: Source zsh
-      shell: source $HOME/.zshrc
-      args:
-        executable: /bin/zsh # needs to be /usr/bin/zsh on ubuntu
