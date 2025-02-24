@@ -51,7 +51,18 @@
           - lazydocker
         state: latest
 
-    - name: Install hashicorp terraform
-      ansible.builtin.shell: |
-        brew tap hashicorp/tap
-        brew install hashicorp/tap/terraform
+    - name: Install hashicorp tap
+      community.general.homebrew_tap:
+        name:
+          - hashicorp/tap
+
+    - name: Install terraform
+      community.general.homebrew:
+        name:
+          - hashicorp/tap/terraform
+        state: latest
+
+    # - name: Install hashicorp terraform
+    #   ansible.builtin.shell: |
+    #     brew tap hashicorp/tap
+    #     brew install hashicorp/tap/terraform
