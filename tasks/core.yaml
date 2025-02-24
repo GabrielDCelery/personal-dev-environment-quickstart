@@ -3,7 +3,7 @@
   tags:
     - core
   block:
-    - name: Install curl
+    - name: Install core dependencies
       community.general.homebrew:
         name:
           - ack
