@@ -32,11 +32,19 @@ config.window_padding = {
 
 config.audible_bell = "Disabled"
 
-config.font_size = 11
+config.font_size = 12
 
 config.colors = {
 	-- background = "#181825",
 	background = "#11111b",
+}
+
+config.keys = {
+	-- Shouldn't conflict with linux/windows
+	-- Make Option-Left equivalent to Alt-b which many line editors interpret as backward-word
+	{ key = "LeftArrow", mods = "OPT", action = wezterm.action({ SendString = "\x1bb" }) },
+	-- Make Option-Right equivalent to Alt-f; forward-word
+	{ key = "RightArrow", mods = "OPT", action = wezterm.action({ SendString = "\x1bf" }) },
 }
 
 -- and finally, return the configuration to wezterm
