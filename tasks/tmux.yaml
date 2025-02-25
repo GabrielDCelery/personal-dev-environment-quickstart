@@ -1,0 +1,38 @@
+---
+- name: Run tmux tasks
+  tags:
+    - tmux
+  block:
+    - name: Create .tmux directory
+      ansible.builtin.file:
+        path: $HOME/.tmux/plugins/tpm
+        state: directory
+
+    - name: Clone tmux plugin manager
+      ansible.builtin.git:
+        repo: git@github.com:tmux-plugins/tpm.git
+        dest: $HOME/.tmux/plugins/tpm
+        version: master
+        update: yes
+        clone: yes
+
+    - name: Clean tmux plugins
+      ansible.builtin.shell: |
+        $HOME/.tmux/plugins/tpm/bin/clean_plugins
+
+    - name: Install tmux plugins
+      ansible.builtin.shell: |
+        $HOME/.tmux/plugins/tpm/bin/install_plugins
+
+    - name: Create catppuccin plugin directory
+      ansible.builtin.file:
+        path: $HOME/.tmux/plugins/catppuccin
+        state: directory
+
+    - name: Install catppuccin theme
+      ansible.builtin.git:
+        repo: git@github.com:catppuccin/tmux.git
+        dest: $HOME/.tmux/plugins/catppuccin/tmux
+        version: v2.1.2
+        update: yes
+        clone: yes

@@ -17,6 +17,9 @@
     - name: Import stow tasks
       ansible.builtin.import_tasks: ./tasks/stow.yaml
 
+    - name: Import tmux tasks
+      ansible.builtin.import_tasks: ./tasks/tmux.yaml
+
     - name: Import neovim tasks
       ansible.builtin.import_tasks: ./tasks/neovim.yaml
 
