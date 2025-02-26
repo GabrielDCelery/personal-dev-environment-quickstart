@@ -62,6 +62,16 @@
           - hashicorp/tap/terraform
         state: latest
 
+    - name: Install databricks tap
+      community.general.homebrew_tap:
+        name:
+          - databricks/tap
+
+    - name: Install databricks cli
+      community.general.homebrew:
+        name:
+          - databricks/tap/databricks
+        state: latest
     # - name: Install hashicorp terraform
     #   ansible.builtin.shell: |
     #     brew tap hashicorp/tap
