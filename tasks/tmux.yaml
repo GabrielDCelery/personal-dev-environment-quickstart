@@ -36,3 +36,14 @@
         version: v2.1.2
         update: yes
         clone: yes
+
+    - name: Install ruby gem
+      community.general.homebrew:
+        name:
+          - brew-gem
+        state: latest
+
+    - name: Install tmuxinator
+      community.general.gem:
+        name: tmuxinator
+        state: latest
