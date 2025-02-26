@@ -23,6 +23,3 @@
 
     - name: Stow $HOME/.dotfiles
       ansible.builtin.shell: stow --dir=$HOME/.dotfiles .
-
-    - name: Install tmux plugins
-      ansible.builtin.shell: $HOME/.dotfiles/.tmux/plugins/tpm/bin/install_plugins
