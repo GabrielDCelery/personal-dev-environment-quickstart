@@ -23,14 +23,14 @@
     - name: Import neovim tasks
       ansible.builtin.import_tasks: ./tasks/neovim.yaml
 
-    - name: Import devtools tasks
-      ansible.builtin.import_tasks: ./tasks/devtools.yaml
-
     - name: Import notes tasks
       ansible.builtin.import_tasks: ./tasks/notes.yaml
 
     - name: Import programminglanguages tasks
       ansible.builtin.import_tasks: ./tasks/programminglanguages.yaml
+
+    - name: Import devtools tasks
+      ansible.builtin.import_tasks: ./tasks/devtools.yaml
 
     - name: Import zsh tasks
       ansible.builtin.import_tasks: ./tasks/zsh.yaml
