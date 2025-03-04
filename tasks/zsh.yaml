@@ -14,12 +14,24 @@
           - zsh-syntax-highlighting
         state: latest
 
-    - name: Source .zshrc.custom file
+    - name: Source .zshrc.personal file
       ansible.builtin.blockinfile:
         state: present
         path: $HOME/.zshrc
         block: |
-          # Source custom zshrc configuration
-          source ~/.zshrc.custom
+          if [ -e "$HOME/.zshrc.personal" ]; then
+            source $HOME/.zshrc.personal
+          fi
+        marker_begin: "START PERSONAL ZSH CONFIG"
+        marker_end: "END PERSONAL ZSH CONFIG"
+
+    - name: Source .zshrc.personal file
+      ansible.builtin.blockinfile:
+        state: present
+        path: $HOME/.zshrc
+        block: |
+          if [ -e "$HOME/.zshrc.custom" ]; then
+            source $HOME/.zshrc.custom
+          fi
         marker_begin: "START CUSTOM ZSH CONFIG"
         marker_end: "END CUSTOM ZSH CONFIG"
