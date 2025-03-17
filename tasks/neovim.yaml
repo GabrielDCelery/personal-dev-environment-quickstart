@@ -16,10 +16,15 @@
           - xclip
         state: latest
 
-    - name: Install neovim
+    - name: Uninstall neovim
       community.general.homebrew:
         name: neovim
-        state: latest
+        state: absent
+
+    - name: Install neovim HEAD
+      community.general.homebrew:
+        name: neovim
+        state: head
 
     - name: Delete backup directories
       ansible.builtin.file:
