@@ -39,12 +39,34 @@
         name: bash
         state: latest
 
-    - name: Install nvm
+    - name: Delete nvm backup directory
+      ansible.builtin.file:
+        path: $HOME/.nvm.bak
+        state: absent
+
+    - name: Move nvm to backup directory
       ansible.builtin.shell: |
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-      # args:
-      #   chdir: "$HOME"
-      # creates: "$HOME/.nvm/nvm.sh"
+        if [ -d $HOME/.nvm ]; then mv $HOME/.nvm $HOME/.nvm.bak; else echo "No need to copy"; fi
+
+    - name: Clone nvm
+      ansible.builtin.git:
+        repo: https://github.com/nvm-sh/nvm.git
+        dest: $HOME/.nvm
+        version: v0.40.2
+        update: yes
+        clone: yes
+
+    - name: Source nvm
+      ansible.builtin.shell: |
+        cd $HOME/.nvm && . ./nvm.sh
+
+    # - name: Install nvm
+    #   ansible.builtin.shell: |
+    #     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+
+    # args:
+    #   chdir: "$HOME"
+    # creates: "$HOME/.nvm/nvm.sh"
 
     # - name: Install different nodejs versions
     #   ansible.builtin.shell: |
