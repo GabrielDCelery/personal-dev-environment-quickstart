@@ -16,7 +16,7 @@
           - xclip
         state: latest
 
-    - name: Install neovim HEAD
+    - name: Install neovim
       community.general.homebrew:
         name: neovim
         state: latest
