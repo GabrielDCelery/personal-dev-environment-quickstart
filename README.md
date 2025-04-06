@@ -86,3 +86,13 @@ Go to the `Edit system environment variables` section on your `Windows settings`
 VARIABLE_NAME=WEZTERM_CONFIG_FILE
 VARIABLE_VALUE=\\wsl.localhost\Ubuntu\home\${user}\.wezterm.lua
 ```
+
+### 6. Importing secrets
+
+This step is there to import the most commonly used secrets from a remote vault to the local password store.
+
+```sh
+gpg --full-generate-key # to generate a key that will be used to initialize the password store
+gpg --list-keys # get the key id
+pass init <the gpg key id> # initialises the password store
+```
