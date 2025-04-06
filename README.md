@@ -2,9 +2,9 @@
 
 To be able to quickly set up a working development environment on a new machine.
 
-# Pre-requisites
+# Steps to follow
 
-### Zsh
+### 1. Install ZSH
 
 This dev environment is built around `zsh` but since that is the default shell on `mac` decided to remove it from the setup scripts to prevent accidental messup of the terminal. On linux distributions, where for example `bash` is the default shell it is pretty much just a two liner to make zsh the default shell.
 
@@ -13,16 +13,47 @@ sudo apt install zsh
 chsh -s $(which zsh)
 ```
 
-### Homebrew
+### 2. Install Homebrew
 
 Follow the instructions on the Homebrew website to install it -> [Homebrew website](https://brew.sh/)
 
-Also do not fortget to add the following in your `.zshrc` file:
+After the installation homebrew will prompt you to run some supplementary scripts. As of this writing:
 
 ```sh
-eval "$(brew shellenv)"
-autoload -Uz compinit # If autocompletion is not working read this: https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
-compinit
+echo >> /home/$USER/.zshrc && \
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/$USER/.zshrc && \
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
+sudo apt-get install build-essential -y && \
+brew install gcc
+```
+
+### 3. Create SSH key and add it to GitHub
+
+```sh
+brew install git && \
+mkdir -p $HOME/.ssh && \
+chmod 700 $HOME/.ssh && \
+ssh-keygen -t ed25519 -a 256 -f $HOME/.ssh/id_ed25519 && \
+chmod 600 $HOME/.ssh/id_ed25519
+```
+
+Take the public key and add it to GitHub. Detailed instructions on [GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
+
+### 4. Run the ansible scripts
+
+```sh
+export user=$USER && export github_email="youremail" && export github_name="yourgithubname" && export personal_notes_author="authorname" && \
+brew install ansible && \
+mkdir -p $HOME/projects/github-GabrielDCelery && \
+cd $HOME/projects/github-GabrielDCelery && \
+git clone git@github.com:GabrielDCelery/personal-dev-environment-quickstart.git && \
+cd personal-dev-environment-quickstart && \
+touch vars.yaml && \
+echo "user: $user\n" >> vars.yaml && \
+echo "github_email: $github_email\n" && \
+echo "github_name: $github_name\n" && \
+echo "personal_notes_author: $personal_notes_author\n" && \
+ansible-playbook -i ./inventory ./playbook.yaml
 ```
 
 ### WezTerm
