@@ -57,8 +57,7 @@
         clone: yes
 
     - name: Source nvm
-      ansible.builtin.shell: |
-        cd $HOME/.nvm && . ./nvm.sh
+      ansible.builtin.shell: /bin/bash $HOME/.nvm/nvm.sh
 
     # - name: Install nvm
     #   ansible.builtin.shell: |

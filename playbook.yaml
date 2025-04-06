@@ -20,12 +20,6 @@
     - name: Import tmux tasks
       ansible.builtin.import_tasks: ./tasks/tmux.yaml
 
-    - name: Import neovim tasks
-      ansible.builtin.import_tasks: ./tasks/neovim.yaml
-
-    - name: Import notes tasks
-      ansible.builtin.import_tasks: ./tasks/notes.yaml
-
     - name: Import programminglanguages tasks
       ansible.builtin.import_tasks: ./tasks/programminglanguages.yaml
 
@@ -34,3 +28,10 @@
 
     - name: Import zsh tasks
       ansible.builtin.import_tasks: ./tasks/zsh.yaml
+
+    - name: Import neovim tasks
+      ansible.builtin.import_tasks: ./tasks/neovim.yaml
+
+    - name: Import notes tasks
+      ansible.builtin.import_tasks: ./tasks/notes.yaml
+
