@@ -30,16 +30,19 @@ brew install gcc
 ### 3. Create SSH key and add it to GitHub
 
 ```sh
-brew install git && \
+brew install git xclip && \
 mkdir -p $HOME/.ssh && \
 chmod 700 $HOME/.ssh && \
 ssh-keygen -t ed25519 -a 256 -f $HOME/.ssh/id_ed25519 && \
-chmod 600 $HOME/.ssh/id_ed25519
+chmod 600 $HOME/.ssh/id_ed25519 && \
+cat $HOME/.ssh/id_ed25519.pub | xclip -selection clipboard
 ```
 
 Take the public key and add it to GitHub. Detailed instructions on [GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
 
 ### 4. Run the ansible scripts
+
+Modify the below script with the desired `github_email`, `github_name` etc... then run it.
 
 ```sh
 export user=$USER && export github_email="youremail" && export github_name="yourgithubname" && export personal_notes_author="authorname" && \
@@ -50,13 +53,13 @@ git clone git@github.com:GabrielDCelery/personal-dev-environment-quickstart.git 
 cd personal-dev-environment-quickstart && \
 touch vars.yaml && \
 echo "user: $user\n" >> vars.yaml && \
-echo "github_email: $github_email\n" && \
-echo "github_name: $github_name\n" && \
-echo "personal_notes_author: $personal_notes_author\n" && \
+echo "github_email: $github_email\n" >> vars.yaml && \
+echo "github_name: $github_name\n" >> vars.yaml && \
+echo "personal_notes_author: $personal_notes_author\n" >> vars.yaml && \
 ansible-playbook -i ./inventory ./playbook.yaml
 ```
 
-### WezTerm
+### 5. Install WezTerm
 
 I chose WezTerm as the terminal emulator ([WezTerm website](https://wezfurlong.org/wezterm/index.html)) because it works on Linux, Windows (WSL) and mac, comes with NerdFont and Catppuccin themes by default.
 
@@ -82,35 +85,4 @@ Go to the `Edit system environment variables` section on your `Windows settings`
 ```
 VARIABLE_NAME=WEZTERM_CONFIG_FILE
 VARIABLE_VALUE=\\wsl.localhost\Ubuntu\home\${user}\.wezterm.lua
-```
-
-# How to run it?
-
-1. Install git using homwbrew
-
-```sh
-brew install git
-```
-
-2. Install ansible using homebrew
-
-```sh
-brew install ansible
-```
-
-3. Clone the repository somewhere on your local machine
-
-4. Create a vars.yaml file in the root directory of the project.
-
-```
-user: <your username> # Run whoami or id on your machine to get the value
-github_email: your GitHub email
-github_name: your GitHub name
-personal_notes_author: name you want to use as a personal author
-```
-
-5. Run ansible to deploy the development environment
-
-```sh
-ansible-playbook -i ./inventory.yaml ./playbook.yaml
 ```
