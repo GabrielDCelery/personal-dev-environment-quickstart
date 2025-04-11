@@ -19,6 +19,7 @@
           - tmux
           - tmuxinator
           - yq
+          - yamlfmt
           - zip
           - unixodbc
         state: latest
