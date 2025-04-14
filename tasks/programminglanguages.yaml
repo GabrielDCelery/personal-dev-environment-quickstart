@@ -1,4 +1,3 @@
----
 - name: Run programming languages task
   tags:
     - programminglanguages
@@ -13,19 +12,16 @@
           - pipenv
           - poetry
         state: latest
-
     - name: Install rust
       community.general.homebrew:
         name:
           - rust
         state: latest
-
     - name: Install go
       community.general.homebrew:
         name:
           - go
         state: latest
-
     - name: Install c++
       community.general.homebrew:
         name:
@@ -33,50 +29,68 @@
           - cmake
           - ninja
         state: latest
-
     - name: Install bash
       community.general.homebrew:
         name: bash
         state: latest
-
-    - name: Delete nvm backup directory
-      ansible.builtin.file:
-        path: $HOME/.nvm.bak
-        state: absent
-
-    - name: Move nvm to backup directory
+    - name: Install n
+      community.general.homebrew:
+        name: n
+        state: present
+    - name: Move the latest version of .e to backup
       ansible.builtin.shell: |
-        if [ -d $HOME/.nvm ]; then mv $HOME/.nvm $HOME/.nvm.bak; else echo "No need to copy"; fi
+        if [ -d $HOME/.e.bak ]; then rm -Rf  $HOME/.e.bak; else echo "No need to delete .e"; fi
+        if [ -d $HOME/.e ]; then mv $HOME/.e $HOME/.e.bak; else echo "No need to copy .e"; fi
+    - name: Make sure .n folder is present
+      ansible.builtin.file:
+        path: $HOME/.n
+        state: directory
+    - name: Install Node.js 10
+      ansible.builtin.shell: |
+        export N_PREFIX="$HOME/.n"
+        export PATH="$N_PREFIX/bin:$PATH"
+        n install 10
+    - name: Install Node.js 12
+      ansible.builtin.shell: |
+        export N_PREFIX="$HOME/.n"
+        export PATH="$N_PREFIX/bin:$PATH"
+        n install 12
+    - name: Install Node.js 14
+      ansible.builtin.shell: |
+        export N_PREFIX="$HOME/.n"
+        export PATH="$N_PREFIX/bin:$PATH"
+        n install 14
+    - name: Install Node.js 16
+      ansible.builtin.shell: |
+        export N_PREFIX="$HOME/.n"
+        export PATH="$N_PREFIX/bin:$PATH"
+        n install 16
+    - name: Install Node.js 18
+      ansible.builtin.shell: |
+        export N_PREFIX="$HOME/.n"
+        export PATH="$N_PREFIX/bin:$PATH"
+        n install 18
+    - name: Install Node.js 20
+      ansible.builtin.shell: |
+        export N_PREFIX="$HOME/.n"
+        export PATH="$N_PREFIX/bin:$PATH"
+        n install 20
+    - name: Install Node.js 22
+      ansible.builtin.shell: |
+        export N_PREFIX="$HOME/.n"
+        export PATH="$N_PREFIX/bin:$PATH"
+        n install 22
 
-    - name: Clone nvm
-      ansible.builtin.git:
-        repo: https://github.com/nvm-sh/nvm.git
-        dest: $HOME/.nvm
-        version: v0.40.2
-        update: yes
-        clone: yes
-
-    - name: Source nvm
-      ansible.builtin.shell: /bin/bash $HOME/.nvm/nvm.sh
-
-    # - name: Install nvm
-    #   ansible.builtin.shell: |
-    #     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-
-    # args:
-    #   chdir: "$HOME"
-    # creates: "$HOME/.nvm/nvm.sh"
-
-    # - name: Install different nodejs versions
-    #   ansible.builtin.shell: |
-    #     . $HOME/.nvm/nvm.sh && nvm install {{ item }}
-    #   args:
-    #     chdir: "$HOME"
-    #     creates: "$HOME/.nvm/versions/{{ item }}"
-    #   loop:
-    #     - 10.24.1
-    #     - 14.21.3
-    #     - 16.20.2
-    #     - 18.20.7
-    #     - 20.18.3
-    #     - 22.14.0
+# - name: Install different nodejs versions
+#   ansible.builtin.shell: |
+#     . $HOME/.nvm/nvm.sh && nvm install {{ item }}
+#   args:
+#     chdir: "$HOME"
+#     creates: "$HOME/.nvm/versions/{{ item }}"
+#   loop:
+#     - 10.24.1
+#     - 14.21.3
+#     - 16.20.2
+#     - 18.20.7
+#     - 20.18.3
+#     - 22.14.0
