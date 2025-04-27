@@ -5,12 +5,10 @@
     - name: Install python
       community.general.homebrew:
         name:
-          - python@3.11
-          - python@3.12
-          - python@3.13
           - pipx
           - pipenv
           - poetry
+          - pyenv
         state: latest
     - name: Install rust
       community.general.homebrew:
