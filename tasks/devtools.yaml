@@ -46,6 +46,12 @@
       community.general.cargo:
         name:
           - sd # CLI sed alternative https://github.com/chmln/sd
+    - name: Install useful networking tools using homebrew
+      community.general.homebrew:
+        name:
+          - net-tools
+          - iperf
+          - bind
     - name: Install tools for kubernetes
       community.general.homebrew:
         name:
