@@ -1,4 +1,3 @@
----
 - name: Run core tasks
   tags:
     - core
@@ -23,3 +22,4 @@
           - zip
           - unixodbc
         state: latest
+        update_homebrew: yes

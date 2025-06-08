@@ -42,6 +42,7 @@
           - yazi
           - zoxide
         state: latest
+        update_homebrew: yes
     - name: Install useful tools using Cargo
       community.general.cargo:
         name:
