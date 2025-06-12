@@ -37,6 +37,7 @@
           - sshs # ssh TUI interface https://github.com/quantumsheep/sshs
           - starship # cross-shell prompt enhancements https://starship.rs
           - syft # CLI tool to generate SOBM (software bill of materials) for container images and file systems https://github.com/anchore/syft
+          - tfenv # terraform version manager
           - tldr
           - vegeta # CLI load testing tool https://github.com/tsenart/vegeta
           - yazi
@@ -66,15 +67,15 @@
         name:
           - lazydocker
         state: latest
-    - name: Install hashicorp tap
-      community.general.homebrew_tap:
-        name:
-          - hashicorp/tap
-    - name: Install terraform
-      community.general.homebrew:
-        name:
-          - hashicorp/tap/terraform
-        state: latest
+    # - name: Install hashicorp tap
+    #   community.general.homebrew_tap:
+    #     name:
+    #       - hashicorp/tap
+    # - name: Install terraform
+    #   community.general.homebrew:
+    #     name:
+    #       - hashicorp/tap/terraform
+    #     state: latest
     - name: Install Hashicorp CLI
       community.general.homebrew:
         name:
