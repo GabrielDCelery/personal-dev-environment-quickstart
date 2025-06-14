@@ -61,6 +61,7 @@
           - minikube
           - helm
           - k9s
+          - kubectx
         state: latest
     - name: Install tools for docker
       community.general.homebrew:
