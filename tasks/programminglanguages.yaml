@@ -18,7 +18,7 @@
     - name: Install go
       community.general.homebrew:
         name:
-          - go
+          - goenv
         state: latest
     - name: Install c++
       community.general.homebrew:
