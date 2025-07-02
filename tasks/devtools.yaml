@@ -13,7 +13,7 @@
           - btop # CLI alternatvie to top https://github.com/aristocratos/btop
           - buku
           - circleci
-          - dagger
+          # - dagger
           - direnv
           - eza
           - fd # CLI find alternative https://github.com/sharkdp/fd
