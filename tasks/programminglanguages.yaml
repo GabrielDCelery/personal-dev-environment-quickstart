@@ -2,6 +2,10 @@
   tags:
     - programminglanguages
   block:
+    - name: Install asdf
+      community.general.homebrew:
+        name:
+          - asdf
     - name: Install python
       community.general.homebrew:
         name:
