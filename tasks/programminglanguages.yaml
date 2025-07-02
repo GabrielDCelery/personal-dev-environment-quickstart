@@ -6,6 +6,14 @@
       community.general.homebrew:
         name:
           - asdf
+
+    - name: Install tools via asdf
+      ansible.builtin.shell: |
+        asdf plugin add golang;
+        asdf install golang 1.24.4;
+        asdf plugin add dagger;
+        asdf install dagger 0.18.12;
+
     - name: Install python
       community.general.homebrew:
         name:
