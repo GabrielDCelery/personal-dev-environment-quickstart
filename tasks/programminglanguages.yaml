@@ -9,8 +9,8 @@
 
     - name: Install tools via asdf
       ansible.builtin.shell: |
-        asdf plugin add golang && asdf install golang 1.24.4 && asdf set golang 1.24.4;
-        asdf plugin add dagger && asdf install dagger 0.18.12 && asdf set dagger 0.18.12;
+        asdf plugin add golang && asdf install golang 1.24.4 && asdf set -u golang 1.24.4;
+        asdf plugin add dagger && asdf install dagger 0.18.12 && asdf set -u dagger 0.18.12;
 
     - name: Install python
       community.general.homebrew:
@@ -25,12 +25,12 @@
         name:
           - rust
         state: latest
-    # - name: Install go
-    #   community.general.homebrew:
-    #     name:
-    #       - go
-    #       # - goenv
-    #     state: latest
+    - name: Install go
+      community.general.homebrew:
+        name:
+          - go
+          # - goenv
+        state: latest
     - name: Install c++
       community.general.homebrew:
         name:
