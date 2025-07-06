@@ -2,104 +2,27 @@
   tags:
     - programminglanguages
   block:
-    - name: Install asdf
+    - name: Install mise
       community.general.homebrew:
         name:
-          - asdf
+          - mise
 
-    - name: Install tools via asdf
-      ansible.builtin.shell: |
-        asdf plugin add golang && asdf install golang 1.24.4 && asdf set -u golang 1.24.4;
-        asdf plugin add dagger && asdf install dagger 0.18.12 && asdf set -u dagger 0.18.12;
+    - name: Install usage via mise
+      ansible.builtin.shell: mise use -g usage
 
-    - name: Install python
-      community.general.homebrew:
-        name:
-          - pipx
-          - pipenv
-          - poetry
-          - pyenv
-        state: latest
-    - name: Install rust
-      community.general.homebrew:
-        name:
-          - rust
-        state: latest
-    - name: Install go
-      community.general.homebrew:
-        name:
-          - go
-          # - goenv
-        state: latest
-    - name: Install c++
-      community.general.homebrew:
-        name:
-          - gcc
-          - cmake
-          - ninja
-        state: latest
-    - name: Install bash
-      community.general.homebrew:
-        name: bash
-        state: latest
-    - name: Install n
-      community.general.homebrew:
-        name: n
-        state: present
-    - name: Move the latest version of .e to backup
-      ansible.builtin.shell: |
-        if [ -d $HOME/.e.bak ]; then rm -Rf  $HOME/.e.bak; else echo "No need to delete .e"; fi
-        if [ -d $HOME/.e ]; then mv $HOME/.e $HOME/.e.bak; else echo "No need to copy .e"; fi
-    - name: Make sure .n folder is present
-      ansible.builtin.file:
-        path: $HOME/.n
-        state: directory
-    - name: Install Node.js 10
-      ansible.builtin.shell: |
-        export N_PREFIX="$HOME/.n"
-        export PATH="$N_PREFIX/bin:$PATH"
-        n install 10
-    - name: Install Node.js 12
-      ansible.builtin.shell: |
-        export N_PREFIX="$HOME/.n"
-        export PATH="$N_PREFIX/bin:$PATH"
-        n install 12
-    - name: Install Node.js 14
-      ansible.builtin.shell: |
-        export N_PREFIX="$HOME/.n"
-        export PATH="$N_PREFIX/bin:$PATH"
-        n install 14
-    - name: Install Node.js 16
-      ansible.builtin.shell: |
-        export N_PREFIX="$HOME/.n"
-        export PATH="$N_PREFIX/bin:$PATH"
-        n install 16
-    - name: Install Node.js 18
-      ansible.builtin.shell: |
-        export N_PREFIX="$HOME/.n"
-        export PATH="$N_PREFIX/bin:$PATH"
-        n install 18
-    - name: Install Node.js 20
-      ansible.builtin.shell: |
-        export N_PREFIX="$HOME/.n"
-        export PATH="$N_PREFIX/bin:$PATH"
-        n install 20
-    - name: Install Node.js 22
-      ansible.builtin.shell: |
-        export N_PREFIX="$HOME/.n"
-        export PATH="$N_PREFIX/bin:$PATH"
-        n install 22
+    - name: Install dagger via mise
+      ansible.builtin.shell: mise use -g dagger
 
-# - name: Install different nodejs versions
-#   ansible.builtin.shell: |
-#     . $HOME/.nvm/nvm.sh && nvm install {{ item }}
-#   args:
-#     chdir: "$HOME"
-#     creates: "$HOME/.nvm/versions/{{ item }}"
-#   loop:
-#     - 10.24.1
-#     - 14.21.3
-#     - 16.20.2
-#     - 18.20.7
-#     - 20.18.3
-#     - 22.14.0
+    - name: Install golang via mise
+      ansible.builtin.shell: mise use -g golang
+
+    - name: Install rust via mise
+      ansible.builtin.shell: mise use -g rust
+
+    - name: Install nodejs via mise
+      ansible.builtin.shell: mise use -g node
+
+    - name: Install python via mise
+      ansible.builtin.shell: |
+        mise use -g python
+        mise use -g poetry
