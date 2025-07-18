@@ -6,23 +6,3 @@
       community.general.homebrew:
         name:
           - mise
-
-    - name: Install usage via mise
-      ansible.builtin.shell: mise use -g usage
-
-    - name: Install dagger via mise
-      ansible.builtin.shell: mise use -g dagger
-
-    - name: Install golang via mise
-      ansible.builtin.shell: mise use -g golang
-
-    - name: Install rust via mise
-      ansible.builtin.shell: mise use -g rust
-
-    - name: Install nodejs via mise
-      ansible.builtin.shell: mise use -g node
-
-    - name: Install python via mise
-      ansible.builtin.shell: |
-        mise use -g python
-        mise use -g poetry
