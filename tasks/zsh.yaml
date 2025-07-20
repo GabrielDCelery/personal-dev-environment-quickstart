@@ -2,18 +2,40 @@
   tags:
     - zsh
   block:
+    - name: Ensure zsh plugins directory exists
+      file:
+        path: $HOME/.zsh/plugins
+        state: directory
+
+    - name: Install zsh-completions
+      ansible.builtin.git:
+        repo: https://github.com/zsh-users/zsh-completions.git
+        dest: $HOME/.zsh/plugins/zsh-completions
+        version: 0.35.0
+        force: true
+        update: false
+
+    - name: Install fzf-tab
+      ansible.builtin.git:
+        repo: https://github.com/Aloxaf/fzf-tab.git
+        dest: $HOME/.zsh/plugins/fzf-tab
+        version: v1.2.0
+        force: true
+        update: false
+
     - name: Update Homebrew
       community.general.homebrew:
         update_homebrew: yes
 
-    - name: Install oh my zsh if not present
-      ansible.builtin.shell: |
-        [ -d  $HOME//.oh-my-zsh ] || yes 'Y' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-    - name: Install zsh related tools
+    - name: Install zsh-autosuggestions
       community.general.homebrew:
         name:
           - zsh-autosuggestions
+        state: latest
+
+    - name: Install zsh-syntax-highlighting
+      community.general.homebrew:
+        name:
           - zsh-syntax-highlighting
         state: latest
 
