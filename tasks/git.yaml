@@ -1,4 +1,3 @@
----
 - name: Run git tasks
   tags:
     - git

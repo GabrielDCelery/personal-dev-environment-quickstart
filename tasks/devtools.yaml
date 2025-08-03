@@ -44,16 +44,6 @@
           - zoxide
         state: latest
         update_homebrew: yes
-    - name: Install useful tools using Cargo
-      community.general.cargo:
-        name:
-          - sd # CLI sed alternative https://github.com/chmln/sd
-    # - name: Install useful networking tools using homebrew
-    #   community.general.homebrew:
-    #     name:
-    #       - net-tools
-    #       - iperf
-    #       - bind
     - name: Install tools for kubernetes
       community.general.homebrew:
         name:
@@ -67,34 +57,4 @@
       community.general.homebrew:
         name:
           - lazydocker
-        state: latest
-    # - name: Install hashicorp tap
-    #   community.general.homebrew_tap:
-    #     name:
-    #       - hashicorp/tap
-    # - name: Install terraform
-    #   community.general.homebrew:
-    #     name:
-    #       - hashicorp/tap/terraform
-    #     state: latest
-    - name: Install Hashicorp CLI
-      community.general.homebrew:
-        name:
-          - hashicorp/tap/hcp
-        state: latest
-    - name: Install databricks tap
-      community.general.homebrew_tap:
-        name:
-          - databricks/tap
-    - name: Install databricks CLI
-      community.general.homebrew:
-        name:
-          - databricks/tap/databricks
-        state: latest
-    - name: Install Cloudflare tap
-      community.general.homebrew_tap:
-        name: cloudflare/cloudflare
-    - name: Install Cloudflare terraforming
-      community.general.homebrew:
-        name: cloudflare/cloudflare/cf-terraforming
         state: latest

@@ -6,3 +6,7 @@
       community.general.homebrew:
         name:
           - mise
+    - name: Install programming languages specified in global mise.toml
+      ansible.builtin.shell: |
+        mise trust
+        mise install

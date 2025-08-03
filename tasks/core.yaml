@@ -5,21 +5,19 @@
     - name: Install core dependencies
       community.general.homebrew:
         name:
-          - ack
+          # - ack 
           - curl
           - jq
           - make
           - nmap
-          - sqlite
-          - wget
-          - unzip
-          - tree
-          - vim
           - tmux
           - tmuxinator
-          - yq
+          - tree
+          - unzip
+          - vim
+          - wget
           - yamlfmt
+          - yq
           - zip
-          - unixodbc
         state: latest
         update_homebrew: yes

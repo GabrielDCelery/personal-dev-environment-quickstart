@@ -1,4 +1,3 @@
----
 - name: Run neovim tasks
   tags:
     - neovim

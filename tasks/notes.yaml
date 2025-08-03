@@ -1,4 +1,3 @@
----
 - name: Run notes tasks
   tags:
     - notes
