@@ -1,0 +1,10 @@
+- name: Run ai tasks
+  tags:
+    - ai
+  block:
+    - name: Install ai dependencies
+      community.general.homebrew:
+        name:
+          - aichat
+        state: latest
+        update_homebrew: yes
