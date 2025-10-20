@@ -14,7 +14,7 @@
           - buku
           # - circleci
           # - dagger
-          - direnv
+          # - direnv
           - eza
           - fd # CLI find alternative https://github.com/sharkdp/fd
           - ffmpeg
