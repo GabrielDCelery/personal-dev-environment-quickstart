@@ -33,7 +33,8 @@
           - pass # CLI password manager https://www.passwordstore.org
           - protobuf
           - ripgrep # CLI tool to search directory for regex pattern https://github.com/BurntSushi/ripgrep
-          - snyk-CLI
+          # Disabled snyk cli because it was messing up mise claude
+          # - snyk-CLI 
           - sshs # ssh TUI interface https://github.com/quantumsheep/sshs
           - starship # cross-shell prompt enhancements https://starship.rs
           - syft # CLI tool to generate SOBM (software bill of materials) for container images and file systems https://github.com/anchore/syft
