@@ -5,44 +5,44 @@
     - name: Install useful tools using homebrew
       community.general.homebrew:
         name:
-          - age
-          - aws-vault
-          - awscli
-          - azure-cli
+          # - age
+          # - aws-vault
+          # - awscli
+          # - azure-cli
           - bat # CLI cat alternative with highlights https://github.com/sharkdp/bat
           - btop # CLI alternatvie to top https://github.com/aristocratos/btop
           - buku
           # - circleci
           # - dagger
           # - direnv
-          - eza
-          - fd # CLI find alternative https://github.com/sharkdp/fd
+          # - eza
+          # - fd # CLI find alternative https://github.com/sharkdp/fd
           - ffmpeg
-          - fzf
+          # - fzf
           # - glow # CLI tool to render markdown files https://github.com/charmbracelet/glow
           - gnupg # CLI tool for GNU pricay guard to generate and manage secure keys https://www.gnupg.org
           - go-task # CLI make alternative, task runner, build tool https://taskfile.dev
           - grc # CLI to do generic colourisation https://github.com/garabik/grc
-          - gron # CLI to make JSON grepable by turning every value to full path https://github.com/tomnomnom/gron
-          - grype # CLI vulnerability scanner for container images https://github.com/anchore/grype
-          - hugo
-          - hyperfine # CLI benchmarking tool
-          - jc # CLI tool to convert other CLI tools output to JSON https://github.com/kellyjonbrazil/jc
-          - jless # TUI to view JSON files with the ability to fold and search https://github.com/PaulJuliusMartinez/jless
-          - lnav # advanced logfile navigator https://lnav.org
+          # - gron # CLI to make JSON grepable by turning every value to full path https://github.com/tomnomnom/gron
+          # - grype # CLI vulnerability scanner for container images https://github.com/anchore/grype
+          # - hugo
+          # - hyperfine # CLI benchmarking tool
+          # - jc # CLI tool to convert other CLI tools output to JSON https://github.com/kellyjonbrazil/jc
+          # - jless # TUI to view JSON files with the ability to fold and search https://github.com/PaulJuliusMartinez/jless
+          # - lnav # advanced logfile navigator https://lnav.org
           - pass # CLI password manager https://www.passwordstore.org
           - protobuf
-          - ripgrep # CLI tool to search directory for regex pattern https://github.com/BurntSushi/ripgrep
+          # - ripgrep # CLI tool to search directory for regex pattern https://github.com/BurntSushi/ripgrep
           # Disabled snyk cli because it was messing up mise claude
           # - snyk-CLI 
           - sshs # ssh TUI interface https://github.com/quantumsheep/sshs
-          - starship # cross-shell prompt enhancements https://starship.rs
-          - syft # CLI tool to generate SOBM (software bill of materials) for container images and file systems https://github.com/anchore/syft
-          - tfenv # terraform version manager
+          # - starship # cross-shell prompt enhancements https://starship.rs
+          # - syft # CLI tool to generate SOBM (software bill of materials) for container images and file systems https://github.com/anchore/syft
+          # - tfenv # terraform version manager
           - tldr
           - vegeta # CLI load testing tool https://github.com/tsenart/vegeta
-          - yazi
-          - zoxide
+          # - yazi
+          # - zoxide
         state: latest
         update_homebrew: yes
     - name: Install tools for kubernetes
