@@ -18,7 +18,7 @@
           # - eza
           # - fd # CLI find alternative https://github.com/sharkdp/fd
           - ffmpeg
-          # - fzf
+          - fzf
           # - glow # CLI tool to render markdown files https://github.com/charmbracelet/glow
           - gnupg # CLI tool for GNU pricay guard to generate and manage secure keys https://www.gnupg.org
           - go-task # CLI make alternative, task runner, build tool https://taskfile.dev
@@ -42,7 +42,7 @@
           - tldr
           - vegeta # CLI load testing tool https://github.com/tsenart/vegeta
           # - yazi
-          # - zoxide
+          - zoxide
         state: latest
         update_homebrew: yes
     - name: Install tools for kubernetes
