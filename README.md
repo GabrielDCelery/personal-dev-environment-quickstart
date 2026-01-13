@@ -68,13 +68,13 @@ I chose WezTerm as the terminal emulator ([WezTerm website](https://wezfurlong.o
 1. Install WezTerm
 2. Configure WezTerm
 
-Chek the WSL version in the Windows terminal or Powershell.
+Check the WSL version in the Windows terminal or Powershell.
 
 ```sh
 wsl -l -v
 ```
 
-In the `wezterm_configs` folder find and rename the `.wezterm.skel.wsl.lua` file to `.wezterm.lua`. Move the file to your home directory at `/homw/${username}/.wezterm.lua` (we are pretty much mirroring a Linux setup), then open the config and change the following section to use the appropriate WSL version.
+In the `wezterm_configs` folder find and rename the `.wezterm.skel.wsl.lua` file to `.wezterm.lua`. Move the file to your home directory at `/home/${username}/.wezterm.lua` (we are pretty much mirroring a Linux setup), then open the config and change the following section to use the appropriate WSL version.
 
 ```sh
 config.default_domain = "WSL:Ubuntu"
