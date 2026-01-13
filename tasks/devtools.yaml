@@ -9,8 +9,8 @@
           # - aws-vault
           # - awscli
           # - azure-cli
-          - bat # CLI cat alternative with highlights https://github.com/sharkdp/bat
-          - btop # CLI alternatvie to top https://github.com/aristocratos/btop
+          # - bat # CLI cat alternative with highlights https://github.com/sharkdp/bat
+          # - btop # CLI alternatvie to top https://github.com/aristocratos/btop
           - buku
           # - circleci
           # - dagger
@@ -42,7 +42,7 @@
           - tldr
           - vegeta # CLI load testing tool https://github.com/tsenart/vegeta
           # - yazi
-          - zoxide
+          # - zoxide
         state: latest
         update_homebrew: yes
     - name: Install tools for kubernetes
