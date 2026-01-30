@@ -2,6 +2,8 @@
 
 Ansible-based automation to set up a complete development environment on a new machine. Installs and configures zsh, neovim, tmux, git, programming languages (via mise), Kubernetes tools, and personal dotfiles — all idempotent and reproducible.
 
+This repository works in tandem with [Personal dotfiles](https://github.com/GabrielDCelery/personal-dotfiles)
+
 ## Quick Start
 
 ```sh
@@ -55,27 +57,27 @@ ansible-playbook -i ./inventory ./playbook.yaml
 
 The playbook is split into modular task files under `tasks/`:
 
-| Task file                  | What it does                                                        |
-| -------------------------- | ------------------------------------------------------------------- |
-| `core.yaml`                | curl, jq, make, nmap, tree, unzip, wget, zip, yamlfmt, yq, vim     |
-| `git.yaml`                 | git, lazygit, global git config                                     |
-| `stow.yaml`               | GNU stow, clones and stows personal dotfiles                        |
-| `tmux.yaml`                | TPM, Catppuccin theme (v2.1.3), plugin install                      |
-| `programminglanguages.yaml`| mise install (languages defined in mise config)                     |
-| `devtools.yaml`            | kubectl, helm, k9s, kubectx, minikube, lazydocker, fzf, pass, more  |
-| `zsh.yaml`                 | zsh-completions, fzf-tab, autosuggestions, syntax-highlighting      |
-| `neovim.yaml`              | neovim, ripgrep, chafa, viu, xclip, backups existing nvim data      |
-| `notes.yaml`               | Clones personal notes repo, builds and installs `pnotes` CLI        |
-| `ai.yaml`                  | aichat                                                              |
+| Task file                   | What it does                                                       |
+| --------------------------- | ------------------------------------------------------------------ |
+| `core.yaml`                 | curl, jq, make, nmap, tree, unzip, wget, zip, yamlfmt, yq, vim     |
+| `git.yaml`                  | git, lazygit, global git config                                    |
+| `stow.yaml`                 | GNU stow, clones and stows personal dotfiles                       |
+| `tmux.yaml`                 | TPM, Catppuccin theme (v2.1.3), plugin install                     |
+| `programminglanguages.yaml` | mise install (languages defined in mise config)                    |
+| `devtools.yaml`             | kubectl, helm, k9s, kubectx, minikube, lazydocker, fzf, pass, more |
+| `zsh.yaml`                  | zsh-completions, fzf-tab, autosuggestions, syntax-highlighting     |
+| `neovim.yaml`               | neovim, ripgrep, chafa, viu, xclip, backups existing nvim data     |
+| `notes.yaml`                | Clones personal notes repo, builds and installs `pnotes` CLI       |
+| `ai.yaml`                   | aichat                                                             |
 
 ## Configuration
 
-| Variable               | Description                        | Required |
-| ---------------------- | ---------------------------------- | -------- |
-| `user`                 | System username                    | Yes      |
-| `github_email`         | Git global user.email              | Yes      |
-| `github_name`          | Git global user.name               | Yes      |
-| `personal_notes_author`| Author name for personal notes CLI | Yes      |
+| Variable                | Description                        | Required |
+| ----------------------- | ---------------------------------- | -------- |
+| `user`                  | System username                    | Yes      |
+| `github_email`          | Git global user.email              | Yes      |
+| `github_name`           | Git global user.name               | Yes      |
+| `personal_notes_author` | Author name for personal notes CLI | Yes      |
 
 Create `vars.yaml` in the project root with these values before running the playbook. This file is gitignored.
 
