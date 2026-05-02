@@ -11,28 +11,13 @@
       community.general.homebrew:
         update_homebrew: yes
 
-    - name: Install zsh-autosuggestions
+    - name: Install zsh plugins
       community.general.homebrew:
         name:
           - zsh-autosuggestions
-        state: latest
-
-    - name: Install zsh-completions
-      community.general.homebrew:
-        name:
           - zsh-completions
-        state: latest
-
-    - name: Install fzf-tab
-      community.general.homebrew:
-        name:
-          - fzf-tab
-        state: latest
-
-    - name: Install zsh-syntax-highlighting
-      community.general.homebrew:
-        name:
           - zsh-syntax-highlighting
+          - fzf-tab
         state: latest
 
     - name: Add .zshrc.personal file
