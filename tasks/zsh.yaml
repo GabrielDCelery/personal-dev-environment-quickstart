@@ -7,22 +7,6 @@
         path: $HOME/.zsh/plugins
         state: directory
 
-    - name: Install zsh-completions
-      ansible.builtin.git:
-        repo: https://github.com/zsh-users/zsh-completions.git
-        dest: $HOME/.zsh/plugins/zsh-completions
-        version: 0.35.0
-        force: true
-        update: false
-
-    - name: Install fzf-tab
-      ansible.builtin.git:
-        repo: https://github.com/Aloxaf/fzf-tab.git
-        dest: $HOME/.zsh/plugins/fzf-tab
-        version: v1.2.0
-        force: true
-        update: false
-
     - name: Update Homebrew
       community.general.homebrew:
         update_homebrew: yes
@@ -31,6 +15,18 @@
       community.general.homebrew:
         name:
           - zsh-autosuggestions
+        state: latest
+
+    - name: Install zsh-completions
+      community.general.homebrew:
+        name:
+          - zsh-completions
+        state: latest
+
+    - name: Install fzf-tab
+      community.general.homebrew:
+        name:
+          - fzf-tab
         state: latest
 
     - name: Install zsh-syntax-highlighting
