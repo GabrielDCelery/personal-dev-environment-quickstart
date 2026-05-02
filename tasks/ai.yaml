@@ -8,3 +8,9 @@
           - aichat
         state: latest
         update_homebrew: yes
+
+    - name: Install ai cask dependencies
+      community.general.homebrew_cask:
+        name:
+          - claude-code
+        state: latest
