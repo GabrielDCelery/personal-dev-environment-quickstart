@@ -34,5 +34,3 @@
     - name: Import notes tasks
       ansible.builtin.import_tasks: ./tasks/notes.yaml
 
-    - name: Import ai tasks
-      ansible.builtin.import_tasks: ./tasks/ai.yaml
