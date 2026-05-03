@@ -33,8 +33,9 @@
           - go-task # CLI make alternative, task runner, build tool https://taskfile.dev
           - grc # CLI to do generic colourisation https://github.com/garabik/grc
           - gron # CLI to make JSON grepable by turning every value to full path https://github.com/tomnomnom/gron
-          - grype # CLI vulnerability scanner for container images https://github.com/anchore/grype
           - helm
+          - hugo
+          - hyperfine
           - jc # CLI tool to convert other CLI tools output to JSON https://github.com/kellyjonbrazil/jc
           - jless # TUI to view JSON files with the ability to fold and search https://github.com/PaulJuliusMartinez/jless
           - jq
@@ -44,6 +45,7 @@
           - lazydocker
           - lnav # advanced logfile navigator https://lnav.org
           - minikube
+          - ollama
           - opencode
           - pandoc
           - pass # CLI password manager https://www.passwordstore.org
