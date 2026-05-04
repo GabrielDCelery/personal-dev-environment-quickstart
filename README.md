@@ -7,40 +7,28 @@ This repository works in tandem with [Personal dotfiles](https://github.com/Gabr
 ## Quick Start
 
 ```sh
-# 1. Install zsh (Linux only, macOS already has it)
+# 1. Install zsh (Linux/WSL only — macOS ships with it)
 sudo apt install zsh
 chsh -s $(which zsh)
+# Then open a new terminal before continuing
 
-# 2. Install Homebrew (https://brew.sh)
-# After install, run the post-install steps Homebrew prints, e.g.:
-echo >> /home/$USER/.zshrc
-echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/$USER/.zshrc
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-sudo apt-get install build-essential -y
-brew install gcc
-
-# 3. Create SSH key and add it to GitHub
-brew install git xclip
+# 2. Generate an SSH key and add it to GitHub
 mkdir -p $HOME/.ssh && chmod 700 $HOME/.ssh
 ssh-keygen -t ed25519 -a 256 -f $HOME/.ssh/id_ed25519
-chmod 600 $HOME/.ssh/id_ed25519
-cat $HOME/.ssh/id_ed25519.pub | xclip -selection clipboard
-# Paste the public key in GitHub → Settings → SSH keys
-# https://docs.github.com/en/authentication/connecting-to-github-with-ssh
+# https://github.com/settings/keys
 
-# 4. Clone and run the playbook
-brew install ansible
-mkdir -p $HOME/projects/github-GabrielDCelery && cd $_
-git clone git@github.com:GabrielDCelery/personal-dev-environment-quickstart.git
-cd personal-dev-environment-quickstart
-cat > vars.yaml <<EOF
-user: $USER
-github_email: youremail
-github_name: yourgithubname
-personal_notes_author: authorname
-EOF
-ansible-playbook -i ./inventory ./playbook.yaml
+# 3. Run the bootstrap script
+curl -fsSL https://raw.githubusercontent.com/GabrielDCelery/personal-dev-environment-quickstart/main/bootstrap.sh | bash
 ```
+
+The bootstrap script will:
+- Install Homebrew and build tools
+- Install Ansible and git
+- Copy your SSH public key to the clipboard (paste it into GitHub if not done yet)
+- Clone this repo to `~/projects/github-GabrielDCelery/personal-dev-environment-quickstart`
+- Prompt for your GitHub email, name, and notes author, then run the Ansible playbook
+
+Works on Linux, macOS, and WSL.
 
 ## Architecture
 

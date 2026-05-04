@@ -15,9 +15,15 @@ die()     { echo "[bootstrap] ERROR: $*" >&2; exit 1; }
 
 detect_os() {
     case "$OSTYPE" in
-        linux-gnu*) echo "linux" ;;
-        darwin*)    echo "macos" ;;
-        *)          die "Unsupported OS: $OSTYPE" ;;
+        linux-gnu*)
+            if grep -qi microsoft /proc/version 2>/dev/null; then
+                echo "wsl"
+            else
+                echo "linux"
+            fi
+            ;;
+        darwin*) echo "macos" ;;
+        *)       die "Unsupported OS: $OSTYPE" ;;
     esac
 }
 
@@ -26,7 +32,7 @@ info "Detected OS: $OS"
 
 # ─── Linux prerequisites ─────────────────────────────────────────────────────
 
-if [[ "$OS" == "linux" ]]; then
+if [[ "$OS" == "linux" || "$OS" == "wsl" ]]; then
     info "Installing build-essential..."
     sudo apt-get update -qq
     sudo apt-get install -y build-essential curl git xclip >/dev/null
@@ -39,7 +45,7 @@ if ! command -v brew &>/dev/null; then
     info "Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-    if [[ "$OS" == "linux" ]]; then
+    if [[ "$OS" == "linux" || "$OS" == "wsl" ]]; then
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     fi
 else
@@ -47,7 +53,7 @@ else
 fi
 
 # Ensure brew is on PATH for the rest of this script
-if [[ "$OS" == "linux" ]] && [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+if [[ "$OS" == "linux" || "$OS" == "wsl" ]] && [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 elif [[ "$OS" == "macos" ]] && [[ -f /opt/homebrew/bin/brew ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -73,6 +79,18 @@ else
     success "git already installed"
 fi
 
+# ─── Clipboard helper ───────────────────────────────────────────────────────
+
+copy_to_clipboard() {
+    if [[ "$OS" == "wsl" ]]; then
+        clip.exe
+    elif [[ "$OS" == "macos" ]]; then
+        pbcopy
+    else
+        xclip -selection clipboard
+    fi
+}
+
 # ─── SSH key check ──────────────────────────────────────────────────────────
 
 if [[ ! -f "$HOME/.ssh/id_ed25519.pub" ]]; then
@@ -85,6 +103,7 @@ if [[ ! -f "$HOME/.ssh/id_ed25519.pub" ]]; then
     exit 0
 else
     success "SSH key found"
+    cat "$HOME/.ssh/id_ed25519.pub" | copy_to_clipboard && info "Public key copied to clipboard"
 fi
 
 # ─── Clone repo ─────────────────────────────────────────────────────────────
