@@ -33,16 +33,12 @@ Works on Linux, macOS, and WSL.
 ## WezTerm Setup (Windows/WSL)
 
 1. Install [WezTerm](https://wezfurlong.org/wezterm/index.html) on Windows
-2. Check your WSL distro name:
-   ```sh
-   wsl -l -v
+2. The bootstrap script copies the config to `~/.config/wezterm/wezterm.lua` on the WSL filesystem
+3. Add a Windows environment variable so WezTerm finds the config:
    ```
-3. Copy `wezterm_configs/.wezterm.skel.wsl.lua` to `~/.wezterm.lua` (on the WSL filesystem)
-4. Edit `config.default_domain` to match your WSL distro (e.g. `"WSL:Ubuntu"`)
-5. Add a Windows environment variable so WezTerm finds the config:
+   WEZTERM_CONFIG_FILE = \\wsl.localhost\Ubuntu\home\<user>\.config\wezterm\wezterm.lua
    ```
-   WEZTERM_CONFIG_FILE = \\wsl.localhost\Ubuntu\home\<user>\.wezterm.lua
-   ```
+4. If your WSL distro name differs from `Ubuntu`, update `config.default_domain` in `~/.config/wezterm/wezterm.lua`
 
 ## Importing Secrets
 

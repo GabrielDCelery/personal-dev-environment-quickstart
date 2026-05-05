@@ -122,6 +122,13 @@ git checkout main
 git pull
 success "Repo up to date"
 
+# ─── WezTerm config ─────────────────────────────────────────────────────────
+
+info "Copying WezTerm config..."
+mkdir -p "$HOME/.config/wezterm"
+cp -r "$REPO_DIR/wezterm_configs/." "$HOME/.config/wezterm/"
+success "WezTerm config copied to ~/.config/wezterm/"
+
 # ─── vars.yaml ──────────────────────────────────────────────────────────────
 
 if [[ ! -f vars.yaml ]]; then
