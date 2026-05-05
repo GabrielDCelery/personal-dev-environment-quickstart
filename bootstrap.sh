@@ -118,6 +118,9 @@ else
 fi
 
 cd "$REPO_DIR"
+git checkout main
+git pull
+success "Repo up to date"
 
 # ─── vars.yaml ──────────────────────────────────────────────────────────────
 
