@@ -26,7 +26,7 @@ The bootstrap script will:
 - Install Ansible and git
 - Copy your SSH public key to the clipboard (paste it into GitHub if not done yet)
 - Clone this repo to `~/projects/github-GabrielDCelery/personal-dev-environment-quickstart`
-- Prompt for your GitHub email, name, and notes author, then run the Ansible playbook
+- Prompt for your GitHub email and name, then run the Ansible playbook
 
 Works on Linux, macOS, and WSL.
 
@@ -60,12 +60,11 @@ The playbook is split into modular task files under `tasks/`:
 
 ## Configuration
 
-| Variable                | Description                        | Required |
-| ----------------------- | ---------------------------------- | -------- |
-| `user`                  | System username                    | Yes      |
-| `github_email`          | Git global user.email              | Yes      |
-| `github_name`           | Git global user.name               | Yes      |
-| `personal_notes_author` | Author name for personal notes CLI | Yes      |
+| Variable       | Description           | Required |
+| -------------- | --------------------- | -------- |
+| `user`         | System username       | Yes      |
+| `github_email` | Git global user.email | Yes      |
+| `github_name`  | Git global user.name  | Yes      |
 
 Create `vars.yaml` in the project root with these values before running the playbook. This file is gitignored.
 

@@ -127,16 +127,14 @@ success "Repo up to date"
 if [[ ! -f vars.yaml ]]; then
     info "Creating vars.yaml..."
     echo ""
-    read -rp "  GitHub email: "          GITHUB_EMAIL
-    read -rp "  GitHub name: "           GITHUB_NAME
-    read -rp "  Personal notes author: " NOTES_AUTHOR
+    read -rp "  GitHub email: " GITHUB_EMAIL
+    read -rp "  GitHub name: "  GITHUB_NAME
     echo ""
 
     cat > vars.yaml <<EOF
 user: $USER
 github_email: $GITHUB_EMAIL
 github_name: $GITHUB_NAME
-personal_notes_author: $NOTES_AUTHOR
 EOF
     success "Created vars.yaml"
 else
