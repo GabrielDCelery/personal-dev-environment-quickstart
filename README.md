@@ -22,15 +22,19 @@ curl -fsSL https://raw.githubusercontent.com/GabrielDCelery/personal-dev-environ
 ```
 
 The bootstrap script will:
+
 - Install Homebrew and build tools
 - Install Ansible and git
 - Copy your SSH public key to the clipboard (paste it into GitHub if not done yet)
 - Clone this repo to `~/projects/github-GabrielDCelery/personal-dev-environment-quickstart`
+- Copy WezTerm config to `~/.config/wezterm/`
 - Prompt for your GitHub email and name, then run the Ansible playbook
 
 Works on Linux, macOS, and WSL.
 
 ## WezTerm Setup (Windows/WSL)
+
+> **Note:** This is the only step not automated by bootstrap — WezTerm runs on Windows and requires a Windows environment variable to be set manually.
 
 1. Install [WezTerm](https://wezfurlong.org/wezterm/index.html) on Windows
 2. The bootstrap script copies the config to `~/.config/wezterm/wezterm.lua` on the WSL filesystem
@@ -52,8 +56,8 @@ pass init <gpg-key-id>         # initialise the password store
 
 ## Re-running
 
-The playbook is idempotent. Re-run it any time to pick up changes:
+Bootstrap is idempotent. Re-run it any time to pick up changes:
 
 ```sh
-ansible-playbook -i ./inventory ./playbook.yaml
+curl -fsSL https://raw.githubusercontent.com/GabrielDCelery/personal-dev-environment-quickstart/main/bootstrap.sh | bash
 ```
