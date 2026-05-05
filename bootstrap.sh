@@ -124,6 +124,7 @@ success "Repo up to date"
 
 # ─── WezTerm config ─────────────────────────────────────────────────────────
 
+# cp rather than symlink — Windows (WSL) does not follow symlinks into the WSL filesystem
 info "Copying WezTerm config..."
 mkdir -p "$HOME/.config/wezterm"
 cp -r "$REPO_DIR/wezterm_configs/." "$HOME/.config/wezterm/"
