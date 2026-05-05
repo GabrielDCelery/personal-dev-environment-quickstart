@@ -30,44 +30,6 @@ The bootstrap script will:
 
 Works on Linux, macOS, and WSL.
 
-## Architecture
-
-- **Provisioning**: Ansible (local connection, runs on the target machine itself)
-- **Package Manager**: Homebrew (works on both Linux and macOS)
-- **Language Version Manager**: [mise](https://mise.jdx.dev/)
-- **Dotfiles Manager**: GNU stow (symlinks from `~/.dotfiles`)
-- **Shell**: zsh with fzf-tab, autosuggestions, syntax highlighting, completions
-- **Editor**: Neovim
-- **Terminal Multiplexer**: tmux with TPM and Catppuccin theme
-- **Terminal Emulator**: WezTerm (cross-platform, NerdFont + Catppuccin built-in)
-
-## What Gets Installed
-
-The playbook is split into modular task files under `tasks/`:
-
-| Task file                   | What it does                                                       |
-| --------------------------- | ------------------------------------------------------------------ |
-| `core.yaml`                 | curl, jq, make, nmap, tree, unzip, wget, zip, yamlfmt, yq, vim     |
-| `git.yaml`                  | git, lazygit, global git config                                    |
-| `stow.yaml`                 | GNU stow, clones and stows personal dotfiles                       |
-| `tmux.yaml`                 | TPM, Catppuccin theme (v2.1.3), plugin install                     |
-| `programminglanguages.yaml` | mise install (languages defined in mise config)                    |
-| `devtools.yaml`             | kubectl, helm, k9s, kubectx, minikube, lazydocker, fzf, pass, more |
-| `zsh.yaml`                  | zsh-completions, fzf-tab, autosuggestions, syntax-highlighting     |
-| `neovim.yaml`               | neovim, ripgrep, chafa, viu, xclip, backups existing nvim data     |
-| `notes.yaml`                | Clones personal notes repo, builds and installs `pnotes` CLI       |
-| `ai.yaml`                   | aichat                                                             |
-
-## Configuration
-
-| Variable       | Description           | Required |
-| -------------- | --------------------- | -------- |
-| `user`         | System username       | Yes      |
-| `github_email` | Git global user.email | Yes      |
-| `github_name`  | Git global user.name  | Yes      |
-
-Create `vars.yaml` in the project root with these values before running the playbook. This file is gitignored.
-
 ## WezTerm Setup (Windows/WSL)
 
 1. Install [WezTerm](https://wezfurlong.org/wezterm/index.html) on Windows
