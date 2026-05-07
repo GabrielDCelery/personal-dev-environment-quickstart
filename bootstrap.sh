@@ -135,8 +135,8 @@ success "WezTerm config copied to ~/.config/wezterm/"
 if [[ ! -f vars.yaml ]]; then
     info "Creating vars.yaml..."
     echo ""
-    read -rp "  GitHub email: " GITHUB_EMAIL
-    read -rp "  GitHub name: "  GITHUB_NAME
+    read -rp "  GitHub email: " GITHUB_EMAIL </dev/tty
+    read -rp "  GitHub name: "  GITHUB_NAME </dev/tty
     echo ""
 
     cat > vars.yaml <<EOF
