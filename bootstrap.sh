@@ -2,7 +2,7 @@
 set -e
 
 REPO_URL="https://github.com/GabrielDCelery/personal-dev-environment-quickstart.git"
-REPO_DIR="$HOME/projects/github-GabrielDCelery/personal-dev-environment-quickstart"
+REPO_DIR="$HOME/projects/github.com/GabrielDCelery/personal-dev-environment-quickstart"
 
 # ─── Helpers ────────────────────────────────────────────────────────────────
 
