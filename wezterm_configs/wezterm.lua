@@ -30,6 +30,17 @@ if is_windows then
 	config.prefer_egl = true
 end
 
+config.background = {
+	{
+		source = {
+			Color = "#11111b",
+		},
+		width = "100%",
+		height = "104%",
+		opacity = 0.9,
+	},
+}
+
 config.keys = {
 	{ key = "LeftArrow", mods = "OPT", action = wezterm.action({ SendString = "\x1bb" }) },
 	{ key = "RightArrow", mods = "OPT", action = wezterm.action({ SendString = "\x1bf" }) },
