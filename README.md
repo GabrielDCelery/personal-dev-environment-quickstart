@@ -6,18 +6,23 @@ This repository works in tandem with [Personal dotfiles](https://github.com/Gabr
 
 ## Quick Start
 
+1. Install zsh (Linux/WSL only — macOS ships with it)
+
 ```sh
-# 1. Install zsh (Linux/WSL only — macOS ships with it)
 sudo apt install zsh
 chsh -s $(which zsh)
-# Then open a new terminal before continuing
+```
 
-# 2. Generate an SSH key and add it to GitHub
+2. Generate an SSH key and add it to GitHub
+
+```sh
 mkdir -p $HOME/.ssh && chmod 700 $HOME/.ssh
 ssh-keygen -t ed25519 -a 256 -f $HOME/.ssh/id_ed25519
-# https://github.com/settings/keys
+```
 
-# 3. Run the bootstrap script
+3. Run the bootstrap script
+
+```sh
 curl -fsSL https://raw.githubusercontent.com/GabrielDCelery/personal-dev-environment-quickstart/main/bootstrap.sh | bash
 ```
 
