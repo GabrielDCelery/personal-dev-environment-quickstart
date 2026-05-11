@@ -47,7 +47,7 @@ end
 config.background = {
 	{
 		source = {
-			File = wezterm.config_dir .. "/wallpapers/pyramid-0001.jpg",
+			File = wezterm.home_dir .. "/.local/share/wallpapers/pyramid-0001.jpg",
 		},
 	},
 	{

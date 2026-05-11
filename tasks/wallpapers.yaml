@@ -5,7 +5,7 @@
     - name: Clone wallpapers repositroy
       ansible.builtin.git:
         repo: git@github.com:GabrielDCelery/personal-wallpapers.git
-        dest: $HOME/wallpapers
+        dest: $HOME/.local/share/wallpapers
         version: main
         update: yes
         clone: yes
