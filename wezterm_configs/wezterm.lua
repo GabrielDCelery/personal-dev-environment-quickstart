@@ -8,7 +8,21 @@ config.automatically_reload_config = true
 config.enable_tab_bar = false
 config.max_fps = 120
 config.audible_bell = "Disabled"
-config.font_size = 10
+
+local function set_font_size(window)
+	local overrides = window:get_config_overrides() or {}
+	local dims = window:get_dimensions()
+	overrides.font_size = 10 * (dims.dpi / 96)
+	window:set_config_overrides(overrides)
+end
+
+wezterm.on("window-resized", function(window)
+	set_font_size(window)
+end)
+
+wezterm.on("window-config-reloaded", function(window)
+	set_font_size(window)
+end)
 
 config.color_scheme = "Catppuccin Mocha"
 
