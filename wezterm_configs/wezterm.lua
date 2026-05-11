@@ -47,6 +47,11 @@ end
 config.background = {
 	{
 		source = {
+			File = wezterm.config_dir .. "/wallpapers/pyramid-0001.jpg",
+		},
+	},
+	{
+		source = {
 			Color = "#11111b",
 		},
 		width = "100%",
