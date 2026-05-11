@@ -1,0 +1,12 @@
+- name: Run wallpapers tasks
+  tags:
+    - wallpapers
+  block:
+    - name: Clone wallpapers repositroy
+      ansible.builtin.git:
+        repo: git@github.com:GabrielDCelery/personal-wallpapers.git
+        dest: $HOME/wallpapers
+        version: main
+        update: yes
+        clone: yes
+        depth: 1

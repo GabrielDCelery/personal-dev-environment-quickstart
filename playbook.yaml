@@ -10,6 +10,9 @@
     - name: Import core tasks
       ansible.builtin.import_tasks: ./tasks/core.yaml
 
+    - name: Import wallpapers tasks
+      ansible.builtin.import_tasks: ./tasks/wallpapers.yaml
+
     - name: Import git tasks
       ansible.builtin.import_tasks: ./tasks/git.yaml
 
