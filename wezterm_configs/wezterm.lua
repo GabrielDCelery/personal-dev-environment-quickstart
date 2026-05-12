@@ -11,8 +11,12 @@ config.audible_bell = "Disabled"
 
 local function set_font_size(window)
 	local overrides = window:get_config_overrides() or {}
-	local dims = window:get_dimensions()
-	overrides.font_size = 10 * (dims.dpi / 96)
+	if is_windows then
+		overrides.font_size = 10
+	else
+		local dims = window:get_dimensions()
+		overrides.font_size = 10 * (dims.dpi / 96)
+	end
 	window:set_config_overrides(overrides)
 end
 
@@ -44,10 +48,25 @@ if is_windows then
 	config.prefer_egl = true
 end
 
+local function wallpaper_path()
+	if is_windows then
+		local ok, stdout = wezterm.run_child_process({
+			"wsl",
+			"sh",
+			"-c",
+			"wslpath -w ~/.local/share/wallpapers/pyramid-0001.jpg",
+		})
+		if ok then
+			return stdout:gsub("%s+$", "")
+		end
+	end
+	return wezterm.home_dir .. "/.local/share/wallpapers/pyramid-0001.jpg"
+end
+
 config.background = {
 	{
 		source = {
-			File = wezterm.home_dir .. "/.local/share/wallpapers/pyramid-0001.jpg",
+			File = wallpaper_path(),
 		},
 	},
 	{
