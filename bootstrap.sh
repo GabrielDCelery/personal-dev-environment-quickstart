@@ -61,7 +61,7 @@ fi
 
 command -v brew &>/dev/null || die "brew not found after install — check your shell PATH"
 
-# ─── Ansible + git ──────────────────────────────────────────────────────────
+# ─── Ansible + gh + git ─────────────────────────────────────────────────────
 
 if ! command -v ansible &>/dev/null; then
     info "Installing ansible..."
@@ -69,6 +69,14 @@ if ! command -v ansible &>/dev/null; then
     success "ansible installed"
 else
     success "ansible already installed"
+fi
+
+if ! command -v gh &>/dev/null; then
+    info "Installing gh..."
+    brew install gh
+    success "gh installed"
+else
+    success "gh already installed"
 fi
 
 if ! command -v git &>/dev/null; then
@@ -79,31 +87,22 @@ else
     success "git already installed"
 fi
 
-# ─── Clipboard helper ───────────────────────────────────────────────────────
-
-copy_to_clipboard() {
-    if [[ "$OS" == "wsl" ]]; then
-        clip.exe
-    elif [[ "$OS" == "macos" ]]; then
-        pbcopy
-    else
-        xclip -selection clipboard
-    fi
-}
-
-# ─── SSH key check ──────────────────────────────────────────────────────────
+# ─── SSH key ────────────────────────────────────────────────────────────────
 
 if [[ ! -f "$HOME/.ssh/id_ed25519.pub" ]]; then
-    warn "No SSH key found at ~/.ssh/id_ed25519.pub"
-    warn "Generate one with:"
-    warn "  ssh-keygen -t ed25519 -a 256 -f ~/.ssh/id_ed25519"
-    warn "Then add it to GitHub: https://github.com/settings/keys"
-    warn ""
-    warn "Re-run this script after adding the key to GitHub."
+    info "No SSH key found — generating one..."
+    mkdir -p "$HOME/.ssh"
+    chmod 700 "$HOME/.ssh"
+    ssh-keygen -t ed25519 -a 256 -f "$HOME/.ssh/id_ed25519" -N ""
+    success "SSH key generated"
+    warn "Add this public key to https://github.com/settings/keys:"
+    echo ""
+    cat "$HOME/.ssh/id_ed25519.pub"
+    echo ""
+    warn "Re-run this script after adding the key."
     exit 0
 else
     success "SSH key found"
-    cat "$HOME/.ssh/id_ed25519.pub" | copy_to_clipboard && info "Public key copied to clipboard"
 fi
 
 # ─── Clone repo ─────────────────────────────────────────────────────────────
@@ -137,20 +136,33 @@ if [[ ! -f vars.yaml ]]; then
     echo ""
     read -rp "  GitHub email: " GITHUB_EMAIL </dev/tty
     read -rp "  GitHub name: "  GITHUB_NAME </dev/tty
+    read -rsp "  GitHub token (fine-grained PAT, no scopes needed): " GITHUB_TOKEN </dev/tty
     echo ""
 
     cat > vars.yaml <<EOF
 user: $USER
 github_email: $GITHUB_EMAIL
 github_name: $GITHUB_NAME
+github_token: $GITHUB_TOKEN
 EOF
     success "Created vars.yaml"
 else
+    GITHUB_TOKEN=$(grep '^github_token:' vars.yaml | awk '{print $2}')
     success "vars.yaml already exists, skipping"
+fi
+
+# ─── GitHub CLI auth ────────────────────────────────────────────────────────
+
+if ! gh auth status &>/dev/null 2>&1; then
+    info "Authenticating GitHub CLI with token..."
+    echo "$GITHUB_TOKEN" | gh auth login --with-token
+    success "GitHub CLI authenticated"
+else
+    success "GitHub CLI already authenticated"
 fi
 
 # ─── Run playbook ───────────────────────────────────────────────────────────
 
 info "Running Ansible playbook..."
-ansible-playbook -i ./inventory.yaml ./playbook.yaml
+GITHUB_TOKEN="$GITHUB_TOKEN" ansible-playbook -i ./inventory.yaml ./playbook.yaml
 success "Done"

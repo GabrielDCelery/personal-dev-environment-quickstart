@@ -13,12 +13,9 @@ sudo apt install zsh
 chsh -s $(which zsh)
 ```
 
-2. Generate an SSH key and add it to GitHub
+2. Create a GitHub fine-grained PAT (Personal Access Token) with no scopes
 
-```sh
-mkdir -p $HOME/.ssh && chmod 700 $HOME/.ssh
-ssh-keygen -t ed25519 -a 256 -f $HOME/.ssh/id_ed25519
-```
+   Go to [github.com/settings/tokens](https://github.com/settings/tokens) → Fine-grained tokens → Generate new token. No scopes or permissions needed — the token only needs to exist so tools like `mise` can make authenticated API calls and avoid rate limits. Copy it somewhere safe, you'll be prompted for it during bootstrap.
 
 3. Run the bootstrap script
 
@@ -29,11 +26,11 @@ curl -fsSL https://raw.githubusercontent.com/GabrielDCelery/personal-dev-environ
 The bootstrap script will:
 
 - Install Homebrew and build tools
-- Install Ansible and git
-- Copy your SSH public key to the clipboard (paste it into GitHub if not done yet)
-- Clone this repo to `~/projects/github-GabrielDCelery/personal-dev-environment-quickstart`
+- Install Ansible, `gh` CLI, and git
+- Generate an SSH key if missing, print the public key, and exit — add it to [github.com/settings/keys](https://github.com/settings/keys) then re-run
+- Clone this repo
 - Copy WezTerm config to `~/.config/wezterm/`
-- Prompt for your GitHub email and name, then run the Ansible playbook
+- Prompt for your GitHub email, name, and PAT, then run the Ansible playbook
 
 Works on Linux, macOS, and WSL.
 
@@ -66,3 +63,5 @@ Bootstrap is idempotent. Re-run it any time to pick up changes:
 ```sh
 curl -fsSL https://raw.githubusercontent.com/GabrielDCelery/personal-dev-environment-quickstart/main/bootstrap.sh | bash
 ```
+
+> **Warning:** If `vars.yaml` is missing fields, delete it and re-run — the script will prompt for all values again.
