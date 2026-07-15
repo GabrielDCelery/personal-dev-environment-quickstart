@@ -61,6 +61,7 @@
           - tmuxinator
           - tree-sitter-cli
           - vegeta # CLI load testing tool https://github.com/tsenart/vegeta
+          - watch
           - yazi
           - yq
           - zellij
