@@ -2,6 +2,18 @@
   tags:
     - devtools
   block:
+    - name: Tap third-party homebrew repositories
+      community.general.homebrew_tap:
+        name:
+          - russmckendrick/tap
+        state: present
+
+    - name: Trust third-party homebrew taps
+      ansible.builtin.command:
+        cmd: brew trust --tap russmckendrick/tap
+      register: brew_trust_result
+      changed_when: "'Trusted tap' in brew_trust_result.stdout"
+
     - name: Install useful tools using homebrew cask
       community.general.homebrew_cask:
         name:
@@ -59,6 +71,7 @@
           - tlrc
           - tmux
           - tmuxinator
+          - russmckendrick/tap/tokenuse # TUI to explore AI coding tool token and cost usage https://github.com/russmckendrick/tokenuse
           - tree-sitter-cli
           - vegeta # CLI load testing tool https://github.com/tsenart/vegeta
           - watch
