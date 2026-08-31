@@ -31,6 +31,17 @@
         marker_begin: "START PERSONAL ZSH CONFIG"
         marker_end: "END PERSONAL ZSH CONFIG"
 
+    - name: Add .zshrc.work file
+      ansible.builtin.blockinfile:
+        state: present
+        path: $HOME/.zshrc
+        block: |
+          if [ -e "$HOME/.zshrc.work" ]; then
+            source $HOME/.zshrc.work
+          fi
+        marker_begin: "START WORK ZSH CONFIG"
+        marker_end: "END WORK ZSH CONFIG"
+
     - name: Add .zshrc.custom file
       ansible.builtin.blockinfile:
         state: present
