@@ -13,10 +13,10 @@
     - name: Render gitconfig
       ansible.builtin.template:
         src: "{{ playbook_dir }}/templates/gitconfig.j2"
-        dest: "{{ ansible_env.HOME }}/.gitconfig"
+        dest: $HOME/.gitconfig
         backup: yes
 
     - name: Ensure ~/projects/work directory exists
       ansible.builtin.file:
-        path: "{{ ansible_env.HOME }}/projects/work"
+        path: $HOME/projects/work
         state: directory
