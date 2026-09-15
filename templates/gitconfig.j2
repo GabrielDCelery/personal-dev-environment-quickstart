@@ -1,0 +1,52 @@
+[user]
+  name = {{ github_name }}
+  email = {{ github_email }}
+
+[alias]
+  fuzzlog = !git log --oneline --shortstat --quiet | fzf -e
+  dl = log --graph --date=short --abbrev-commit --decorate --format=format:'%C(yellow)%h%C(reset) %C(blue)%ad%C(reset) %C(dim white)%ae%C(reset) %C(auto)%d%C(reset) %C(normal)%s%C(reset)'
+  puff = push --force-with-lease
+  slurp = commit --amend --no-edit
+
+[core]
+  pager = delta --plus-style='green "#012800"' --minus-style='red "#440001"'
+  editor = nvim
+
+[interactive]
+  diffFilter = delta --color-only
+
+[commit]
+  template = ~/.config/git/templates/commit
+  verbose = true
+
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+
+[push]
+  autoSetupRemote = true
+  followTags = true
+
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+
+[branch]
+  sort = -commiterdate
+
+# Work identity/overrides, only applied to repos cloned under ~/projects/work/.
+# The prefix is fixed regardless of whatever GitHub username a given job uses
+# underneath it, so switching jobs never requires touching this line.
+# ~/.gitconfig-work is created by hand per job, never by Ansible (see README) —
+# a missing file here is silently ignored by git, so this stays unconditional.
+[includeIf "gitdir:~/projects/work/**"]
+  path = ~/.gitconfig-work
+
+# Unmanaged local escape hatch: never templated, never overwritten by Ansible.
+# Anything here wins over everything above, including the work override.
+# A missing file is silently ignored by git, so it doesn't need to exist.
+[include]
+  path = ~/.gitconfig.local

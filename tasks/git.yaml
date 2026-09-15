@@ -7,16 +7,16 @@
         name:
           - git
           - lazygit
+          - git-delta
         state: latest
 
-    - name: Setup Git email
-      git_config:
-        name: user.email
-        scope: global
-        value: "{{ github_email }}"
+    - name: Render gitconfig
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/templates/gitconfig.j2"
+        dest: "{{ ansible_env.HOME }}/.gitconfig"
+        backup: yes
 
-    - name: Setup Git name
-      git_config:
-        name: user.name
-        scope: global
-        value: "{{ github_name }}"
+    - name: Ensure ~/projects/work directory exists
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/projects/work"
+        state: directory
