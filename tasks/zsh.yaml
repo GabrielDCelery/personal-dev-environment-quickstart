@@ -42,6 +42,17 @@
         marker_begin: "START WORK ZSH CONFIG"
         marker_end: "END WORK ZSH CONFIG"
 
+    - name: Add .zshrc.scripts file
+      ansible.builtin.blockinfile:
+        state: present
+        path: $HOME/.zshrc
+        block: |
+          if [ -e "$HOME/.zshrc.scripts" ]; then
+            source $HOME/.zshrc.scripts
+          fi
+        marker_begin: "START SCRIPTS ZSH CONFIG"
+        marker_end: "END SCRIPTS ZSH CONFIG"
+
     - name: Add .zshrc.custom file
       ansible.builtin.blockinfile:
         state: present
