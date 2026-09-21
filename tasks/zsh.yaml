@@ -15,10 +15,19 @@
       community.general.homebrew:
         name:
           - zsh-autosuggestions
-          - zsh-completions
           - zsh-syntax-highlighting
           - fzf-tab
         state: latest
+
+    # cloned directly instead of via Homebrew because compinit flags Homebrew's
+    # share/ directories as insecure (group-writable), which breaks completions
+    - name: Clone zsh-completions plugin
+      ansible.builtin.git:
+        repo: git@github.com:zsh-users/zsh-completions.git
+        dest: $HOME/.zsh/plugins/zsh-completions
+        version: master
+        update: yes
+        clone: yes
 
     - name: Add .zshrc.personal file
       ansible.builtin.blockinfile:
