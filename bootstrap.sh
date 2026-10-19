@@ -147,6 +147,8 @@ github_token: $GITHUB_TOKEN
 EOF
     success "Created vars.yaml"
 else
+    GITHUB_EMAIL=$(grep '^github_email:' vars.yaml | awk '{print $2}')
+    GITHUB_NAME=$(grep '^github_name:' vars.yaml | sed 's/^github_name: *//')
     GITHUB_TOKEN=$(grep '^github_token:' vars.yaml | awk '{print $2}')
     success "vars.yaml already exists, skipping"
 fi
@@ -165,4 +167,48 @@ fi
 
 info "Running Ansible playbook..."
 GITHUB_TOKEN="$GITHUB_TOKEN" ansible-playbook -i ./inventory.yaml ./playbook.yaml
+
+# ─── GPG key + password store ───────────────────────────────────────────────
+
+# Runs after the playbook: gnupg and pass are installed by then, and stow has
+# linked gpg-agent.conf (long passphrase cache) into ~/.gnupg
+command -v gpg &>/dev/null || die "gpg not found after playbook run"
+command -v pass &>/dev/null || die "pass not found after playbook run"
+
+if ! gpg --list-secret-keys --with-colons "$GITHUB_EMAIL" 2>/dev/null | grep -q '^sec'; then
+    info "No GPG key found for $GITHUB_EMAIL — generating one..."
+    echo ""
+    read -rsp "  GPG passphrase (empty = no passphrase): " GPG_PASSPHRASE </dev/tty
+    echo ""
+    if [[ -n "$GPG_PASSPHRASE" ]]; then
+        read -rsp "  Repeat passphrase: " GPG_PASSPHRASE_CONFIRM </dev/tty
+        echo ""
+        [[ "$GPG_PASSPHRASE" == "$GPG_PASSPHRASE_CONFIRM" ]] || die "Passphrases do not match"
+    else
+        warn "Empty passphrase — the private key will be stored unencrypted in ~/.gnupg"
+    fi
+
+    # Passphrase goes in via stdin (loopback) so no pinentry/TTY is needed, which
+    # also works when the script is piped from curl. Expiry applies to the primary
+    # key and its encryption subkey. Renewal steps: notes/02_area/gpg.
+    printf '%s\n' "$GPG_PASSPHRASE" | gpg --batch --pinentry-mode loopback --passphrase-fd 0 \
+        --quick-generate-key "$GITHUB_NAME <$GITHUB_EMAIL>" default default 2y
+    unset GPG_PASSPHRASE GPG_PASSPHRASE_CONFIRM
+    success "GPG key generated (expires in 2 years)"
+else
+    success "GPG key found for $GITHUB_EMAIL"
+fi
+
+if [[ ! -f "$HOME/.password-store/.gpg-id" ]]; then
+    # Look the key up by email — gpg --list-keys also contains imported keys of
+    # other people (e.g. the Node.js release signers installed by mise)
+    GPG_FPR=$(gpg --list-secret-keys --with-colons "$GITHUB_EMAIL" \
+        | awk -F: '$1=="sec"{f=1} f&&$1=="fpr"{print $10; exit}')
+    [[ -n "$GPG_FPR" ]] || die "Could not find the fingerprint of the GPG key for $GITHUB_EMAIL"
+    pass init "$GPG_FPR"
+    success "Password store initialised"
+else
+    success "Password store already initialised"
+fi
+
 success "Done"
