@@ -72,6 +72,7 @@
           - tmux
           - tmuxinator
           - russmckendrick/tap/tokenuse # TUI to explore AI coding tool token and cost usage https://github.com/russmckendrick/tokenuse
+          - transcrypt # encrypt files using password that are stored on a Git repo
           - tree-sitter-cli
           - vegeta # CLI load testing tool https://github.com/tsenart/vegeta
           - watch
