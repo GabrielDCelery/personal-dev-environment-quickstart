@@ -20,5 +20,13 @@
         update: yes
         clone: yes
 
+    # Must exist before stow runs, otherwise stow symlinks the whole directory
+    # into the dotfiles repo and gpg writes private keys there
+    - name: Create .gnupg directory if does not exist
+      ansible.builtin.file:
+        path: $HOME/.gnupg
+        state: directory
+        mode: "0700"
+
     - name: Stow $HOME/.dotfiles
       ansible.builtin.shell: stow --dir=$HOME/.dotfiles .
