@@ -71,12 +71,26 @@ nothing breaks.
 
 ## Importing Secrets
 
-After the playbook finishes, set up the local password store:
+[Bitwarden](https://bitwarden.com) is the source of truth for secrets; the local
+[`pass`](https://www.passwordstore.org) store is a copy that gets rebuilt from it. Bootstrap
+handles the setup after the playbook finishes:
+
+1. Generates a GPG key for your GitHub email if there is none (asks for a passphrase;
+   empty means no passphrase). The key expires in 2 years — renew it with
+   `gpg --edit-key <id>`, then `expire` on the key **and** `key 1` + `expire` on the
+   encryption subkey.
+2. Runs `pass init` with that key if the store does not exist yet.
+3. Optionally runs `scripts/pass-sync.sh` (asks `[y/N]`, then which folder), which copies
+   the Login items in that Bitwarden folder into the store and nothing else. Use one folder
+   per kind of machine (e.g. `pass-personal`, `pass-work`) so a machine only receives its own
+   secrets. Item names map 1:1 to `pass` paths, so an item named `personal/github/tokens/foo`
+   is read with `pass show personal/github/tokens/foo`.
+
+The sync is one-way: edit secrets in Bitwarden, not in `pass`. Items deleted in Bitwarden
+are not removed from `pass`. Run it again any time:
 
 ```sh
-gpg --full-generate-key
-gpg --list-keys                # copy the key ID
-pass init <gpg-key-id>         # initialise the password store
+scripts/pass-sync.sh           # or: scripts/pass-sync.sh <other-folder>
 ```
 
 ## Re-running

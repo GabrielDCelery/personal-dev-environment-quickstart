@@ -211,4 +211,24 @@ else
     success "Password store already initialised"
 fi
 
+# ─── Bitwarden → pass ───────────────────────────────────────────────────────
+
+# Asked every run because it needs the Bitwarden master password; default is no so
+# re-running bootstrap is not interrupted. A failure here must not fail the bootstrap
+# (e.g. no Bitwarden account yet).
+read -rp "  Sync secrets from Bitwarden into pass now? [y/N] " SYNC_BITWARDEN </dev/tty
+if [[ "$SYNC_BITWARDEN" =~ ^[Yy]$ ]]; then
+    # One Bitwarden folder per kind of machine (e.g. pass-personal, pass-work) so a
+    # machine only receives the secrets it should have
+    read -rp "  Bitwarden folder to sync [pass]: " BITWARDEN_FOLDER </dev/tty
+    # </dev/tty: stdin is the script itself when piped from curl, and bw prompts on it
+    if bash "$REPO_DIR/scripts/pass-sync.sh" "${BITWARDEN_FOLDER:-pass}" </dev/tty; then
+        success "Secrets synced from Bitwarden"
+    else
+        warn "Bitwarden sync failed — run scripts/pass-sync.sh again later"
+    fi
+else
+    info "Skipping Bitwarden sync (run scripts/pass-sync.sh any time)"
+fi
+
 success "Done"

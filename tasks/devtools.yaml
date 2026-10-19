@@ -28,6 +28,7 @@
           - aichat
           - aws-vault
           - azure-cli
+          - bitwarden-cli # CLI for Bitwarden, used by pass-sync to copy secrets into pass https://bitwarden.com/help/cli
           - bat # CLI cat alternative with highlights https://github.com/sharkdp/bat
           - btop # CLI alternatvie to top https://github.com/aristocratos/btop
           - buf
